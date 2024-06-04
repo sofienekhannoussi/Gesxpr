@@ -12,7 +12,7 @@ export class routes {
     return this.baseUrl + '/instructor/';
   }
   public static get students(): string {
-    return this.baseUrl + '/student/';
+    return this.baseUrl + '/expert/';
   }
   public static get pages(): string {
     return this.baseUrl + '/pages/';
@@ -64,10 +64,10 @@ export class routes {
     return this.instructor + 'instructor-reviews';
   }
   public static get instructor_student_grid(): string {
-    return this.instructor + 'instructor-student-grid';
+    return this.instructor + 'instructor-expert-grid';
   }
   public static get instructor_student_list(): string {
-    return this.instructor + 'instructor-student-list';
+    return this.instructor + 'instructor-expert-list';
   }
   public static get instructor_earnings(): string {
     return this.instructor + 'instructor-earnings';
@@ -120,10 +120,10 @@ export class routes {
   // Student Routings
 
   public static get students_list(): string {
-    return this.students + 'student-view/students-list';
+    return this.students + 'expert-view/experts-list';
   }
   public static get students_grid(): string {
-    return this.students + 'student-view/students-grid';
+    return this.students + 'expert-view/experts-grid';
   }
   public static get students_edit_profile(): string {
     return this.students + 'setting-edit-profile';
@@ -133,55 +133,55 @@ export class routes {
   }
 
   public static get students_profile(): string {
-    return this.students + 'student-profile';
+    return this.students + 'expert-profile';
   }
   public static get deposit_student_dashboard(): string {
-    return this.students + 'deposit-student-dashboard';
+    return this.students + 'deposit-expert-dashboard';
   }
   public static get deposit_student(): string {
-    return this.students + 'deposit-student';
+    return this.students + 'deposit-expert';
   }
   public static get course_student(): string {
-    return this.students + 'course-student';
+    return this.students + 'course-expert';
   }
   public static get view_invoice_student(): string {
     return this.students + 'view-invoice';
   }
   public static get transactions_student(): string {
-    return this.students + 'transactions-student';
+    return this.students + 'transactions-expert';
   }
   public static get students_security(): string {
-    return this.students + 'setting-student-security';
+    return this.students + 'setting-expert-security';
   }
   public static get students_social_profile(): string {
-    return this.students + 'setting-student-social-profile';
+    return this.students + 'setting-expert-social-profile';
   }
   public static get students_notification(): string {
-    return this.students + 'setting-student-notification';
+    return this.students + 'setting-expert-notification';
   }
   public static get students_privacy(): string {
-    return this.students + 'setting-student-privacy';
+    return this.students + 'setting-expert-privacy';
   }
   public static get students_delete(): string {
-    return this.students + 'setting-student-delete-profile';
+    return this.students + 'setting-expert-delete-profile';
   }
   public static get students_accounts(): string {
-    return this.students + 'setting-student-accounts';
+    return this.students + 'setting-expert-accounts';
   }
   public static get students_referral(): string {
-    return this.students + 'setting-student-referral';
+    return this.students + 'setting-expert-referral';
   }
   public static get students_subscription(): string {
-    return this.students + 'setting-student-subscription';
+    return this.students + 'setting-expert-subscription';
   }
   public static get students_billing(): string {
-    return this.students + 'setting-student-billing';
+    return this.students + 'setting-expert-billing';
   }
   public static get students_payments(): string {
-    return this.students + 'setting-student-payment';
+    return this.students + 'setting-expert-payment';
   }
   public static get students_invoice(): string {
-    return this.students + 'setting-student-invoice';
+    return this.students + 'setting-expert-invoice';
   }
   public static get students_tickets(): string {
     return this.students + 'setting-support-tickets';

@@ -18,7 +18,7 @@ export class StudentComponent implements OnInit {
   side_bar_data: Array<any> = [];
   student: boolean = true;
   dashboard: boolean = true;
-  constructor(private common : CommonService,private Router: Router,private data: DataService,) { 
+  constructor(private common : CommonService,private Router: Router,private data: DataService,) {
     this.common.base.subscribe((res:string)=>{
       this.base =res;
     })
@@ -51,15 +51,15 @@ export class StudentComponent implements OnInit {
         this.page = splitVal[2];
         this.last = splitVal[3];
         if (
-          event.url === '/student/deposit-student-dashboard' ||
-          event.url === '/student/student-profile' ||
-          event.url === '/student/view-invoice' ||
-          event.url === '/student/student-view/students-grid' ||
-          event.url === '/student/student-view/students-list' ||
+          event.url === '/expert/deposit-expert-dashboard' ||
+          event.url === '/expert/expert-profile' ||
+          event.url === '/expert/view-invoice' ||
+          event.url === '/expert/expert-view/experts-grid' ||
+          event.url === '/expert/expert-view/experts-list' ||
           event.url === '/instructor/instructor-new-tickets' ||
           event.url === '/instructor/instructor-view/instructor-list' ||
           event.url === '/instructor/instructor-view/instructor-grid' ||
-          event.url === '/instructor/instructor-chat' 
+          event.url === '/instructor/instructor-chat'
            ) {
           this.student = false;
         } else {

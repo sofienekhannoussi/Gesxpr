@@ -40,7 +40,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Token> tokens;
 
-
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    //  @JoinColumn(nullable = false, name = "user_id")
+    private VerificationToken verificationToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,21 +1,59 @@
 package com.iteam.Gestion.Expert.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
+@Data
 @Entity
-public class VerificationToken extends AbstractToken {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class VerificationToken {
 
-    private static final long serialVersionUID = -6551160985498051566L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String token;
+    private Date expirationTime;
 
-    public VerificationToken() {
+
+    private static final int EXPIRATION_TIME = 1;
+
+
+    @OneToOne(fetch = FetchType.LAZY)
+   // @JoinColumn(name = "user_id")
+    private User user;
+
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+
+
+
+    public VerificationToken(String token, User user) {
         super();
+        this.token = token;
+        this.user = user;
+        this.expirationTime = this.getTokenExpirationTime();
     }
 
-    public VerificationToken(final String token) {
-        super(token);
+
+    public Date getTokenExpirationTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(new Date().getTime());
+        calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
+        return new Date(calendar.getTime().getTime());
     }
 
-    public VerificationToken(final String token, final User user) {
-        super(token, user);
-    }
+
 }

@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
         this.authService.setUserToken(ress);
         const name=localStorage.getItem("fullname");
         const role=localStorage.getItem("role");
-        console.log("ggggggg",role);
+        const IDD=localStorage.getItem("userId");
+        console.log("ggggggg",IDD);
         if(role=="EXPERT")
           {
             this.router.navigate(['/instructor/instructor-dashboard']);
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit {
           if(role=="RESP_STE")
             {
 
-              this.router.navigate(['/student/setting-edit-profile']);
+              this.router.navigate(['/expert/setting-edit-profile']);
 
             }
 

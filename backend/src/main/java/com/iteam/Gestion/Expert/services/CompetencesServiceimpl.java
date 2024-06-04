@@ -12,6 +12,7 @@ import com.iteam.Gestion.Expert.reposetories.CompetenceRepository;
 import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class CompetencesServiceimpl implements CompetencesService {
 
     @Override
     public void deleteCompetences(Long id) {
-competenceRepository.deleteById(id);
+
+        competenceRepository.deleteById(id);
     }
 
     @Override

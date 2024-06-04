@@ -113,7 +113,7 @@ const routes: Routes = [
           ).then((m) => m.InstructorSocialProfilesModule),
       },
       {
-        path: 'instructor-student-grid',
+        path: 'instructor-expert-grid',
         loadChildren: () =>
           import(
             './instructor-student-grid/instructor-student-grid.module'
@@ -178,7 +178,7 @@ const routes: Routes = [
       ),
   },
   { path: 'instructor-edit', loadChildren: () => import('./instructor-edit/instructor-edit.module').then(m => m.InstructorEditModule) },
-  { path: 'instructor-student-list', loadChildren: () => import('./instructor-student-list/instructor-student-list.module').then(m => m.InstructorStudentListModule) },
+  { path: 'instructor-expert-list', loadChildren: () => import('./instructor-student-list/instructor-student-list.module').then(m => m.InstructorStudentListModule) },
 ];
 
 @NgModule({

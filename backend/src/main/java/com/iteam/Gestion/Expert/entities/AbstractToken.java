@@ -30,7 +30,9 @@ public abstract class AbstractToken implements Serializable {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER,cascade = CascadeType.ALL)
   //  @JoinColumn(nullable = false, name = "user_id")
     private User user;
-
+    @OneToOne
+  /*  @JoinColumn(name = "user_id")
+    private User user;*/
     private Date expiryDate;
 
     public AbstractToken(final String token) {

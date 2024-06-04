@@ -27,7 +27,7 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
       },
       {
-        path: 'student',
+        path: 'expert',
         loadChildren: () =>
           import('./student/student.module').then((m) => m.StudentModule),
       },
@@ -36,17 +36,17 @@ const routes: Routes = [
         loadChildren: () =>
           import('./home-list/home/home.module').then((m) => m.HomeModule),
       },
-      { 
-        path: 'home-two', 
-        loadChildren: () => import('./home-list/home2/home2.module').then(m => m.Home2Module) 
+      {
+        path: 'home-two',
+        loadChildren: () => import('./home-list/home2/home2.module').then(m => m.Home2Module)
       },
-      { 
-        path: 'home-three', 
-        loadChildren: () => import('./home-list/home3/home3.module').then(m => m.Home3Module) 
+      {
+        path: 'home-three',
+        loadChildren: () => import('./home-list/home3/home3.module').then(m => m.Home3Module)
       },
-      { 
-        path: 'home-four', 
-        loadChildren: () => import('./home-list/home4/home4.module').then(m => m.Home4Module) 
+      {
+        path: 'home-four',
+        loadChildren: () => import('./home-list/home4/home4.module').then(m => m.Home4Module)
       },
     ],
   },

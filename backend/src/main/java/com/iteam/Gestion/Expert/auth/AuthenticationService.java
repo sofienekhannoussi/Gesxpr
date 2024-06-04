@@ -127,7 +127,7 @@ System.err.println(user.getFullname());
 
         final User user = verificationToken.get().getUser();
         final Calendar cal = Calendar.getInstance();
-        if ((verificationToken.get().getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
+        if ((verificationToken.get().getExpirationTime().getTime() - cal.getTime().getTime()) <= 0) {
             return AppConstants.TOKEN_EXPIRED;
         }
 
@@ -158,6 +158,9 @@ System.err.println(user.getFullname());
         var claims = new HashMap<String, Object>();
         claims.put("fullname", user.getFullname());
         claims.put("role", user.getRole().name());
+       claims.put("userId", user.getId());
+        System.out.println(claims);
+
         var jwtToken = jwtService.generateToken(claims,user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);

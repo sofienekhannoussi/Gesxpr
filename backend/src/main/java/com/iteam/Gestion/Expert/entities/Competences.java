@@ -23,7 +23,7 @@ public class Competences {
    // private String CreatedBy;
    // private Date CreatedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Expert expert;
 
 }

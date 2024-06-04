@@ -30,7 +30,7 @@ public class CompetenceController {
         return competencesServiceService.listeallCompetences();
     }
 
-    @GetMapping("/update")
+    @PostMapping("/update")
 
     public Competencesdto updateCompetences(Competencesdto competencesdto) {
         return competencesServiceService.updateCompetences(competencesdto);

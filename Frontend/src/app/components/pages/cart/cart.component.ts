@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   public cart: any = [];
   offreList:Offre[] = [];
   public isstudentHeader!: boolean;
-  
+
   constructor(private DataService: DataService ,private  offrsev:OffreService ,private common: CommonService,private router:Router) {
     this.cart = this.DataService.cart;
     this.common.isstudentHeader.subscribe((res: boolean) => {
@@ -39,12 +39,12 @@ export class CartComponent implements OnInit {
     })
   }
  recupeidoffr(idoffcom:number)
-  
+
  {
 alert("fffffffff")
   this.offrsev.idoff=idoffcom;
   console.log(idoffcom)
-  this.router.navigate(['student/demande']);
+  this.router.navigate(['expert/demande']);
 
  }
 }
