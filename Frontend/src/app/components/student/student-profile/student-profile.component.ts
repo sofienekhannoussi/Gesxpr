@@ -5,6 +5,8 @@ import { routes } from 'src/app/shared/service/routes/routes';
 import { SkillsDialogComponent } from './skills-dialog/skills-dialog.component';
 import { EducationDialogComponent } from './education-dialog/education-dialog.component';
 import { ExperienceDialogComponent } from './experience-dialog/experience-dialog.component';
+import { CompetenceService } from 'src/app/servicesSTG/competence.service';
+import { Competence } from 'src/app/modelSTG/competence';
 
 @Component({
   selector: 'app-student-profile',
@@ -18,15 +20,11 @@ export class StudentProfileComponent implements OnInit {
   public studentProfileReviews: any = [];
   public routes = routes;
   public studentProfileContactDetails: any = [];
-  skills: string[] = [
-    'Angular',
-    'React',
-    'NodeJS',
-    'ExpressJS',
-    'MongoDb & SQL',
-    'SpringBoot',
+  skills: Competence[] = [
+
   ];
-  constructor(private DataService: DataService, private dialog: MatDialog) {
+  constructor(private DataService: DataService, private competenceservice : CompetenceService, private dialog: MatDialog) {
+
     this.studentProfileEducation = this.DataService.studentProfileEducation;
     this.studentProfileExperience = this.DataService.studentProfileExperience;
     this.studentProfileCourses = this.DataService.studentProfileCourses;
@@ -35,7 +33,10 @@ export class StudentProfileComponent implements OnInit {
       this.DataService.studentProfileContactDetails;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.getlistSkills()
+  }
   //Education
   openEducationsDialog() {
     const dialogRef = this.dialog.open(EducationDialogComponent, {
@@ -64,6 +65,8 @@ export class StudentProfileComponent implements OnInit {
   }
   //skills
   openSkillsDialog(): void {
+    console.log("sss",this.skills);
+
     const dialogRef = this.dialog.open(SkillsDialogComponent, {
       width: '400px',
       data: this.skills,
@@ -73,6 +76,22 @@ export class StudentProfileComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(this.skills);
       // call api for update skills and the arg is skills
+    });
+
+
+
+  }
+
+
+  getlistSkills() {
+    this.competenceservice.getList().subscribe({
+      next: (data) => {
+        this.skills=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
     });
   }
 }

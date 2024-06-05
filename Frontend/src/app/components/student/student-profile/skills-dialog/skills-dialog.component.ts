@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { CompetenceService } from 'src/app/servicesSTG/competence.service';
@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './skills-dialog.component.html',
   styleUrls: ['./skills-dialog.component.scss'],
 })
-export class SkillsDialogComponent {
+export class SkillsDialogComponent implements OnInit {
   isEditing: boolean[] = [];
   skillControls: FormControl[] = [];
   newSkillControl: FormControl;
@@ -21,11 +21,15 @@ export class SkillsDialogComponent {
 
   constructor( private competenceservice : CompetenceService,
     public dialogRef: MatDialogRef<SkillsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string[]
+    @Inject(MAT_DIALOG_DATA) public data: Competence[]
   ) {
     this.isEditing = new Array(data.length).fill(false);
     this.skillControls = data.map(skill => new FormControl(skill, Validators.required));
     this.newSkillControl = new FormControl('', Validators.required);
+  }
+  ngOnInit(): void {
+    console.log("competenc",this.data)
+
   }
 
 
@@ -71,6 +75,8 @@ this.competence.idexpert=id
     if (this.newSkillControl.valid) {
       const newSkill = this.newSkillControl.value;
       if (newSkill !== null && newSkill.trim() !== '') {
+        //api add skill.subscribe
+        //inside subscribe create object
         this.data.push(newSkill.trim());
         this.skillControls.push(new FormControl(newSkill.trim(), Validators.required));
         this.isEditing.push(false);
