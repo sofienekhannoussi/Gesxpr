@@ -85,10 +85,11 @@ public class CompetencesServiceimpl implements CompetencesService {
 
     @Override
     public Competences addCompetences(Competencesdto competencesdto) {
+        System.err.println(competencesdto.getIdexpert());
         Optional<Expert> expert = expertRepository.findById(competencesdto.getIdexpert());
 
         Competences competences = Competencesdto.toEntity(competencesdto);
-
+        System.err.println(competences);
         if (expert.isPresent()) {
             competences.setExpert(expert.get());
             Competences competencessaved = competenceRepository.save(competences);
