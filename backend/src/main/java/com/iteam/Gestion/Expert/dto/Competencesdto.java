@@ -18,7 +18,7 @@ public class Competencesdto {
 
     public static Competences toEntity(Competencesdto request) {
         return Competences.builder()
-                .id(request.getId())
+//                .id(request.getId())
                 .isActive(request.getIsActive())
                 .competenceName(request.getCompetenceName())
                 .build();

@@ -32,7 +32,7 @@ public class CompetenceController {
 
     @PostMapping("/update")
 
-    public Competencesdto updateCompetences(Competencesdto competencesdto) {
+    public Competencesdto updateCompetences(@RequestBody Competencesdto competencesdto) {
         return competencesServiceService.updateCompetences(competencesdto);
     }
 
@@ -43,7 +43,7 @@ public class CompetenceController {
     }
     @PostMapping("/add")
 
-    public Competences addCompetences(Competencesdto competencesdto) {
+    public Competencesdto addCompetences(@RequestBody Competencesdto competencesdto) {
         return competencesServiceService.addCompetences(competencesdto);
     }
 }

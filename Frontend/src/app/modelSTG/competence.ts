@@ -1,5 +1,5 @@
 export class Competence {
-  id!:number
+  id !: number
   competenceName !: string
   isActive !: boolean
   idexpert !: number }

@@ -15,33 +15,22 @@ export class SkillsDialogComponent implements OnInit {
   skillControls: FormControl[] = [];
   newSkillControl: FormControl;
 
+  errorMsg!: String;
 
-  competence : Competence = {
-    id:0,
-    competenceName : "",
-    isActive : false,
-    idexpert : 0
-
-  };
-
-  errorMsg !: String;
-
-  constructor( private competenceservice : CompetenceService,
+  constructor(
+    private competenceservice: CompetenceService,
     public dialogRef: MatDialogRef<SkillsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Competence[]
   ) {
     this.isEditing = new Array(data.length).fill(false);
-    this.skillControls = data.map(skill => new FormControl(skill, Validators.required));
+    this.skillControls = data.map(
+      (skill) => new FormControl(skill.competenceName, Validators.required)
+    );
     this.newSkillControl = new FormControl('', Validators.required);
   }
   ngOnInit(): void {
-    console.log("competenc",this.data)
-
+    console.log('competenc', this.data);
   }
-
-
-
-
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -55,34 +44,73 @@ export class SkillsDialogComponent implements OnInit {
     if (this.skillControls[index].valid) {
       const skill = this.skillControls[index].value;
       if (skill !== null) {
-        this.data[index] = skill.com;
+        // this.data[index] = skill.com;
+        let input = this.data[index];
+        const id = Number(localStorage.getItem('userId'));
+        input.idexpert = id;
+        input.competenceName = skill;
+        console.log(input);
+
+        this.competenceservice.updateCompetence(input).subscribe({
+          next: () => {
+            this.data[index] = input;
+          },
+          error: (er) => {
+            console.log(er);
+          },
+        });
       }
       this.isEditing[index] = false;
     }
   }
 
   deleteSkill(index: number): void {
-    this.data.splice(index, 1);
-    this.skillControls.splice(index, 1);
-    this.isEditing.splice(index, 1);
+    let input = this.data[index];
+
+    this.competenceservice.deleteById(input.id).subscribe({
+      next: () => {
+        this.data.splice(index, 1);
+        this.skillControls.splice(index, 1);
+        this.isEditing.splice(index, 1);
+      },
+      error: (er) => {
+        console.log(er);
+      },
+    });
   }
 
   addSkill(): void {
     if (this.newSkillControl.valid) {
       const newSkill = this.newSkillControl.value;
       if (newSkill !== null && newSkill.trim() !== '') {
-        //api add skill.subscribe
+        const id = Number(localStorage.getItem('userId'));
+        let input: Competence = {
+          id: 0,
+          competenceName: newSkill,
+          isActive: true,
+          idexpert: id,
+        };
+        this.competenceservice.addCompetence(input).subscribe({
+          next: () => {
+            this.data.push(input);
+            console.log(this.data);
+            this.skillControls.push(
+              new FormControl(newSkill.trim(), Validators.required)
+            );
+            this.isEditing.push(false);
+            this.newSkillControl.reset();
+          },
+          error: (er) => {
+            console.log(er);
+          },
+        });
 
         //inside subscribe create object
-        this.data.push(newSkill.trim());
-        this.skillControls.push(new FormControl(newSkill.trim(), Validators.required));
-        this.isEditing.push(false);
-        this.newSkillControl.reset();
       }
     }
   }
 
-  addCompetence(){
+  /* addCompetence(){
 
     const id=Number(localStorage.getItem("userId"))
 this.competence.idexpert=id
@@ -128,7 +156,5 @@ console.log("sofiene",this.competence)
   }
 
 
-
-
-
+*/
 }

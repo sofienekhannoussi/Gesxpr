@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -14,16 +14,32 @@ export class CompetenceService   {
   constructor ( private router : Router,private httpClient: HttpClient)
   { }
 
-  addCompetence(addCompetence : Competence):Observable<Competence>{
-    console.log("fffffffffffffff",addCompetence)
-    const url=this.baseUrl+"/add"
-    return this.httpClient.post<Competence>(url,addCompetence)
-  }
+  addCompetence(addCompetence : Competence){
+   /* const params = new HttpParams()
+      .set('competenceName', addCompetence.competenceName)
+      .set('isActive', addCompetence.isActive)
+      .set('idexpert', addCompetence.idexpert);
 
-  updateCompetence(addCompetence : Competence):Observable<Competence>{
-    console.log("fffffffffffffff",addCompetence)
+      const url=this.baseUrl+"/add"
+
+    return this.httpClient.post(url, {}, { params });
+
+ */  console.log("fffffffffffffff",addCompetence)
+    const url=this.baseUrl+"/add"
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.post(url, addCompetence, { headers });
+
+  }
+  updateCompetence(competence : Competence){
     const url=this.baseUrl+"/update"
-    return this.httpClient.post<Competence>(url,addCompetence)
+      const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.post(url, competence, { headers });
   }
 
   finddpetById(id: number): Observable<Competence> {

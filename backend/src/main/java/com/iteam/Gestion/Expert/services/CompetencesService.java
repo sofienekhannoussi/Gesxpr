@@ -17,5 +17,5 @@ public interface CompetencesService {
     Competencesdto updateCompetences(Competencesdto competencesdto);
 
     Competencesdto findByIdcompetences(Long id);
-    Competences addCompetences(Competencesdto competencesdto);
+     Competencesdto addCompetences(Competencesdto competencesdto);
 }
