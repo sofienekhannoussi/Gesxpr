@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+
+  dbase:
+    image: sofienekhannoussi/dbase:v1.0.0
+    container_name: dbase
+    restart: always
+    volumes:
+      - mariadb_data:/data/db
+    environment:
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - 3306:3306
+    networks:
+     - network-backend
+
+  front:
+    image: sofienekhannoussi/front:v1.0.0
+    container_name: front
+    depends_on:
+      - back
+    ports:
+      - "4200:4200"
+    networks:
+      - network-backend
+  back:
+    image: sofienekhannoussi/back:v1.0.0
+    container_name: back 
+    depends_on:
+      - dbase
+    ports:
+      - "8080:8080"
+    networks: 
+     - network-backend
+  
+
+networks:
+  network-backend:
+
+volumes: 
+  mariadb_data:
