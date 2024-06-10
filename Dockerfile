@@ -1,11 +1,6 @@
-FROM node:alpine
+FROM mariadb:10.3
+ENV MYSQL_USER docker
+ENV MYSQL_PASSWORD docker
+ENV MYSQL_ROOT_PASSWORD docker
+EXPOSE 3306
 
-WORKDIR /usr/src/app
-
-COPY . /usr/src/app
-
-RUN npm install -g @angular/cli
-
-RUN npm install
-
-CMD ["ng", "serve", "--host", "0.0.0.0"]
