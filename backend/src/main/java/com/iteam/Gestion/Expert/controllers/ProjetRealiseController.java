@@ -1,13 +1,11 @@
 package com.iteam.Gestion.Expert.controllers;
 
 import com.iteam.Gestion.Expert.dto.ProjetRealisedto;
-import com.iteam.Gestion.Expert.entities.ProjetRealise;
 import com.iteam.Gestion.Expert.services.ProjetRealiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/projet")
@@ -20,21 +18,31 @@ public class ProjetRealiseController {
 
     @DeleteMapping("/delete/{id}")
 
-    public void deleteProjet(Long id) {
+    public void deleteProjet(@PathVariable("id") Long id) {
         projetRealiseService.deleteProjet(id);
     }
+
+    @GetMapping("/listeall")
 
     public List<ProjetRealisedto> listeallProjet() {
         return projetRealiseService.listeallProjet();
     }
 
-    public Optional<ProjetRealise> findByIdProjet(Long id) {
+    @GetMapping("/findByIdProjet/{id}")
+
+    public ProjetRealisedto findByIdProjet(@PathVariable("id") Long id) {
         return projetRealiseService.findByIdProjet(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/update")
 
-    public ProjetRealise addOffre(ProjetRealisedto projetRealisedto) {
-        return projetRealiseService.addOffre(projetRealisedto);
+    public ProjetRealisedto updateProjet(@RequestBody ProjetRealisedto projetRealisedto) {
+        return projetRealiseService.updatePorjet(projetRealisedto);
+    }
+
+    @PostMapping("/add")
+
+    public ProjetRealisedto addProjet(@RequestBody ProjetRealisedto projetRealisedto) {
+        return projetRealiseService.addProjet(projetRealisedto);
     }
 }

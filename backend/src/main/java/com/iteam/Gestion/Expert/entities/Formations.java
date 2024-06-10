@@ -1,8 +1,5 @@
 package com.iteam.Gestion.Expert.entities;
 
-import java.util.Date;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,23 +11,18 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Entity
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjetRealise {
-	 @Id
-	 @GeneratedValue(strategy =GenerationType.AUTO )
-	private Long id;
-	 private String title; //intutulé poste
-	    private String description;//texte riche : details missions
-	    private Date dateDebut;
-	    private Date dateFin;
-		private String nomSociete;
-	    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	    private Expert expert;
-
+public class Formations {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String titre;
+    private Boolean isActive;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Expert expert;
 }

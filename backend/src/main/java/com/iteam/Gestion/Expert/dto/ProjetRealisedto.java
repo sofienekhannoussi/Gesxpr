@@ -18,6 +18,10 @@ public class ProjetRealisedto {
     private String description;//texte riche : details missions
     private Date dateDebut;
     private Date dateFin;
+    private String nomSociete;
+    private Long idexpert;
+
+
 
     public static ProjetRealise toEntity(ProjetRealisedto request) {
         return ProjetRealise.builder()
@@ -26,6 +30,7 @@ public class ProjetRealisedto {
                 .description(request.getDescription())
                 .dateDebut(request.getDateDebut())
                 .dateFin(request.getDateFin())
+                .nomSociete(request.getNomSociete())
                 .build();
     }
     public static ProjetRealisedto fromEntity(ProjetRealise request) {
@@ -35,6 +40,7 @@ public class ProjetRealisedto {
                 .description(request.getDescription())
                 .dateDebut(request.getDateDebut())
                 .dateFin(request.getDateFin())
+                .nomSociete(request.getNomSociete())
                 .build();
     }
 

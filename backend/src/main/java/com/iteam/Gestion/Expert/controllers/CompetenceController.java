@@ -38,7 +38,7 @@ public class CompetenceController {
 
     @GetMapping("/findByIdCompetence/{id}")
 
-    public Competencesdto findByIdcompetences(Long id) {
+    public Competencesdto findByIdcompetences(@PathVariable("id") Long id) {
         return competencesServiceService.findByIdcompetences(id);
     }
     @PostMapping("/add")
