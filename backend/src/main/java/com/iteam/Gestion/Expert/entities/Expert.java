@@ -28,6 +28,11 @@ public class Expert extends User {
     private List<ProjetRealise> projetRealises;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private    Set<Competences> competences =new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
+    private    Set<Diplomes> diplomes =new HashSet<>();
+
+
     @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     private Mission mission;
 

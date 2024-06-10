@@ -14,6 +14,7 @@ import com.iteam.Gestion.Expert.reposetories.VerificationTokenRepository;
 import com.iteam.Gestion.Expert.token.Token;
 import com.iteam.Gestion.Expert.token.TokenRepository;
 import com.iteam.Gestion.Expert.token.TokenType;
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -250,4 +251,23 @@ System.err.println(user.getFullname());
             }
         }
     }
+    @PostConstruct
+    public void createDefaultAdmin() {
+        User user =new Admin();
+        String email = "admin@mail.com";
+        if (!repository.existsByEmail(email)) {
+            user.setEmail("admin@mail.com");
+            user.setFullname("Sofiene");
+            user.setPhone("198");
+            user.setActive(true);
+            user.setPassword(passwordEncoder.encode("admin"));
+    /*        List<Role> roles = new ArrayList<>();
+            Role userRole = roleRepository.findByName("AdminSystem")
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);*/
+            user.setRole(Role.ADMIN);
+            repository.save(user);
+        }
+    }
+
 }

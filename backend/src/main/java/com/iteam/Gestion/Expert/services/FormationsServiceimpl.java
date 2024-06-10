@@ -23,8 +23,8 @@ public class FormationsServiceimpl implements FormationsService {
     }
 
     @Override
-    public Formationsdto updateFormation(Long id, Formationsdto formationsdto) {
-        Formations existingFormation = formationsRepository.findById(id).orElseThrow(() -> new RuntimeException("Formation not found"));
+    public Formationsdto updateFormation( Formationsdto formationsdto) {
+        Formations existingFormation = formationsRepository.findById(formationsdto.getIdexpert()).orElseThrow(() -> new RuntimeException("Formation not found"));
         existingFormation.setTitre(formationsdto.getTitre());
         existingFormation.setIsActive(formationsdto.getIsActive()); // Set other fields as needed Formations
         Formations updatedFormation = formationsRepository.save(existingFormation);

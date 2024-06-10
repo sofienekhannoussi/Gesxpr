@@ -6,7 +6,7 @@ import java.util.List;
 public interface FormationsService {
     Formationsdto createFormation(Formationsdto formationsdto);
 
-    Formationsdto updateFormation(Long id, Formationsdto formationsdto);
+    Formationsdto updateFormation(Formationsdto formationsdto);
 
     void deleteFormation(Long id);
 
