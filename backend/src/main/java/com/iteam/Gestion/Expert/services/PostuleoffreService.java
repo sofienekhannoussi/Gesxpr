@@ -1,5 +1,7 @@
 package com.iteam.Gestion.Expert.services;
 
+import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.ListPostuledto;
 import com.iteam.Gestion.Expert.dto.Postuleoffredto;
 import com.iteam.Gestion.Expert.entities.Postuleoffre;
 
@@ -8,8 +10,14 @@ import java.util.Optional;
 
 public interface PostuleoffreService {
 
-    void deleteOffre(Long id);
-    List<Postuleoffredto> listeallOffre ();
-    Optional<Postuleoffre> findByIdOffre(Long id);
-    Postuleoffre addOffre(Postuleoffredto postuleoffredto);
+    void deletePostule(Long id);
+    List<ListPostuledto> listeallPostule ();
+
+
+    ListPostuledto findByIdpostule(Long id);
+    // changement de dto pour la liste et le detail
+
+
+
+    Postuleoffredto addPostule(Postuleoffredto postuleoffredto);
 }

@@ -15,6 +15,8 @@ public class Postuleoffredto {
 
     private Long id;
     private Date datepostule;
+    private Long idexpert;
+    private Long idmission;
 
 
     public static Postuleoffre toEntity(Postuleoffredto request) {

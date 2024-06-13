@@ -3,8 +3,8 @@ export class Diplome {
   title !: string
   description !: string
   universityName !: string
-  dateDebut !: Date
-  dateFin !: Date
+  dateDebut !: string
+  dateFin !: string
 
   idexpert !: number }
 

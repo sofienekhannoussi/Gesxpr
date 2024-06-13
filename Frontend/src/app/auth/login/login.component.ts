@@ -62,16 +62,24 @@ export class LoginComponent implements OnInit {
         console.log("ggggggg",IDD);
         if(role=="EXPERT")
           {
-            this.router.navigate(['/instructor/instructor-dashboard']);
+            this.router.navigate(['/expert']);
+
           }
           if(role=="RESP_STE")
             {
 
-              this.router.navigate(['/expert/setting-edit-profile']);
+              this.router.navigate(['/instructor']);
 
             }
 
-       this.router.navigate(['/instructor/instructor-dashboard']);
+            if(role=="ADMIN")
+              {
+
+                this.router.navigate(['/admin']);
+
+              }
+
+
 
       },
       error =>{

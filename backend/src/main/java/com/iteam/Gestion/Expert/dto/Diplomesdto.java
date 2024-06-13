@@ -17,8 +17,8 @@ public class Diplomesdto {
     private String title;
 
     private String description;
-    private Date dateDebut;
-    private Date dateFin;
+    private String dateDebut;
+    private String dateFin;
     private String universityName;
     private Long idexpert;
 
