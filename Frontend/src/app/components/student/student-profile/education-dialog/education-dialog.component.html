@@ -5,11 +5,9 @@
 <div mat-dialog-content>
   <div class="edu-wrap" *ngFor="let item of data; let i = index">
     <div class="edu-name">
-      <span>{{ item.heading.charAt(0).toUpperCase() }}</span>
     </div>
     <div class="edu-detail" [formGroup]="educationForms[i]">
       <h6>
-        <span *ngIf="!editingHeading[i]">{{ item.heading }}</span>
         <input *ngIf="editingHeading[i]" formControlName="heading" />
         <mat-icon class="icon" (click)="toggleEdit(i, 'heading')">
           {{ editingHeading[i] ? "check" : "edit" }}
@@ -17,14 +15,12 @@
         <mat-icon class="icon" (click)="deleteEducation(i)">delete</mat-icon>
       </h6>
       <p class="edu-duration">
-        <span *ngIf="!editingParagraph[i]">{{ item.paragraph }}</span>
         <input *ngIf="editingParagraph[i]" formControlName="paragraph" />
         <mat-icon class="icon" (click)="toggleEdit(i, 'paragraph')">
           {{ editingParagraph[i] ? "check" : "edit" }}
         </mat-icon>
       </p>
       <p>
-        <span *ngIf="!editingContent[i]">{{ item.content }}</span>
         <textarea *ngIf="editingContent[i]" formControlName="content" style="min-width: 100%;" ></textarea>
         <mat-icon class="icon" (click)="toggleEdit(i, 'content')">
           {{ editingContent[i] ? "check" : "edit" }}

@@ -24,6 +24,9 @@ public class ResponsableSociete extends User {
     private String presentationsociete;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsableSociete", cascade = CascadeType.ALL)
     Set<Mission> missions=new HashSet<>();
+
+
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "responsable", cascade = CascadeType.ALL)
     private Societe societe;
 

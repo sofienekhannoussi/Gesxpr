@@ -1,10 +1,7 @@
 package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
-import com.iteam.Gestion.Expert.dto.Missiondto;
-import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
-import com.iteam.Gestion.Expert.entities.Competences;
-import com.iteam.Gestion.Expert.entities.Mission;
+
 
 import java.util.List;
 import java.util.Optional;

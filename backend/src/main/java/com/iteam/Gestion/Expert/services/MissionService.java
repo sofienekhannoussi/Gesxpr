@@ -1,5 +1,6 @@
 package com.iteam.Gestion.Expert.services;
 
+import com.iteam.Gestion.Expert.dto.Competencesdto;
 import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.entities.Mission;
 
@@ -10,8 +11,11 @@ public interface MissionService {
 
     void deleteMission(Long id);
     List<Missiondto> listeallMission ();
-    Optional<Mission> findByIdMission(Long id);
-    Mission addMission(Missiondto missiondto);
+    Missiondto findByIdMission(Long id);
+
+    Missiondto updateMission(Missiondto missiondto);
+
+    Missiondto addMission(Missiondto missiondto);
    
 
 }
