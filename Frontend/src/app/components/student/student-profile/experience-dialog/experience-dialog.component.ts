@@ -2,6 +2,8 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Validators } from 'ngx-editor';
+import { ProjetRealise } from 'src/app/modelSTG/projet-realise';
+import { ProjetRealiseService } from 'src/app/servicesSTG/projet-realise.service';
 
 @Component({
   selector: 'app-experience-dialog',
@@ -11,19 +13,25 @@ import { Validators } from 'ngx-editor';
 export class ExperienceDialogComponent implements OnInit , OnDestroy {
   experienceForms: FormGroup[] = [];
   newExperienceForm: FormGroup;
-  editingHeading: boolean[] = [];
-  editingParagraph: boolean[] = [];
-  editingContent: boolean[] = [];
+  editingtitle: boolean[] = [];
+  editingdescription: boolean[] = [];
+  editingnomSociete: boolean[] = [];
+  editingdateDebut: boolean[] = [];
+  editingdateFin: boolean[] = [];
   addNewExperience: boolean = false;
   constructor(
+    private projetservices: ProjetRealiseService,
+
     public dialogRef: MatDialogRef<ExperienceDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any[],
+    @Inject(MAT_DIALOG_DATA) public data: ProjetRealise[],
     private fb: FormBuilder
   ) {
     this.newExperienceForm = this.fb.group({
-      heading: ['', Validators.required],
-      paragraph: ['', Validators.required],
-      content: ['', Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      nomSociete: ['', Validators.required],
+      dateDebut: ['', Validators.required],
+      dateFin: ['', Validators.required],
     });
   }
   ngOnDestroy(): void {
@@ -33,13 +41,15 @@ export class ExperienceDialogComponent implements OnInit , OnDestroy {
   ngOnInit(): void {
     this.data.forEach((item, index) => {
       this.experienceForms[index] = this.fb.group({
-        heading: new FormControl(item.heading),
-        paragraph: new FormControl(item.paragraph),
-        content: new FormControl(item.content),
+        title: new FormControl(item.title),
+        description: new FormControl(item.description),
+        nomSociete: new FormControl(item.nomSociete),
+        dateDebut: new FormControl(item.dateDebut),
+        dateFin: new FormControl(item.dateFin),
       });
-      this.editingHeading[index] = false;
-      this.editingParagraph[index] = false;
-      this.editingContent[index] = false;
+      this.editingtitle[index] = false;
+      this.editingdescription[index] = false;
+      this.editingnomSociete[index] = false;
     });
   }
 
@@ -51,24 +61,38 @@ export class ExperienceDialogComponent implements OnInit , OnDestroy {
   }
   toggleEdit(index: number, field: string): void {
     switch (field) {
-      case 'heading':
-        if (this.editingHeading[index]) {
-          this.data[index].heading = this.experienceForms[index].value.heading;
+      case 'title':
+        if (this.editingtitle[index]) {
+          this.data[index].title = this.experienceForms[index].value.title;
         }
-        this.editingHeading[index] = !this.editingHeading[index];
+        this.editingtitle[index] = !this.editingtitle[index];
         break;
-      case 'paragraph':
-        if (this.editingParagraph[index]) {
-          this.data[index].paragraph =
-            this.experienceForms[index].value.paragraph;
+      case 'description':
+        if (this.editingdescription[index]) {
+          this.data[index].description =
+            this.experienceForms[index].value.description;
         }
-        this.editingParagraph[index] = !this.editingParagraph[index];
+        this.editingdescription[index] = !this.editingdescription[index];
         break;
-      case 'content':
-        if (this.editingContent[index]) {
-          this.data[index].content = this.experienceForms[index].value.content;
+      case 'nomSociete':
+        if (this.editingnomSociete[index]) {
+          this.data[index].nomSociete = this.experienceForms[index].value.universityName;
         }
-        this.editingContent[index] = !this.editingContent[index];
+        this.editingnomSociete[index] = !this.editingnomSociete[index];
+        break;
+
+        case 'dateDebut':
+        if (this.editingdateDebut[index]) {
+          this.data[index].dateDebut = this.experienceForms[index].value.dateDebut
+        }
+        this.editingdateDebut[index] = !this.editingdateDebut[index];
+        break;
+
+        case 'dateFin':
+        if (this.editingdateFin[index]) {
+          this.data[index].dateFin = this.experienceForms[index].value.dateFin;
+        }
+        this.editingdateFin[index] = !this.editingdateFin[index];
         break;
     }
   }
@@ -77,12 +101,14 @@ export class ExperienceDialogComponent implements OnInit , OnDestroy {
     if (confirm('Are you sure you want to delete this experience item?')) {
       this.data.splice(index, 1);
       this.experienceForms.splice(index, 1);
-      this.editingHeading.splice(index, 1);
-      this.editingParagraph.splice(index, 1);
-      this.editingContent.splice(index, 1);
+      this.editingtitle.splice(index, 1);
+      this.editingdescription.splice(index, 1);
+      this.editingnomSociete.splice(index, 1);
+      this.editingdateDebut.splice(index, 1);
+      this.editingdateFin.splice(index, 1);
     }
   }
-
+/*
   addExperience(): void {
     this.newExperienceForm.markAllAsTouched();
     const newEdu = this.newExperienceForm.value;
@@ -115,4 +141,42 @@ export class ExperienceDialogComponent implements OnInit , OnDestroy {
     this.newExperienceForm.reset();
     this.addNewExperience = false;
   }
+
+*/
+
+addProjet(): void {
+  if (this.newExperienceForm.valid) {
+
+
+      const id = Number(localStorage.getItem('userId'));
+      let input: ProjetRealise = {
+        id: 0,
+        title :  this.newExperienceForm.value.title,
+        description :this.newExperienceForm.value.description,
+        nomSociete : this.newExperienceForm.value.nomSociete,
+        dateDebut : this.newExperienceForm.value.dateDebut,
+        dateFin : this.newExperienceForm.value.dateFin,
+        idexpert: id,
+      };
+
+console.log(input);
+
+
+      this.projetservices.addProjet(input).subscribe({
+
+        next: (res) => {
+//          this.data.push(input);
+          console.log(res);
+
+          this.newExperienceForm.reset();
+        },
+        error: (er) => {
+          console.log(er);
+        },
+      });
+
+      //inside subscribe create object
+
+  }
+}
 }

@@ -107,12 +107,12 @@
             </h5>
             <div class="edu-wrap" *ngFor="let data of studentProfileEducation">
               <div class="edu-name">
-                <span>{{ data.letter }}</span>
+                <span>{{ data.title }}</span>
               </div>
               <div class="edu-detail">
-                <h6>{{ data.heading }}</h6>
-                <p class="edu-duration">{{ data.paragraph }}</p>
-                <p>{{ data.content }}</p>
+                <h6>{{ data.title }}</h6>
+                <p class="edu-duration">{{ data.universityName }} - ({{ data.dateDebut }} - {{ data.dateFin }})</p>
+                <p>{{ data.description }}</p>
               </div>
             </div>
           </div>
@@ -136,12 +136,12 @@
                 *ngFor="let data of studentProfileExperience"
               >
                 <div class="edu-name">
-                  <span>{{ data.letter }}</span>
+                  <span>{{ data.title }}</span>
                 </div>
                 <div class="edu-detail">
-                  <h6>{{ data.heading }}</h6>
-                  <p class="edu-duration">{{ data.paragraph }}</p>
-                  <p>{{ data.content }}</p>
+                  <h6>{{ data.title }}</h6>
+                  <p class="edu-duration">{{ data.nomSociete }} - ({{ data.dateDebut }} - {{ data.dateFin }})</p>
+                  <p>{{ data.description }}</p>
                 </div>
               </div>
             </div>

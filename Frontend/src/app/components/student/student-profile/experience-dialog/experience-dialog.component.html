@@ -5,29 +5,28 @@
 <div mat-dialog-content>
   <div class="edu-wrap" *ngFor="let item of data; let i = index">
     <div class="edu-name">
-      <span>{{ item.heading.charAt(0).toUpperCase() }}</span>
     </div>
     <div class="edu-detail" [formGroup]="experienceForms[i]">
       <h6>
-        <span *ngIf="!editingHeading[i]">{{ item.heading }}</span>
-        <input *ngIf="editingHeading[i]" formControlName="heading" />
+        <span *ngIf="!editingtitle[i]">{{ item.title }}</span>
+        <input *ngIf="editingtitle[i]" formControlName="heading" />
         <mat-icon class="icon" (click)="toggleEdit(i, 'heading')">
-          {{ editingHeading[i] ? "check" : "edit" }}
+          {{ editingtitle[i] ? "check" : "edit" }}
         </mat-icon>
         <mat-icon class="icon" (click)="deleteExperience(i)">delete</mat-icon>
       </h6>
       <p class="edu-duration">
-        <span *ngIf="!editingParagraph[i]">{{ item.paragraph }}</span>
-        <input *ngIf="editingParagraph[i]" formControlName="paragraph" />
-        <mat-icon class="icon" (click)="toggleEdit(i, 'paragraph')">
-          {{ editingParagraph[i] ? "check" : "edit" }}
+        <span *ngIf="!editingdescription[i]">{{ item.description }}</span>
+        <input *ngIf="editingdescription[i]" formControlName="description" />
+        <mat-icon class="icon" (click)="toggleEdit(i, 'description')">
+          {{ editingdescription[i] ? "check" : "edit" }}
         </mat-icon>
       </p>
       <p>
-        <span *ngIf="!editingContent[i]">{{ item.content }}</span>
-        <textarea *ngIf="editingContent[i]" formControlName="content" style="min-width: 100%;"></textarea>
-        <mat-icon class="icon" (click)="toggleEdit(i, 'content')">
-          {{ editingContent[i] ? "check" : "edit" }}
+        <span *ngIf="!editingnomSociete[i]">{{ item.nomSociete }}</span>
+        <textarea *ngIf="editingnomSociete[i]" formControlName="nomSociete" style="min-width: 100%;"></textarea>
+        <mat-icon class="icon" (click)="toggleEdit(i, 'nomsociete')">
+          {{ editingnomSociete[i] ? "check" : "edit" }}
         </mat-icon>
       </p>
     </div>
@@ -38,7 +37,7 @@
     class="new-edu-form"
     [formGroup]="newExperienceForm"
     *ngIf="addNewExperience"
-    (ngSubmit)="addExperience()"
+    (ngSubmit)="addProjet()"
   >
     <h6>Add New Experience</h6>
     <div class="row">
@@ -49,38 +48,80 @@
             required
             type="text"
             class="form-control"
-            formControlName="heading"
+            formControlName="title"
             placeholder="Title"
           />
           <span
             class="errors"
             *ngIf="
-              newExperienceForm.get('heading')!.hasError('required') &&
-              newExperienceForm.get('heading')!.touched
+              newExperienceForm.get('title')!.hasError('required') &&
+              newExperienceForm.get('title')!.touched
             "
           >
-            Title is required
+            Projet is required
           </span>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="form-group">
-          <label class="form-control-label">Company and date</label>
+          <label class="form-control-label">Company</label>
           <input
             required
             type="text"
             class="form-control"
-            formControlName="paragraph"
+            formControlName="nomSociete"
             placeholder="Company and date"
           />
           <span
             class="errors"
             *ngIf="
-              newExperienceForm.get('paragraph')!.hasError('required') &&
-              newExperienceForm.get('paragraph')!.touched
+              newExperienceForm.get('nomSociete')!.hasError('required') &&
+              newExperienceForm.get('nomSociete')!.touched
             "
           >
             Company is required
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label">Date de debut</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            formControlName="dateDebut"
+            placeholder="Company and date"
+          />
+          <span
+            class="errors"
+            *ngIf="
+              newExperienceForm.get('dateDebut')!.hasError('required') &&
+              newExperienceForm.get('dateDebut')!.touched
+            "
+          >
+          dateDebut is required
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="form-control-label">Date de fin</label>
+          <input
+            required
+            type="text"
+            class="form-control"
+            formControlName="dateFin"
+            placeholder="Company and date"
+          />
+          <span
+            class="errors"
+            *ngIf="
+              newExperienceForm.get('dateFin')!.hasError('required') &&
+              newExperienceForm.get('dateFin')!.touched
+            "
+          >
+          dateFin is required
           </span>
         </div>
       </div>
@@ -91,14 +132,14 @@
             required
             style="min-width: 100%"
             class="form-control"
-            formControlName="content"
+            formControlName="description"
             placeholder="Description"
           ></textarea>
           <span
             class="errors"
             *ngIf="
-              newExperienceForm.get('content')!.hasError('required') &&
-              newExperienceForm.get('content')!.touched
+              newExperienceForm.get('description')!.hasError('required') &&
+              newExperienceForm.get('description')!.touched
             "
           >
             Description is required

@@ -1,7 +1,10 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Title } from 'chart.js';
 import { Validators } from 'ngx-editor';
+import { Diplome } from 'src/app/modelSTG/diplome';
+import { DiplomesService } from 'src/app/servicesSTG/diplomes.service';
 
 @Component({
   selector: 'app-education-dialog',
@@ -11,19 +14,28 @@ import { Validators } from 'ngx-editor';
 export class EducationDialogComponent implements OnInit, OnDestroy {
   educationForms: FormGroup[] = [];
   newEducationForm: FormGroup;
-  editingHeading: boolean[] = [];
-  editingParagraph: boolean[] = [];
-  editingContent: boolean[] = [];
+  editingtitle: boolean[] = [];
+  editingdescription: boolean[] = [];
+  editinguniversityName: boolean[] = [];
+  editingdateDebut: boolean[] = [];
+  editingdateFin: boolean[] = [];
+
   addNewEducation: boolean = false;
   constructor(
+    private diplomeservices: DiplomesService,
+
     public dialogRef: MatDialogRef<EducationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any[],
+    @Inject(MAT_DIALOG_DATA) public data: Diplome[],
     private fb: FormBuilder
   ) {
     this.newEducationForm = this.fb.group({
-      heading: ['', Validators.required],
-      paragraph: ['', Validators.required],
-      content: ['', Validators.required],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      universityName: ['', Validators.required],
+      dateDebut: ['', Validators.required],
+      dateFin: ['', Validators.required],
+
+
     });
   }
   ngOnDestroy(): void {
@@ -33,13 +45,17 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.data.forEach((item, index) => {
       this.educationForms[index] = this.fb.group({
-        heading: new FormControl(item.heading),
-        paragraph: new FormControl(item.paragraph),
-        content: new FormControl(item.content),
+        title: new FormControl(item.title),
+        description: new FormControl(item.description),
+        universityName: new FormControl(item.universityName),
+        dateDebut: new FormControl(item.dateDebut),
+        dateFin: new FormControl(item.dateFin),
+
+
       });
-      this.editingHeading[index] = false;
-      this.editingParagraph[index] = false;
-      this.editingContent[index] = false;
+      this.editingtitle[index] = false;
+      this.editingdescription[index] = false;
+      this.editinguniversityName[index] = false;
     });
   }
 
@@ -51,24 +67,38 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
   }
   toggleEdit(index: number, field: string): void {
     switch (field) {
-      case 'heading':
-        if (this.editingHeading[index]) {
-          this.data[index].heading = this.educationForms[index].value.heading;
+      case 'title':
+        if (this.editingtitle[index]) {
+          this.data[index].title = this.educationForms[index].value.title;
         }
-        this.editingHeading[index] = !this.editingHeading[index];
+        this.editingtitle[index] = !this.editingtitle[index];
         break;
-      case 'paragraph':
-        if (this.editingParagraph[index]) {
-          this.data[index].paragraph =
-            this.educationForms[index].value.paragraph;
+      case 'description':
+        if (this.editingdescription[index]) {
+          this.data[index].description =
+            this.educationForms[index].value.description;
         }
-        this.editingParagraph[index] = !this.editingParagraph[index];
+        this.editingdescription[index] = !this.editingdescription[index];
         break;
-      case 'content':
-        if (this.editingContent[index]) {
-          this.data[index].content = this.educationForms[index].value.content;
+      case 'universityName':
+        if (this.editinguniversityName[index]) {
+          this.data[index].universityName = this.educationForms[index].value.universityName;
         }
-        this.editingContent[index] = !this.editingContent[index];
+        this.editinguniversityName[index] = !this.editinguniversityName[index];
+        break;
+
+        case 'dateDebut':
+        if (this.editingdateDebut[index]) {
+          this.data[index].dateDebut = this.educationForms[index].value.dateDebut
+        }
+        this.editingdateDebut[index] = !this.editingdateDebut[index];
+        break;
+
+        case 'dateFin':
+        if (this.editingdateFin[index]) {
+          this.data[index].dateFin = this.educationForms[index].value.dateFin;
+        }
+        this.editingdateFin[index] = !this.editingdateFin[index];
         break;
     }
   }
@@ -77,13 +107,17 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
     if (confirm('Are you sure you want to delete this education item?')) {
       this.data.splice(index, 1);
       this.educationForms.splice(index, 1);
-      this.editingHeading.splice(index, 1);
-      this.editingParagraph.splice(index, 1);
-      this.editingContent.splice(index, 1);
+      this.editingtitle.splice(index, 1);
+      this.editingdescription.splice(index, 1);
+      this.editinguniversityName.splice(index, 1);
+      this.editingdateDebut.splice(index, 1);
+      this.editingdateFin.splice(index, 1);
+
+
     }
   }
 
-  addEducation(): void {
+  /*addEducation(): void {
     this.newEducationForm.markAllAsTouched();
     const newEdu = this.newEducationForm.value;
 
@@ -94,25 +128,125 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
 
 
     this.data.push({
-      heading: newEdu.heading,
-      paragraph: newEdu.paragraph,
-      content: newEdu.content,
-      letter: newEdu.heading.charAt(0).toUpperCase(),
+      title: newEdu.title,
+      description: newEdu.description,
+      universityName: newEdu.universityName,
+      dateDebut: newEdu.dateDebut,
+      dateFin: newEdu.dateFin,
+      id: 0,
+      idexpert: 0
     });
 
     this.educationForms.push(
       this.fb.group({
-        heading: new FormControl(newEdu.heading),
-        paragraph: new FormControl(newEdu.paragraph),
-        content: new FormControl(newEdu.content),
+        title: new FormControl(newEdu.title),
+        description: new FormControl(newEdu.description),
+        universityName: new FormControl(newEdu.universityName),
+        dateDebut: new FormControl(newEdu.dateDebut),
+        dateFin: new FormControl(newEdu.dateFin),
+
       })
     );
 
-    this.editingHeading.push(false);
-    this.editingParagraph.push(false);
-    this.editingContent.push(false);
+    this.editingtitle.push(false);
+    this.editingdescription.push(false);
+    this.editinguniversityName.push(false);
+    this.editingdateDebut.push(false);
+    this.editingdateFin.push(false);
 
     this.newEducationForm.reset();
     this.addNewEducation = false;
   }
+*/
+
+addDiplome(): void {
+  if (this.newEducationForm.valid) {
+
+
+      const id = Number(localStorage.getItem('userId'));
+      let input: Diplome = {
+        id: 0,
+        title :  this.newEducationForm.value.title,
+        description :this.newEducationForm.value.description,
+        universityName : this.newEducationForm.value.universityName,
+        dateDebut : this.newEducationForm.value.dateDebut,
+        dateFin : this.newEducationForm.value.dateFin,
+        idexpert: id,
+      };
+
+console.log(input);
+
+
+      this.diplomeservices.addDiplome(input).subscribe({
+
+        next: (res) => {
+//          this.data.push(input);
+          console.log(res);
+
+          this.newEducationForm.reset();
+        },
+        error: (er) => {
+          console.log(er);
+        },
+      });
+
+      //inside subscribe create object
+
+  }
+}
+
+
+
+updateDiplome(): void {
+  if (this.newEducationForm.valid) {
+
+
+      const id = Number(localStorage.getItem('userId'));
+      let input: Diplome = {
+        id: 0,
+        title :  this.newEducationForm.value.title,
+        description :this.newEducationForm.value.description,
+        universityName : this.newEducationForm.value.universityName,
+        dateDebut : this.newEducationForm.value.dateDebut,
+        dateFin : this.newEducationForm.value.dateFin,
+        idexpert: id,
+      };
+
+console.log(input);
+
+
+      this.diplomeservices.updateDiplome(input).subscribe({
+
+        next: (res) => {
+//          this.data.push(input);
+          console.log(res);
+
+          this.newEducationForm.reset();
+        },
+        error: (er) => {
+          console.log(er);
+        },
+      });
+
+      //inside subscribe create object
+
+  }
+}
+
+deleteDiplome(index: number): void {
+  let input = this.data[index];
+
+  this.diplomeservices.deleteById(input.id).subscribe({
+    next: () => {
+      this.data.splice(index, 1);
+      this.educationForms.splice(index, 1);
+    },
+    error: (er) => {
+      console.log(er);
+    },
+  });
+}
+
+
+
 }

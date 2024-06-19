@@ -9,7 +9,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class DiplomesService {
- private baseUrl=environment.baseurl+"/diplome"
+ private baseUrl=environment.baseurl+"/diplomes"
   constructor( private router : Router,private httpClient: HttpClient) { }
 
 

@@ -35,7 +35,7 @@ public class Diplomes {
     private String universityName;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Expert expert;
 
 }

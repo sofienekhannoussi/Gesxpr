@@ -6,7 +6,12 @@ import { SkillsDialogComponent } from './skills-dialog/skills-dialog.component';
 import { EducationDialogComponent } from './education-dialog/education-dialog.component';
 import { ExperienceDialogComponent } from './experience-dialog/experience-dialog.component';
 import { CompetenceService } from 'src/app/servicesSTG/competence.service';
+import { DiplomesService } from 'src/app/servicesSTG/diplomes.service';
+import { ProjetRealise } from 'src/app/modelSTG/projet-realise';
+
 import { Competence } from 'src/app/modelSTG/competence';
+import { Diplome } from 'src/app/modelSTG/diplome';
+import { ProjetRealiseService } from 'src/app/servicesSTG/projet-realise.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -14,8 +19,9 @@ import { Competence } from 'src/app/modelSTG/competence';
   styleUrls: ['./student-profile.component.scss'],
 })
 export class StudentProfileComponent implements OnInit {
-  public studentProfileEducation: any = [];
-  public studentProfileExperience: any = [];
+  public studentProfileEducation: Diplome [] = [];
+
+  public studentProfileExperience: ProjetRealise[] = [];
   public studentProfileCourses: any = [];
   public studentProfileReviews: any = [];
   public routes = routes;
@@ -23,10 +29,10 @@ export class StudentProfileComponent implements OnInit {
   skills: Competence[] = [
 
   ];
-  constructor(private DataService: DataService, private competenceservice : CompetenceService, private dialog: MatDialog) {
+  constructor(private DataService: DataService, private competenceservice : CompetenceService, private diplomeservice : DiplomesService, private projetservice : ProjetRealiseService, private dialog: MatDialog) {
 
-    this.studentProfileEducation = this.DataService.studentProfileEducation;
-    this.studentProfileExperience = this.DataService.studentProfileExperience;
+   // this.studentProfileEducation = this.DataService.studentProfileEducation;
+   // this.studentProfileExperience = this.DataService.studentProfileExperience;
     this.studentProfileCourses = this.DataService.studentProfileCourses;
     this.studentProfileReviews = this.DataService.studentProfileReviews;
     this.studentProfileContactDetails =
@@ -36,9 +42,15 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.getlistSkills()
+    this.getlistDiplome()
+    this.getlistProjet()
+
   }
   //Education
   openEducationsDialog() {
+
+    console.log("sss",this.diplomeservice);
+
     const dialogRef = this.dialog.open(EducationDialogComponent, {
       width: '600px',
       data: this.studentProfileEducation,
@@ -50,6 +62,21 @@ export class StudentProfileComponent implements OnInit {
       // call api for update education and the arg is studentProfileEducation
     });
   }
+
+
+
+  getlistDiplome() {
+    this.diplomeservice. getList().subscribe({
+      next: (data) => {
+        this.studentProfileEducation=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
+    });
+  }
+
   //experience
   openExperienceDialog(){
     const dialogRef = this.dialog.open(ExperienceDialogComponent, {
@@ -61,6 +88,19 @@ export class StudentProfileComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(this.studentProfileExperience);
       // call api for update education and the arg is studentProfileExperience
+    });
+  }
+
+
+  getlistProjet() {
+    this.projetservice. getList().subscribe({
+      next: (data) => {
+        this.studentProfileExperience=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
     });
   }
   //skills

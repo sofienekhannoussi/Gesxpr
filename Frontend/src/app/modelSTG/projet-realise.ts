@@ -2,8 +2,8 @@ export class ProjetRealise {
   id !: number
   title !: string
   description !: string
-  dateDebut !: Date
-  dateFin !: Date
+  dateDebut !: string
+  dateFin !: string
   nomSociete!: string
 
   idexpert !: number

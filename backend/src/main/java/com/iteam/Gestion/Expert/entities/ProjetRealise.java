@@ -27,8 +27,8 @@ public class ProjetRealise {
 	private Long id;
 	 private String title; //intutulé poste
 	    private String description;//texte riche : details missions
-	    private Date dateDebut;
-	    private Date dateFin;
+	    private String dateDebut;
+	    private String dateFin;
 		private String nomSociete;
 	    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    private Expert expert;
