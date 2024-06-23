@@ -9,6 +9,8 @@ public interface DiplomesService {
     void deleteDiplomes(Long id);
     List<Diplomesdto> listeallDiplomes ();
 
+    List<Diplomesdto> listDiplomesByidexpert (Long id);
+
     Diplomesdto updateDiplomes(Diplomesdto diplomesdto);
 
     Diplomesdto findByIddiplomes(Long id);

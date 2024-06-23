@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.dto;
 
 import com.iteam.Gestion.Expert.entities.Expert;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 
 @Getter
@@ -12,7 +13,7 @@ import lombok.*;
 
 public class ProfilExpertdto {
 
-    private String cv;
+    private String adresse;
     private String biography;
     private Long id;
     private String fullname;
@@ -25,7 +26,7 @@ public class ProfilExpertdto {
                 .fullname(request.getFullname())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .cv(request.getCv())
+                .adresse(request.getAdresse())
                 .biography(request.getBiography())
                 .build();
 
@@ -36,7 +37,7 @@ public class ProfilExpertdto {
                 .fullname(request.getFullname())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .cv(request.getCv())
+                .adresse(request.getAdresse())
                 .biography(request.getBiography())
                 .build();
 

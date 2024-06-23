@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.services;
 
 
 
+import com.iteam.Gestion.Expert.dto.Expertdto;
 import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
 import com.iteam.Gestion.Expert.dto.ResponsableSocietedto;
 import com.iteam.Gestion.Expert.entities.Expert;
@@ -24,13 +25,13 @@ public class GestionProfilExpertImpl implements  GestionProfil {
 
 
     @Override
-    public ProfilExpertdto findExpertbyid(Long id) {
+    public Expertdto findExpertbyid(Long id) {
         Optional<Expert> expert = expertRepository.findById(id);
 
         if (expert.isPresent()) {
 
-            ProfilExpertdto profilExpertdto = ProfilExpertdto.FromEntity(expert.get());
-            return profilExpertdto;
+            Expertdto expertdto = Expertdto.fromEntity(expert.get());
+            return expertdto;
         }
         else {
             throw new RuntimeException("User not found");
@@ -38,26 +39,22 @@ public class GestionProfilExpertImpl implements  GestionProfil {
     }
 
     @Override
-    public ProfilExpertdto updateExpert(ProfilExpertdto profilExperDTO) {
+    public Expertdto updateExpert(Expertdto experDTO) {
 
 
-        Optional<Expert> expert =expertRepository.findById(profilExperDTO.getId());
+        Optional<Expert> expert =expertRepository.findById(experDTO.getId());
         System.err.println(expert);
-        System.err.println(profilExperDTO.getId());
+        System.err.println(experDTO.getId());
         if(expert.isPresent())
         {
-
-            Expert statoupdate =expert.get();
-            Expert exp =ProfilExpertdto.toEntity(profilExperDTO);
-            statoupdate.setId(exp.getId());
-            statoupdate.setFullname(exp.getFullname());
-            statoupdate.setBiography(exp.getBiography());
-            statoupdate.setEmail(exp.getEmail());
-            statoupdate.setPhone(exp.getPhone());
-            System.err.println("//////////////");
-            System.err.println(statoupdate);
-            Expert updatedexp =expertRepository.save(statoupdate);
-            return ProfilExpertdto.FromEntity(updatedexp);
+            Expert exp =Expertdto.toEntity(experDTO);
+            expert.get().setAdresse(exp.getAdresse());
+            expert.get().setFullname(exp.getFullname());
+            expert.get().setBiography(exp.getBiography());
+            expert.get().setEmail(exp.getEmail());
+            expert.get().setPhone(exp.getPhone());
+            Expert updatedexp =expertRepository.save( expert.get());
+            return Expertdto.fromEntity(updatedexp);
         }
         else
         {

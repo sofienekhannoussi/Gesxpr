@@ -36,6 +36,11 @@ public class DiplomesServiceimpl implements DiplomesService {
     }
 
     @Override
+    public List<Diplomesdto> listDiplomesByidexpert(Long id) {
+        return diplomesRepository.findByIddiplomes(id).stream().map( Diplomesdto::fromEntity).collect(Collectors.toList());
+    }
+
+    @Override
     public Diplomesdto updateDiplomes(Diplomesdto diplomesdto) {
         Optional<Expert> expert = expertRepository.findById(diplomesdto.getIdexpert());
 

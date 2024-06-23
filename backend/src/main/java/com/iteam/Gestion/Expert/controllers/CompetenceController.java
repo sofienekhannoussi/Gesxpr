@@ -1,6 +1,7 @@
 package com.iteam.Gestion.Expert.controllers;
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.Diplomesdto;
 import com.iteam.Gestion.Expert.entities.Competences;
 import com.iteam.Gestion.Expert.services.CompetencesService;
 import com.iteam.Gestion.Expert.services.MissionService;
@@ -30,6 +31,13 @@ public class CompetenceController {
         return competencesServiceService.listeallCompetences();
     }
 
+
+
+    @GetMapping("/listeallcompetencesbyexpert/{id}")
+
+    public List<Competencesdto> listeallDiplomes(@PathVariable("id")Long id) {
+        return competencesServiceService.listCompetencesByidexpert(id);
+    }
     @PostMapping("/update")
 
     public Competencesdto updateCompetences(@RequestBody Competencesdto competencesdto) {

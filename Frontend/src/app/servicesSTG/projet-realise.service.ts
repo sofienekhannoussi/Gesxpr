@@ -50,6 +50,16 @@ export class ProjetRealiseService {
 
  }
 
+
+
+ getListprojetbyExpert(id: number): Observable<ProjetRealise[]> {
+  return this.httpClient.get<ProjetRealise[]>(`${this.baseUrl}/listeallprojetbyexpert/${id}`)
+  .pipe(
+    map((response:any) => response as ProjetRealise[])
+  );
+
+}
+
  deleteById(id: number): Observable<void> {
    return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
 

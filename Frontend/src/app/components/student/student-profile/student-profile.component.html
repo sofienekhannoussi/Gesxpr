@@ -35,7 +35,7 @@
               class="img-fluid"
             />
           </a>
-          <h4><a href="javascript:;">Sofiene KHANNOUSSI</a><span>Expert</span></h4>
+          <h4><a href="javascript:;">{{exp.fullname}}</a><span>Expert</span></h4>
           <p>Web developer</p>
           <ul class="list-unstyled inline-inline profile-info-social">
             <li class="list-inline-item">
@@ -76,18 +76,9 @@
           <div class="card-body">
             <h5 class="subs-title">About Me</h5>
             <p>
-              Very well thought out and articulate communication. Clear
-              milestones, deadlines and fast work. Patience. Infinite patience.
-              No shortcuts. Even if the client is being careless. Some quick
-              example text to build on the card title and bulk the card's
-              content Moltin gives you platform.
+          {{exp.biography}}
             </p>
-            <p class="mb-0">
-              As a highly skilled and successfull product development and design
-              specialist with more than 4 Years of My experience lies in
-              successfully conceptualizing, designing, and modifying consumer
-              products specific to interior design and home furnishings.
-            </p>
+
           </div>
         </div>
         <!-- /Overview -->
@@ -149,7 +140,7 @@
           <!-- /Experience Content -->
 
           <!-- Courses Content -->
-          <div class="card education-sec">
+        <!--   <div class="card education-sec">
             <div class="card-body pb-0">
               <h5 class="subs-title">Courses</h5>
               <div class="row">
@@ -232,7 +223,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- /Courses Content -->
 
@@ -355,20 +346,52 @@
             <div class="card-body">
               <h5 class="subs-title">Contact Details</h5>
               <div class="contact-info-list">
-                <div
+                <!-- <div
                   class="edu-wrap"
                   *ngFor="let data of studentProfileContactDetails"
                 >
                   <div class="edu-name">
-                    <span><img [src]="data.img" alt="Address" /></span>
+                    <span><img src="assets/img/instructor/email-icon.png" alt="Address" /></span>
                   </div>
                   <div class="edu-detail">
-                    <h6>{{ data.heading }}</h6>
+                    <h6>Email</h6>
                     <p>
-                      <a href="javascript:;">{{ data.paragraph }}</a>
+                      <a href="javascript:;">{{ exp.email }}</a>
                     </p>
                   </div>
+                </div> -->
+
+                <div class="edu-name">
+                  <span><img src="assets/img/instructor/email-icon.png" alt="Address" /></span>
                 </div>
+                <div class="edu-detail">
+                  <h6>Email</h6>
+                  <p>
+                    <a href="javascript:;">{{ exp.email }}</a>
+                  </p>
+                </div>
+
+                <div class="edu-name">
+                  <span><img src="assets/img/instructor/address-icon.png" alt="Address" /></span>
+                </div>
+                <div class="edu-detail">
+                  <h6>Adresse</h6>
+                  <p>
+                    <a href="javascript:;">{{ exp.adresse }}</a>
+                  </p>
+                </div>
+
+                <div class="edu-name">
+                  <span><img src="assets/img/instructor/phone-icon.png" alt="Address" /></span>
+                </div>
+                <div class="edu-detail">
+                  <h6>Phone</h6>
+                  <p>
+                    <a href="javascript:;">{{ exp.phone }}</a>
+                  </p>
+                </div>
+
+
               </div>
             </div>
           </div>

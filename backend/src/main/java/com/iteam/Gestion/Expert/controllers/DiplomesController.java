@@ -30,6 +30,12 @@ public class DiplomesController {
         return diplomesService.listeallDiplomes();
     }
 
+    @GetMapping("/listealldplbyexpert/{id}")
+
+    public List<Diplomesdto> listeallDiplomes(@PathVariable("id")Long id) {
+        return diplomesService.listDiplomesByidexpert(id);
+    }
+
     @GetMapping("/findByIdDiplome/{id}")
 
     public Diplomesdto findByIdDiplome(@PathVariable("id") Long id) {

@@ -13,8 +13,15 @@
         <mat-icon class="icon" (click)="toggleEdit(i, 'heading')">
           {{ editingtitle[i] ? "check" : "edit" }}
         </mat-icon>
-        <mat-icon class="icon" (click)="deleteExperience(i)">delete</mat-icon>
+        <mat-icon class="icon" (click)="deleteprojet(i)">delete</mat-icon>
       </h6>
+      <p>
+        <span *ngIf="!editingnomSociete[i]">{{ item.nomSociete }} - ({{ item.dateDebut }} - {{ item.dateFin }})</span>
+        <textarea *ngIf="editingnomSociete[i]" formControlName="nomSociete" style="min-width: 100%;"></textarea>
+        <mat-icon class="icon" (click)="toggleEdit(i, 'nomsociete')">
+          {{ editingnomSociete[i] ? "check" : "edit" }}
+        </mat-icon>
+      </p>
       <p class="edu-duration">
         <span *ngIf="!editingdescription[i]">{{ item.description }}</span>
         <input *ngIf="editingdescription[i]" formControlName="description" />
@@ -22,13 +29,7 @@
           {{ editingdescription[i] ? "check" : "edit" }}
         </mat-icon>
       </p>
-      <p>
-        <span *ngIf="!editingnomSociete[i]">{{ item.nomSociete }}</span>
-        <textarea *ngIf="editingnomSociete[i]" formControlName="nomSociete" style="min-width: 100%;"></textarea>
-        <mat-icon class="icon" (click)="toggleEdit(i, 'nomsociete')">
-          {{ editingnomSociete[i] ? "check" : "edit" }}
-        </mat-icon>
-      </p>
+
     </div>
   </div>
 

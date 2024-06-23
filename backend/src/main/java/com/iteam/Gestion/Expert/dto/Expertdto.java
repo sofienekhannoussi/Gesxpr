@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Expertdto extends RegisterRequest {
-	private String cv;
+	private String adresse;
     private String biography;
 
     public static Expert toEntity(Expertdto request)
@@ -26,7 +26,7 @@ public class Expertdto extends RegisterRequest {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .password(request.getPassword())
-                .cv(request.getCv())
+                .adresse(request.getAdresse())
                 .biography(request.getBiography())
                 .build();
 
@@ -39,7 +39,7 @@ public class Expertdto extends RegisterRequest {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .role(request.getRole())
-                .cv(request.getCv())
+                .adresse(request.getAdresse())
                 .biography(request.getBiography())
                 .build();
 

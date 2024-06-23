@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.services;
 
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.Diplomesdto;
 import com.iteam.Gestion.Expert.dto.ProjetRealisedto;
 import com.iteam.Gestion.Expert.entities.Competences;
 import com.iteam.Gestion.Expert.entities.Expert;
@@ -33,6 +34,11 @@ public class ProjetRealiseServiceimpl implements ProjetRealiseService {
     @Override
     public List<ProjetRealisedto> listeallProjet() {
         return projetRealiseRepository.findAll().stream().map(ProjetRealisedto::fromEntity).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ProjetRealisedto> listProjetByidexpert(Long id) {
+        return projetRealiseRepository.findByIdprojet(id).stream().map( ProjetRealisedto::fromEntity).collect(Collectors.toList());
     }
 
     @Override

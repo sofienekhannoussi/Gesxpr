@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.services;
 
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.Diplomesdto;
 import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
 import com.iteam.Gestion.Expert.entities.Competences;
@@ -38,6 +39,11 @@ public class CompetencesServiceimpl implements CompetencesService {
 
         return competenceRepository.findAll().stream().map(Competencesdto::fromEntity).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<Competencesdto> listCompetencesByidexpert(Long id) {
+        return competenceRepository.findByIdcompetences(id).stream().map( Competencesdto::fromEntity).collect(Collectors.toList());
     }
 
     @Override

@@ -42,7 +42,8 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
     this.addNewEducation = false;
   }
 
-  ngOnInit(): void {
+
+  Listdata():void{
     this.data.forEach((item, index) => {
       this.educationForms[index] = this.fb.group({
         title: new FormControl(item.title),
@@ -57,6 +58,10 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
       this.editingdescription[index] = false;
       this.editinguniversityName[index] = false;
     });
+  }
+
+  ngOnInit(): void {
+   this.Listdata();
   }
 
   closeDialog(): void {
@@ -103,19 +108,7 @@ export class EducationDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteEducation(index: number): void {
-    if (confirm('Are you sure you want to delete this education item?')) {
-      this.data.splice(index, 1);
-      this.educationForms.splice(index, 1);
-      this.editingtitle.splice(index, 1);
-      this.editingdescription.splice(index, 1);
-      this.editinguniversityName.splice(index, 1);
-      this.editingdateDebut.splice(index, 1);
-      this.editingdateFin.splice(index, 1);
 
-
-    }
-  }
 
   /*addEducation(): void {
     this.newEducationForm.markAllAsTouched();
@@ -180,7 +173,7 @@ console.log(input);
       this.diplomeservices.addDiplome(input).subscribe({
 
         next: (res) => {
-//          this.data.push(input);
+  this.data.push(input);
           console.log(res);
 
           this.newEducationForm.reset();
@@ -197,7 +190,7 @@ console.log(input);
 
 
 
-updateDiplome(): void {
+updateDiplome(index: number): void {
   if (this.newEducationForm.valid) {
 
 
@@ -233,6 +226,20 @@ console.log(input);
   }
 }
 
+deleteEducation(index: number): void {
+  if (confirm('Are you sure you want to delete this education item?')) {
+    this.data.splice(index, 1);
+    this.educationForms.splice(index, 1);
+    this.editingtitle.splice(index, 1);
+    this.editingdescription.splice(index, 1);
+    this.editinguniversityName.splice(index, 1);
+    this.editingdateDebut.splice(index, 1);
+    this.editingdateFin.splice(index, 1);
+
+
+  }
+}
+
 deleteDiplome(index: number): void {
   let input = this.data[index];
 
@@ -240,6 +247,11 @@ deleteDiplome(index: number): void {
     next: () => {
       this.data.splice(index, 1);
       this.educationForms.splice(index, 1);
+      this.editingtitle.splice(index, 1);
+      this.editingdescription.splice(index, 1);
+      this.editinguniversityName.splice(index, 1);
+      this.editingdateDebut.splice(index, 1);
+      this.editingdateFin.splice(index, 1);
     },
     error: (er) => {
       console.log(er);

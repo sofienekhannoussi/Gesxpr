@@ -54,6 +54,15 @@ export class CompetenceService   {
 
   }
 
+
+  getListcompetencebyExpert(id: number): Observable<Competence[]> {
+    return this.httpClient.get<Competence[]>(`${this.baseUrl}/listeallcompetencesbyexpert/${id}`)
+    .pipe(
+      map((response:any) => response as Competence[])
+    );
+
+  }
+
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
 

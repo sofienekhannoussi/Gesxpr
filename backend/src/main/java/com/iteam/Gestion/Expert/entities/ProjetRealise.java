@@ -30,7 +30,7 @@ public class ProjetRealise {
 	    private String dateDebut;
 	    private String dateFin;
 		private String nomSociete;
-	    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	    @ManyToOne(fetch = FetchType.LAZY)
 	    private Expert expert;
 
 }

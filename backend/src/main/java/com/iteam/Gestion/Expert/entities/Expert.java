@@ -21,8 +21,11 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @DiscriminatorValue("Expert")
 public class Expert extends User {
-	private String cv;
+	private String adresse;
     private String biography;
+ private String avatar;
+ private String specialite;
+
    //les projets realises
     @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL,mappedBy="expert")
     private List<ProjetRealise> projetRealises;

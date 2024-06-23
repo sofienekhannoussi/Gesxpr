@@ -1,6 +1,7 @@
 package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.Diplomesdto;
 
 
 import java.util.List;
@@ -10,6 +11,9 @@ public interface CompetencesService {
 
     void deleteCompetences(Long id);
     List<Competencesdto> listeallCompetences ();
+
+    List<Competencesdto> listCompetencesByidexpert (Long id);
+
 
     Competencesdto updateCompetences(Competencesdto competencesdto);
 

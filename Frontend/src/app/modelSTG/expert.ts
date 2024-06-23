@@ -6,7 +6,8 @@ export class Expert {
     phone!: string;
 	biography!: string;
     cv!: string;
-	
+
+
 }
 
 ///////////

@@ -1,6 +1,7 @@
 package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
+import com.iteam.Gestion.Expert.dto.Diplomesdto;
 import com.iteam.Gestion.Expert.dto.ProjetRealisedto;
 import com.iteam.Gestion.Expert.entities.ProjetRealise;
 
@@ -11,6 +12,9 @@ public interface ProjetRealiseService {
 
     void deleteProjet(Long id);
     List<ProjetRealisedto> listeallProjet ();
+
+    List<ProjetRealisedto> listProjetByidexpert (Long id);
+
 
     ProjetRealisedto updatePorjet(ProjetRealisedto projetRealisedto);
 

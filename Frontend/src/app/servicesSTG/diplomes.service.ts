@@ -55,6 +55,14 @@ export class DiplomesService {
 
   }
 
+  getListdiplomebyExpert(id: number): Observable<Diplome[]> {
+    return this.httpClient.get<Diplome[]>(`${this.baseUrl}/listealldplbyexpert/${id}`)
+    .pipe(
+      map((response:any) => response as Diplome[])
+    );
+
+  }
+
 
 
 

@@ -143,6 +143,25 @@ export class ExperienceDialogComponent implements OnInit , OnDestroy {
   }
 
 */
+deleteprojet(index: number): void {
+  let input = this.data[index];
+
+  this.projetservices.deleteById(input.id).subscribe({
+    next: () => {
+      this.data.splice(index, 1);
+      this.experienceForms.splice(index, 1);
+      this.editingtitle.splice(index, 1);
+      this.editingdescription.splice(index, 1);
+      this.editingnomSociete.splice(index, 1);
+      this.editingdateDebut.splice(index, 1);
+      this.editingdateFin.splice(index, 1);
+    },
+    error: (er) => {
+      console.log(er);
+    },
+  });
+}
+
 
 addProjet(): void {
   if (this.newExperienceForm.valid) {

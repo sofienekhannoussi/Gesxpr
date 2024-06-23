@@ -1,6 +1,7 @@
 package com.iteam.Gestion.Expert.controllers;
 
 
+import com.iteam.Gestion.Expert.dto.Expertdto;
 import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
 import com.iteam.Gestion.Expert.dto.ResponsableSocietedto;
 import com.iteam.Gestion.Expert.services.GestionProfil;
@@ -15,13 +16,13 @@ public class ProfilController {
 
     @GetMapping("/findExpertbyid/{id}")
 
-    public ProfilExpertdto findExpertbyid(Long id) {
+    public Expertdto findExpertbyid(@PathVariable("id") Long id) {
         return gestionProfilService.findExpertbyid(id);
     }
     @PostMapping("/savexpert")
 
-    public ProfilExpertdto updateExpert(ProfilExpertdto profilExperDTO) {
-        return gestionProfilService.updateExpert(profilExperDTO);
+    public Expertdto updateExpert(@RequestBody Expertdto expertdto) {
+        return gestionProfilService.updateExpert(expertdto);
     }
     @GetMapping("/findRespbyid/{id}")
 

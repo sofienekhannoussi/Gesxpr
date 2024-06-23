@@ -8,24 +8,22 @@
     </div>
     <div class="edu-detail" [formGroup]="educationForms[i]">
       <h6>
-        <input *ngIf="editingtitle[i]" formControlName="title" />
-        <mat-icon class="icon" (click)="toggleEdit(i, 'title')">
+        <span *ngIf="!editingtitle[i]">{{ item.title }}</span>
+        <input *ngIf="editingtitle[i]" formControlName="title" />        <mat-icon class="icon" (click)="updateDiplome(i)">
           {{ editingtitle[i] ? "check" : "edit" }}
         </mat-icon>
         <mat-icon class="icon" (click)="deleteDiplome(i)">delete</mat-icon>
       </h6>
-      <p class="edu-duration">
-        <input *ngIf="editingdescription[i]" formControlName="description" />
-        <mat-icon class="icon" (click)="toggleEdit(i, 'description')">
-          {{ editingdescription[i] ? "check" : "edit" }}
-        </mat-icon>
-      </p>
       <p>
-        <textarea *ngIf="editinguniversityName[i]" formControlName="content" style="min-width: 100%;" ></textarea>
-        <mat-icon class="icon" (click)="toggleEdit(i, 'content')">
-          {{ editinguniversityName[i] ? "check" : "edit" }}
-        </mat-icon>
+        <span *ngIf="!editinguniversityName[i]">{{ item.universityName }} - ({{ item.dateDebut }} - {{ item.dateFin }})</span>
+
+        <textarea *ngIf="editinguniversityName[i]" formControlName="universityName" style="min-width: 100%;" ></textarea>
       </p>
+      <p class="edu-duration">
+        <span *ngIf="!editingdescription[i]">{{ item.description }}</span>
+        <input *ngIf="editingdescription[i]" formControlName="description" />
+      </p>
+
     </div>
   </div>
 
@@ -132,4 +130,7 @@
   >
     Add new education
   </button>
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="btn btn-primary" (click)="closeDialog()">Close</button>
 </div>

@@ -12,6 +12,9 @@ import { ProjetRealise } from 'src/app/modelSTG/projet-realise';
 import { Competence } from 'src/app/modelSTG/competence';
 import { Diplome } from 'src/app/modelSTG/diplome';
 import { ProjetRealiseService } from 'src/app/servicesSTG/projet-realise.service';
+import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
+import { Expert } from 'src/app/modelSTG/expert';
+import { Expertbyid } from 'src/app/modelSTG/expertbyid';
 
 @Component({
   selector: 'app-student-profile',
@@ -20,16 +23,14 @@ import { ProjetRealiseService } from 'src/app/servicesSTG/projet-realise.service
 })
 export class StudentProfileComponent implements OnInit {
   public studentProfileEducation: Diplome [] = [];
-
+public exp:Expertbyid = new Expertbyid();
   public studentProfileExperience: ProjetRealise[] = [];
   public studentProfileCourses: any = [];
   public studentProfileReviews: any = [];
   public routes = routes;
   public studentProfileContactDetails: any = [];
-  skills: Competence[] = [
-
-  ];
-  constructor(private DataService: DataService, private competenceservice : CompetenceService, private diplomeservice : DiplomesService, private projetservice : ProjetRealiseService, private dialog: MatDialog) {
+  skills: Competence[] = [];
+  constructor(private DataService: DataService,private  profilexpert : ProfilExpertService ,private competenceservice : CompetenceService, private diplomeservice : DiplomesService, private projetservice : ProjetRealiseService, private dialog: MatDialog) {
 
    // this.studentProfileEducation = this.DataService.studentProfileEducation;
    // this.studentProfileExperience = this.DataService.studentProfileExperience;
@@ -40,10 +41,11 @@ export class StudentProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.getlistSkills()
-    this.getlistDiplome()
-    this.getlistProjet()
+    const id = Number(localStorage.getItem('userId'));
+this.getbyisExpert(id)
+    this.getlistSkills(id)
+    this.getlistDiplome(id)
+    this.getlistProjet(id)
 
   }
   //Education
@@ -65,10 +67,23 @@ export class StudentProfileComponent implements OnInit {
 
 
 
-  getlistDiplome() {
-    this.diplomeservice. getList().subscribe({
+  getlistDiplome(id : number) {
+    this.diplomeservice.getListdiplomebyExpert(id).subscribe({
       next: (data) => {
         this.studentProfileEducation=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
+    });
+  }
+
+
+  getbyisExpert(id : number) {
+    this.profilexpert.finddpetById(id).subscribe({
+      next: (data) => {
+        this.exp=data
        // this.updateEvents()
        console.log(data);
 
@@ -92,8 +107,8 @@ export class StudentProfileComponent implements OnInit {
   }
 
 
-  getlistProjet() {
-    this.projetservice. getList().subscribe({
+  getlistProjet(id : number) {
+    this.projetservice.getListprojetbyExpert(id).subscribe({
       next: (data) => {
         this.studentProfileExperience=data
        // this.updateEvents()
@@ -123,8 +138,8 @@ export class StudentProfileComponent implements OnInit {
   }
 
 
-  getlistSkills() {
-    this.competenceservice.getList().subscribe({
+  getlistSkills(id : number) {
+    this.competenceservice.getListcompetencebyExpert(id).subscribe({
       next: (data) => {
         this.skills=data
        // this.updateEvents()
