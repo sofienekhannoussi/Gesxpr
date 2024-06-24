@@ -8,6 +8,8 @@ export class Expertbyid {
 biography!: string;
 role !: string;
   adresse!: string;
+  avatar!: string;
+  specialite!: string
 
 }
 
