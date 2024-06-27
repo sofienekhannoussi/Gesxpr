@@ -1,4 +1,4 @@
-package configimage;
+package com.iteam.Gestion.Expert.configimage;
 
 public class FileStorageException extends RuntimeException{
     public FileStorageException(String message, Throwable cause){

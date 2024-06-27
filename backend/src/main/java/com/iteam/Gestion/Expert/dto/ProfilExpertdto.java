@@ -19,6 +19,7 @@ public class ProfilExpertdto {
     private String fullname;
     private String email;
     private String phone;
+    private String avatar;
 
 
     public static Expert toEntity(ProfilExpertdto request) {
@@ -28,6 +29,7 @@ public class ProfilExpertdto {
                 .phone(request.getPhone())
                 .adresse(request.getAdresse())
                 .biography(request.getBiography())
+                .avatar(request.getAvatar())
                 .build();
 
 
@@ -39,6 +41,7 @@ public class ProfilExpertdto {
                 .phone(request.getPhone())
                 .adresse(request.getAdresse())
                 .biography(request.getBiography())
+                .avatar(request.getAvatar())
                 .build();
 
 

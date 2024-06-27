@@ -9,6 +9,7 @@ import com.iteam.Gestion.Expert.dto.Admindto;
 import com.iteam.Gestion.Expert.dto.Expertdto;
 import com.iteam.Gestion.Expert.dto.ResponsableSocietedto;
 import com.iteam.Gestion.Expert.entities.*;
+import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.UserRepository;
 import com.iteam.Gestion.Expert.reposetories.VerificationTokenRepository;
 import com.iteam.Gestion.Expert.token.Token;
@@ -23,10 +24,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -39,6 +37,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final UserRepository repository;
+
+    private final ExpertRepository expertRepository;
+
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -46,6 +47,8 @@ public class AuthenticationService {
     private final VerificationTokenRepository vtokenRepository;
     private final PasswordResetTokenService passwordResetTokenService;
     private final MailService mailService;
+
+
 
     public Messgchekmail register(RegisterRequest request) {
         User user;
@@ -269,5 +272,6 @@ System.err.println(user.getFullname());
             repository.save(user);
         }
     }
+
 
 }

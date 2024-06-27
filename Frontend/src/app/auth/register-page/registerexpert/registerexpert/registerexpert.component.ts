@@ -25,7 +25,7 @@ export class RegisterexpertComponent {
 
   password= 'password';
   show = true;
-  
+
   public registerOwlOptions: OwlOptions = {
     margin: 25,
     nav: true,
@@ -64,10 +64,10 @@ export class RegisterexpertComponent {
     this.authService.registerexpert(this.registerRequest)
     .subscribe(result=>{
       this.router.navigate(["home/"])
-   
+
       console.log("TTTTTTTT")
       console.log(result)
-    
+
     },
     (err:HttpErrorResponse)=>this.errorMsg='this email is existe')
   }
@@ -112,5 +112,5 @@ export class RegisterexpertComponent {
      }
   }
 
-  
+
 }

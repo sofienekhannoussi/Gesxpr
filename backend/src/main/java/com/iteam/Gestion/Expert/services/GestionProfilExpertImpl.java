@@ -3,14 +3,19 @@ package com.iteam.Gestion.Expert.services;
 
 
 import com.iteam.Gestion.Expert.dto.Expertdto;
-import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
 import com.iteam.Gestion.Expert.dto.ResponsableSocietedto;
 import com.iteam.Gestion.Expert.entities.Expert;
 import com.iteam.Gestion.Expert.entities.ResponsableSociete;
+import com.iteam.Gestion.Expert.entities.User;
 import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.ResponsableSocieteRepository;
+import com.iteam.Gestion.Expert.reposetories.UserRepository;
+import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Optional;
 
@@ -21,6 +26,10 @@ import java.util.Optional;
 
 public class GestionProfilExpertImpl implements  GestionProfil {
     private final ExpertRepository expertRepository;
+    private final UserRepository repository;
+    private final ImageStorage imageStorage;
+
+
     private final ResponsableSocieteRepository responsableSocieteRepository;
 
 
@@ -105,5 +114,52 @@ public class GestionProfilExpertImpl implements  GestionProfil {
         }
 
 
+    }
+
+
+
+    public ResponseEntity<User> findbyId(Long id) {
+        if (id == null) {
+            //  log.error("student ID is null");
+            return null;
+        }
+        return ResponseEntity.ok(repository.findById(id).get());
+
+    }
+    @Override
+
+
+    public User uploadImage(Long Id, MultipartFile image) {
+        ResponseEntity<User> userResponse = this.findbyId(Id);
+        String imageName=imageStorage.store(image);
+        String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/auth/downloadavatar/").path(imageName).toUriString();
+        User user = userResponse.getBody();
+
+        if (user!=null)
+            user.setAvatar(fileImageDownloadUrl);
+        User usersaved = repository.save(user);
+        return usersaved ;
+    }
+
+    public ResponseEntity<Expert> findbyIdExpert(Long id) {
+        if (id == null) {
+            //  log.error("student ID is null");
+            return null;
+        }
+        return ResponseEntity.ok(expertRepository.findById(id).get());
+
+    }
+    @Override
+
+    public Expert uploadFile(Long Id, MultipartFile image) {
+        ResponseEntity<Expert> userResponse = this.findbyIdExpert(Id);
+        String imageName=imageStorage.store(image);
+        String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/auth/downloadFileCV/").path(imageName).toUriString();
+        Expert expert = userResponse.getBody();
+
+        if (expert!=null)
+            expert.setCv(fileImageDownloadUrl);
+        Expert expertsaved = expertRepository.save(expert);
+        return expertsaved;
     }
 }

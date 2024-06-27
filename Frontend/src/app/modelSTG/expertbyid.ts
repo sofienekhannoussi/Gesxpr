@@ -9,7 +9,8 @@ biography!: string;
 role !: string;
   adresse!: string;
   avatar!: string;
-  specialite!: string
+  specialite!: string;
+  cv !: string
 
 }
 

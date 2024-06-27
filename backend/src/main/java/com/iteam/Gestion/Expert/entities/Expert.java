@@ -23,10 +23,11 @@ import lombok.experimental.SuperBuilder;
 public class Expert extends User {
 	private String adresse;
     private String biography;
- private String avatar;
- private String specialite;
+    private String specialite;
+    private String cv;
 
-   //les projets realises
+
+    //les projets realises
     @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL,mappedBy="expert")
     private List<ProjetRealise> projetRealises;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)

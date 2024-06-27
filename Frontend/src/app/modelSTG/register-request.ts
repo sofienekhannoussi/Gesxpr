@@ -8,5 +8,6 @@ export class RegisterRequest {
 	etablissement!: string;
 	cv!: string;
 	cin!: string;
-	
+  avatar!: string;
+
 }

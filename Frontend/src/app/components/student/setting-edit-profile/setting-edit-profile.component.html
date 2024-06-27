@@ -58,6 +58,13 @@
                     </div>
 
 
+                    <div class="form-group ">
+                      <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
+                          <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
+                          <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.avatar" name="avatar">
+                      </button>
+                  </div>
+
 
 
 

@@ -1,4 +1,4 @@
-package configimage;
+package com.iteam.Gestion.Expert.configimage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

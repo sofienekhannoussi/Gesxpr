@@ -25,6 +25,7 @@ public class ResponsableSocietedto extends RegisterRequest {
                 .phone(request.getPhone())
                 .password(request.getPassword())
                 .presentationsociete(request.getPresentationsociete())
+                .avatar(request.getAvatar())
                 .build();
 
 
@@ -37,6 +38,7 @@ public class ResponsableSocietedto extends RegisterRequest {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .presentationsociete(request.getPresentationsociete())
+                .avatar(request.getAvatar())
                 .build();
 
 

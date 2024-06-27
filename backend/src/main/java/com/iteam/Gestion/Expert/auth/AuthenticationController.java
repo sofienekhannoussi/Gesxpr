@@ -27,6 +27,7 @@ public class AuthenticationController {
 
     private final RegistrationCompleteEventListener eventListener;
 
+
     @GetMapping("/verify")
     public ResponseEntity<?> confirmRegistration(@NotEmpty @RequestParam String token) {
         final String result = service.validateVerificationToken(token);
@@ -108,6 +109,7 @@ public class AuthenticationController {
     ) throws IOException {
         service.refreshToken(request, response);
     }
+
 
 
 }

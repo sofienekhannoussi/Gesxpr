@@ -1,4 +1,4 @@
-package configimage;
+package com.iteam.Gestion.Expert.configimage;
 
 
 import org.springframework.core.io.Resource;

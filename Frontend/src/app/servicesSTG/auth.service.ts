@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -104,6 +104,7 @@ return JSON.parse(user).role
     const url=this.baseUrl1+"/update"
     return this.httpClient.post<Reponse>(url,registerRequest)
   }
+
 
 
 
