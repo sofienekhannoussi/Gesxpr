@@ -5,7 +5,6 @@ export class Diplome {
   universityName !: string
   dateDebut !: string
   dateFin !: string
-
   idexpert !: number }
 
 

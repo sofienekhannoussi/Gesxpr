@@ -11,10 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EducationDialogComponent } from './education-dialog/education-dialog.component';
 import { ExperienceDialogComponent } from './experience-dialog/experience-dialog.component';
+import { EducationsPopupComponent } from './educations-popup/educations-popup.component';
 
 
 @NgModule({
-  declarations: [StudentProfileComponent, SkillsDialogComponent, EducationDialogComponent, ExperienceDialogComponent],
+  declarations: [StudentProfileComponent, SkillsDialogComponent, EducationDialogComponent, ExperienceDialogComponent, EducationsPopupComponent],
   imports: [
     CommonModule,
     StudentProfileRoutingModule,

@@ -1,0 +1,42 @@
+.modal-header , .modal-body{
+  position: relative;
+
+}
+.closeIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: #FF875A;
+}
+.icon {
+  border: 1px solid;
+  border-radius: 999px;
+  height: 16px;
+  width: 16px;
+  font-size: 15px;
+  cursor: pointer;
+
+}
+.errors{
+  color:  #dc2626;
+  font-size: 12px;
+}
+.modal-body .new-edu-form .formHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+  .modal-body .editIcon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #FF875A;
+}
+.modal-body .new-edu-form .formHeader .addCloseIcon{
+  cursor: pointer;
+  color: #FF875A;
+  font-size: 22px
+}

@@ -98,7 +98,7 @@
             </h5>
             <div class="edu-wrap" *ngFor="let data of studentProfileEducation">
               <div class="edu-name">
-                <span>{{ data.title }}</span>
+                <span>{{ data.title.charAt(0).toUpperCase() }}</span>
               </div>
               <div class="edu-detail">
                 <h6>{{ data.title }}</h6>

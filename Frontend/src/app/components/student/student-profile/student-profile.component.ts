@@ -15,6 +15,7 @@ import { ProjetRealiseService } from 'src/app/servicesSTG/projet-realise.service
 import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { Expert } from 'src/app/modelSTG/expert';
 import { Expertbyid } from 'src/app/modelSTG/expertbyid';
+import { EducationsPopupComponent } from './educations-popup/educations-popup.component';
 
 @Component({
   selector: 'app-student-profile',
@@ -51,17 +52,15 @@ this.getbyisExpert(id)
   //Education
   openEducationsDialog() {
 
-    console.log("sss",this.diplomeservice);
 
-    const dialogRef = this.dialog.open(EducationDialogComponent, {
+    const dialogRef = this.dialog.open(EducationsPopupComponent, {
       width: '600px',
       data: this.studentProfileEducation,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log(this.studentProfileEducation);
-      // call api for update education and the arg is studentProfileEducation
+      const id = Number(localStorage.getItem('userId'));
+      this.getlistDiplome(id)
     });
   }
 
@@ -94,6 +93,7 @@ this.getbyisExpert(id)
 
   //experience
   openExperienceDialog(){
+
     const dialogRef = this.dialog.open(ExperienceDialogComponent, {
       width: '600px',
       data: this.studentProfileExperience,
