@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface PostuleoffreService {
 
     void deletePostule(Long id);
-    List<ListPostuledto> listeallPostule ();
+    List<ListPostuledto> listeallPostule (Long id);
 
 
     ListPostuledto findByIdpostule(Long id);

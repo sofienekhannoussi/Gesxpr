@@ -34,7 +34,7 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
     }
 
     @Override
-    public List<ListPostuledto> listeallPostule() {
+    public List<ListPostuledto> listeallPostule (Long id){
         return postuleoffreRepository.findAll().stream().map(
                ListPostuledto::fromEntity).collect(Collectors.toList());
     }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { CommonService } from '../shared/service/common/common.service';
 import { SidebarService } from '../shared/service/sidebar/sidebar.service';
+import { Expertbyid } from '../modelSTG/expertbyid';
+import { ProfilExpertService } from '../servicesSTG/profil-expert.service';
 
 @Component({
   selector: 'app-components',
@@ -13,6 +15,8 @@ export class ComponentsComponent implements OnInit {
   base: string = '';
   page: string = '';
   last: string = '';
+
+
   public isuserHeader!: boolean;
   public isAdminHeader!: boolean;
   public isstudentHeader!: boolean;
@@ -40,7 +44,7 @@ export class ComponentsComponent implements OnInit {
     });
 
     this.setRouting(this.Router);
-    
+
     this.common.isAdminHeader.subscribe((res: boolean) => {
       this.isAdminHeader = res;
     });
@@ -108,4 +112,7 @@ export class ComponentsComponent implements OnInit {
     }
 
   }
+
+
+
 }

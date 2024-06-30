@@ -1,6 +1,7 @@
 package com.iteam.Gestion.Expert.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,7 +24,9 @@ public class Missiondto {
     private Long  reference;
     private String title; //intutulé poste
     private String description;//texte riche : details missions
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
+	@JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
     private String statut; //en cours terminé en attente
     private Boolean isActive;

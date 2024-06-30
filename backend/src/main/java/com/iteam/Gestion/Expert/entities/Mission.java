@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,18 +33,20 @@ public class Mission {
     private Long  reference;
     private String title; //intutulé poste
     private String description;//texte riche : details missions
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
     private String statut; //en cours terminé en attente
     private Boolean isActive;
     private String typeContrat;
     private String typeLieu;//a distance ou sur site
     private String typeTravail; //fulltime mid time
-    @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private ResponsableSociete responsableSociete;
-    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private Expert expert;
-    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private Postuleoffre postuleoffre;
     
 

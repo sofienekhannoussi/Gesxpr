@@ -5,17 +5,12 @@
             <p>You have full control to manage your own account setting.</p>
         </div>
         <div class="course-group mb-0 d-flex">
-            <div class="course-group-img d-flex align-items-center">
-                <a [routerLink]="routes.students_profile"><img src="assets/img/ssssss.jpeg" alt="" class="img-fluid"></a>
-                <div class="course-name">
-                    <h4><a [routerLink]="routes.students_profile">Your avatar</a></h4>
-                    <p>PNG or JPG no bigger than 800px wide and tall.</p>
-                </div>
-            </div>
-            <div class="profile-share d-flex align-items-center justify-content-center">
-                <a href="javascript:;" class="btn btn-success">Update</a>
-                <a href="javascript:;" class="btn btn-danger">Delete</a>
-            </div>
+          <div class="form-group ">
+            <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
+                <img (error)="changeSource($event)"        [src]="editproRequest.avatar" class="rounded-circle" width="100px" height="100px" />
+                <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.avatar" name="avatar">
+            </button>
+        </div>
         </div>
         <div class="checkout-form personal-address add-course-info ">
             <div class="personal-info-head">
@@ -57,13 +52,6 @@
                         </div>
                     </div>
 
-
-                    <div class="form-group ">
-                      <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
-                          <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
-                          <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.avatar" name="avatar">
-                      </button>
-                  </div>
 
 
 

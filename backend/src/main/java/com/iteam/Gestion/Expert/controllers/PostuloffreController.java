@@ -25,10 +25,10 @@ public class PostuloffreController {
         postuleoffreService.deletePostule(id);
     }
 
-    @GetMapping("/listeall")
+    @GetMapping("/listeall/{idmission}")
 
-    public List<ListPostuledto> listeallPostule() {
-        return postuleoffreService.listeallPostule();
+    public List<ListPostuledto> listeallPostule(@PathVariable("idmission") Long idmission) {
+        return postuleoffreService.listeallPostule(idmission);
     }
 
 

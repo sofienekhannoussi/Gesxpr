@@ -132,7 +132,7 @@ public class GestionProfilExpertImpl implements  GestionProfil {
     public User uploadImage(Long Id, MultipartFile image) {
         ResponseEntity<User> userResponse = this.findbyId(Id);
         String imageName=imageStorage.store(image);
-        String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/auth/downloadavatar/").path(imageName).toUriString();
+        String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/profilexpert/downloadavatar/").path(imageName).toUriString();
         User user = userResponse.getBody();
 
         if (user!=null)

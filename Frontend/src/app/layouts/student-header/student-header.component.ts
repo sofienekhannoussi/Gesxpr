@@ -4,6 +4,8 @@ import { CommonService } from 'src/app/shared/service/common/common.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { SidebarService } from 'src/app/shared/service/sidebar/sidebar.service';
 import { routes } from 'src/app/shared/service/routes/routes';
+import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
+import { Expertbyid } from 'src/app/modelSTG/expertbyid';
 
 @Component({
   selector: 'app-student-header',
@@ -15,9 +17,13 @@ export class StudentHeaderComponent implements OnInit {
   page: string = '';
   last: string = '';
   public routes = routes;
+  public exp:Expertbyid = new Expertbyid();
+
+
 
   sidebar: Array<any> = [];
   constructor(
+    private  profilexpert : ProfilExpertService ,
     private common: CommonService,
     private data: DataService,
     private sidebarService: SidebarService
@@ -40,6 +46,20 @@ export class StudentHeaderComponent implements OnInit {
       this.last = res;
     });
     this.sidebar = this.data.sideBar;
+  }
+
+  getbyisExpert() {
+    const id=Number(localStorage.getItem("userId"))
+
+    this.profilexpert.finddpetById(id).subscribe({
+      next: (data) => {
+        this.exp=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
+    });
   }
 
   ngOnInit(): void {}

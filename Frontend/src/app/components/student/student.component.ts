@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Expertbyid } from 'src/app/modelSTG/expertbyid';
+import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { CommonService } from 'src/app/shared/service/common/common.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { routes } from 'src/app/shared/service/routes/routes';
@@ -11,14 +13,14 @@ import { routes } from 'src/app/shared/service/routes/routes';
 })
 export class StudentComponent implements OnInit {
   public routes = routes;
-
+  public exp:Expertbyid = new Expertbyid();
   base: string="";
   page: string="";
   last: string = '';
   side_bar_data: Array<any> = [];
   student: boolean = true;
   dashboard: boolean = true;
-  constructor(private common : CommonService,private Router: Router,private data: DataService,) {
+  constructor(private common : CommonService,private Router: Router,  private  profilexpert : ProfilExpertService ,private data: DataService,) {
     this.common.base.subscribe((res:string)=>{
       this.base =res;
     })
@@ -41,6 +43,7 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getbyisExpert() ;
   }
   setcontent(){
 
@@ -66,6 +69,20 @@ export class StudentComponent implements OnInit {
           this.student = true;
         }
 
+  }
+
+  getbyisExpert() {
+    const id=Number(localStorage.getItem("userId"))
+
+    this.profilexpert.finddpetById(id).subscribe({
+      next: (data) => {
+        this.exp=data
+       // this.updateEvents()
+       console.log("soffffffff",data);
+
+      },
+      error: console.log,
+    });
   }
 
 }
