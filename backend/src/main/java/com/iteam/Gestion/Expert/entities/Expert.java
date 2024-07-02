@@ -36,11 +36,14 @@ public class Expert extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private    Set<Diplomes> diplomes =new HashSet<>();
 
-
-    @OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+//
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private Mission mission;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private    Set<Postuleoffre> postuleoffres =new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private EvaluationExpert evaluationExpert;
 
 }

@@ -11,6 +11,9 @@ public interface MissionService {
 
     void deleteMission(Long id);
     List<Missiondto> listeallMission ();
+    List<Missiondto> listeallMissionbyResp (Long id);
+
+
     Missiondto findByIdMission(Long id);
 
     Missiondto updateMission(Missiondto missiondto);

@@ -30,6 +30,14 @@ public class MissionController {
     public List<Missiondto> listeallMission() {
         return missionService.listeallMission();
     }
+
+    @GetMapping("/listeallbyresp/{id}")
+
+
+    public List<Missiondto> listeallMissionByRESP(@PathVariable("id") Long id) {
+        return missionService.listeallMissionbyResp(id);
+    }
+
     @GetMapping("/findByIdMission/{id}")
     public Missiondto findByIdMission(@PathVariable("id") Long id) {return missionService.findByIdMission(id);
     }

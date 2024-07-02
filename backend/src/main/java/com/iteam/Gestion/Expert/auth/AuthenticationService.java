@@ -271,6 +271,40 @@ System.err.println(user.getFullname());
             user.setRole(Role.ADMIN);
             repository.save(user);
         }
+        User user1 =new Expert();
+        String email1 = "expert@mail.com";
+        if (!repository.existsByEmail(email1)) {
+            user1.setEmail("expert@mail.com");
+            user1.setFullname("Sofiene");
+            user1.setPhone("198");
+            user1.setActive(true);
+            user1.setPassword(passwordEncoder.encode("expert"));
+            user1.setRole(Role.EXPERT);
+            repository.save(user1);
+        }
+
+        User user2 =new ResponsableSociete();
+        String email2 = "resp1@mail.com";
+        if (!repository.existsByEmail(email2)) {
+            user2.setEmail("resp1@mail.com");
+            user2.setFullname("Sofiene");
+            user2.setPhone("198");
+            user2.setActive(true);
+            user2.setPassword(passwordEncoder.encode("expert"));
+            user2.setRole(Role.RESP_STE);
+            repository.save(user2);
+        }
+        User user3 =new ResponsableSociete();
+        String email3 = "resp2@mail.com";
+        if (!repository.existsByEmail(email3)) {
+            user3.setEmail("resp2@mail.com");
+            user3.setFullname("Sofiene");
+            user3.setPhone("198");
+            user3.setActive(true);
+            user3.setPassword(passwordEncoder.encode("resp"));
+            user3.setRole(Role.RESP_STE);
+            repository.save(user3);
+        }
     }
 
 

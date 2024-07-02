@@ -42,8 +42,11 @@ public class Mission {
     private String typeContrat;
     private String typeLieu;//a distance ou sur site
     private String typeTravail; //fulltime mid time
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     private ResponsableSociete responsableSociete;
+    //affecter un expert a une mission
     @OneToOne(fetch = FetchType.LAZY)
     private Expert expert;
     @OneToOne(fetch = FetchType.LAZY)

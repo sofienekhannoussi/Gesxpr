@@ -37,6 +37,11 @@ public class MissionServiceimpl implements MissionService {
 	}
 
 	@Override
+	public List<Missiondto> listeallMissionbyResp(Long id) {
+		return missionRepesitory.findByIdRespMission(id).stream().map(Missiondto::fromEntity).collect(Collectors.toList());
+	}
+
+	@Override
 	public Missiondto findByIdMission(Long id) {
 		Optional<Mission> mission = missionRepesitory.findById(id);
 		if (mission.isPresent()) {

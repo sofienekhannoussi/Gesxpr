@@ -23,8 +23,8 @@ public class ListPostuledto {
         return ListPostuledto.builder()
                 .id(request.getId())
                 .datepostule(request.getDatepostule())
-              //  .missiondto(Missiondto.fromEntity(request.getMissions()))
-                //.expertdto(Expertdto.fromEntity(request.getExpert()))
+                .missiondto(Missiondto.fromEntity(request.getMissions()))
+                .expertdto(Expertdto.fromEntity(request.getExpert()))
                 .build();
     }
 

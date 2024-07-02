@@ -25,6 +25,8 @@ public class ResponsableSociete extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsableSociete", cascade = CascadeType.ALL)
     Set<Mission> missions=new HashSet<>();
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsableSociete", cascade = CascadeType.ALL)
+    Set<EvaluationExpert> evaluationExpert=new HashSet<>();
 
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "responsable", cascade = CascadeType.ALL)
