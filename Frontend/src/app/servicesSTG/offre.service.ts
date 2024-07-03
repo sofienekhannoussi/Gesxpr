@@ -10,31 +10,31 @@ import { Observable, map } from 'rxjs';
 })
 export class OffreService {
 idoff!:number
-  private baseUrl=environment.baseurl+"/offrestage"
+  private baseUrl=environment.baseurl+"/offre"
   constructor(private router : Router,private httpClient: HttpClient) { }
 
 
   addoffre(addoffre : Offre):Observable<Offre>{
     console.log("fffffffffffffff",addoffre)
-    const url=this.baseUrl+"/save"
+    const url=this.baseUrl+"/add"
     return this.httpClient.post<Offre>(url,addoffre)
   }
 
   finddpetById(id: number): Observable<Offre> {
-    return this.httpClient.get<Offre>(`${this.baseUrl}/findbyid/${id}`)
-    
+    return this.httpClient.get<Offre>(`${this.baseUrl}/findByIdPostule/${id}`)
+
   }
-  getList(): Observable<Offre[]> {
-    return this.httpClient.get<Offre[]>(`${this.baseUrl}/findall`)
+  getList(id: number): Observable<Offre[]> {
+    return this.httpClient.get<Offre[]>(`${this.baseUrl}/findall/${id}`)
     .pipe(
       map((response:any) => response as Offre[])
     );
-    
+
   }
 
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
-    
+
   }
 
 
