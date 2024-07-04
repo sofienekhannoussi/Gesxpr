@@ -1,7 +1,6 @@
 export class Mission {
 
   id !: number
-  reference !: number
   title !: string
   description !: string
   dateDebut !: Date

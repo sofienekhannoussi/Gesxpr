@@ -4,7 +4,7 @@
     <div class="row align-items-center">
       <div class="col-md-12">
         <div class="add-course-header">
-          <h2>Add New Offer</h2>
+          <h2>Add New Mission</h2>
           <div class="add-course-btns">
             <ul class="nav">
               <!--<li>
@@ -43,36 +43,57 @@
               <fieldset id="first" [ngStyle]="{'display': activeIndex === 0 ? 'block' : (activeIndex ? 'none' : null) }">
                 <div class="add-course-info mat-style">
                   <div class="add-course-inner-header">
-                    <h4>Add Offer</h4>
+                    <h4>Add Mission</h4>
                   </div>
                   <div class="add-course-form">
                     <form action="#">
                       <div class="form-group">
-                        <label class="add-course-label">Field</label>
-                        <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.secteur" name="secteur"  />
+                        <label class="add-course-label">title</label>
+                        <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.title" name="title"  />
                       </div>
                       <div class="form-group">
-                        <label class="add-course-label">Topic</label>
-                        <input type="text" class="form-control" placeholder="Enter Topic " [(ngModel)]="registerOffer.sujet" name="sujet"/>
+                        <label class="add-course-label">Description</label>
+                        <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.description" name="description"  />
                       </div>
+
                       <div class="form-group">
-                        <label class="add-course-label">From</label>
+                        <label class="add-course-label">dateDebut</label>
                         <input type="date" class="form-control" placeholder="Enter Date "[(ngModel)]="registerOffer.dateDebut" name="dateDebut" />
-                        <label class="add-course-label">To</label>
-                        <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="registerOffer.datefin" name="datefin"/>
+                        <label class="add-course-label">dateFin</label>
+                        <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="registerOffer.dateFin" name="dateFin"/>
                       </div>
                       <div class="form-group">
-                        <label class="add-course-label">Educational Level</label>
-                        <mat-select class="form-select select country-select"   [(value)]="selected" [(ngModel)]="registerOffer.niveau" name="niveau">
-                          <mat-option value="1">Enter Educational level</mat-option>
-                          <mat-option value="2">1</mat-option>
-                          <mat-option value="3"> 2</mat-option>
-                          <mat-option value="4">3</mat-option>
-                          <mat-option value="5">Other </mat-option>
-                          
-                          
+                        <label class="add-course-label">Statut</label>
+                        <mat-select class="form-select select country-select"   [(value)]="selected" [(ngModel)]="registerOffer.statut" name="statut">
+                          <mat-option value="En cours">En cours</mat-option>
+                          <mat-option value="En attente">En attente</mat-option>
+                          <mat-option value="Terminé">Terminé</mat-option>
+
+
                         </mat-select>
                       </div>
+
+                      <div class="form-group">
+                        <label class="add-course-label">Type de contrat</label>
+                        <mat-select class="form-select select country-select"   [(value)]="selected" [(ngModel)]="registerOffer.typeContrat" name="TypeContarat">
+                          <mat-option value="CDI">CDI</mat-option>
+                          <mat-option value="CDD">CDD</mat-option>
+                          <mat-option value="CIVP">CIVP</mat-option>
+
+
+                        </mat-select>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="add-course-label">Type lieu</label>
+                        <mat-select class="form-select select country-select"   [(value)]="selected" [(ngModel)]="registerOffer.typeLieu" name="TypeLieu">
+                          <mat-option value="A distance">A distance</mat-option>
+                          <mat-option value="Sur site">Sur site</mat-option>
+
+
+                        </mat-select>
+                      </div>
+
                       <!--<div class="form-group">
                         <label class="add-course-label">Supervisor ID</label>
                         <mat-select class="form-select select country-select"   [(value)]="selected2">
@@ -81,22 +102,22 @@
                           <mat-option value="3"> 2</mat-option>
                           <mat-option value="4"> 3</mat-option>
                           <mat-option value="5"> 4</mat-option>
-                          
+
                         </mat-select>
                       </div>-->
-                      <div class="form-group mb-0">
-                        <label class="add-course-label">Offer Description</label>
+                    <!--   <div class="form-group mb-0">
+                        <label class="add-course-label">Description</label>
                         <div class="container">
                           <form [formGroup]="form">
                             <div class="editor">
                               <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
                               </ngx-editor-menu>
-                              <ngx-editor [editor]="editor">
+                              <ngx-editor [editor]="editor" formControlName="editorContent">
                               </ngx-editor>
                             </div>
                           </form>
                         </div>
-                      </div>
+                      </div> -->
                     </form>
                   </div>
                   <!--<div class="widget-btn">

@@ -63,7 +63,6 @@ public class MissionServiceimpl implements MissionService {
 
 			Mission statoupdate =mission.get();
 			Mission mission1 = Missiondto.toEntity(missiondto);
-			statoupdate.setReference(mission1.getReference());
 			statoupdate.setTitle(mission1.getTitle());
 			statoupdate.setDescription(mission1.getDescription());
 			statoupdate.setDateDebut(mission1.getDateDebut());
@@ -72,7 +71,6 @@ public class MissionServiceimpl implements MissionService {
 			statoupdate.setIsActive(mission1.getIsActive());
 			statoupdate.setTypeContrat(mission1.getTypeContrat());
 			statoupdate.setTypeLieu(mission1.getTypeLieu());
-			statoupdate.setTypeTravail(mission1.getTypeTravail());
 
 
 			Mission updatemission = missionRepesitory.save(statoupdate);

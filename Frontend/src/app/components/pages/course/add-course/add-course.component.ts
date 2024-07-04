@@ -3,9 +3,10 @@ import { toHTML } from 'ngx-editor';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
 import { routes } from 'src/app/shared/service/routes/routes';
-import { Offre } from 'src/app/modelSTG/offre';
+import { Mission } from 'src/app/modelSTG/mission';
 import { OffreService } from 'src/app/servicesSTG/offre.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MissionService } from 'src/app/servicesSTG/mission.service';
 
 @Component({
   selector: 'app-add-course',
@@ -14,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   encapsulation: ViewEncapsulation.None,
 })
 export class AddCourseComponent implements OnInit, OnDestroy {
-  registerOffer: Offre = new Offre();
+  registerOffer: Mission = new Mission();
   errorMsg:string=""
   public routes = routes;
   selected="1";
@@ -31,8 +32,8 @@ export class AddCourseComponent implements OnInit, OnDestroy {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
-  constructor( private servoffre:OffreService){
-   
+  constructor( private servoffre:MissionService){
+
   }
   form = new FormGroup({
     editorContent: new FormControl('', Validators.required()),
@@ -46,15 +47,18 @@ export class AddCourseComponent implements OnInit, OnDestroy {
 
   registeroffre(){
     const IDD=localStorage.getItem("userId");
-    this.registerOffer.idEncadrant=Number(IDD)
-    console.log("TTTTTTTT", this.registerOffer)
-    this.servoffre.addoffre(this.registerOffer)
+    this.registerOffer.idresponsablesoci=Number(IDD)
+    console.log("TTTTTTTT", this.form)
+   // this.registerOffer.description= this.form.g
+    this.servoffre.addMission(this.registerOffer)
+
     .subscribe(result=>{
+
      // this.router.navigate(["home/"])
-   
-      
+
+
       console.log(result)
-    
+
     },
     (err:HttpErrorResponse)=>this.errorMsg='not saved')
   }

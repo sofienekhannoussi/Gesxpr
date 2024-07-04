@@ -30,18 +30,16 @@ public class Mission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long  id;
-    private Long  reference;
     private String title; //intutulé poste
     private String description;//texte riche : details missions
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
-    private String statut; //en cours terminé en attente
+    private String statut; //LISTE :en cours terminé en attente
     private Boolean isActive;
     private String typeContrat;
     private String typeLieu;//a distance ou sur site
-    private String typeTravail; //fulltime mid time
 
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Offre } from '../modelSTG/offre';
+import { Postuleoffre } from '../modelSTG/postuleoffre';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -10,24 +10,24 @@ import { Observable, map } from 'rxjs';
 })
 export class OffreService {
 idoff!:number
-  private baseUrl=environment.baseurl+"/offrestage"
+  private baseUrl=environment.baseurl+"/offre"
   constructor(private router : Router,private httpClient: HttpClient) { }
 
 
-  addoffre(addoffre : Offre):Observable<Offre>{
+  addoffre(addoffre : Postuleoffre):Observable<Postuleoffre>{
     console.log("fffffffffffffff",addoffre)
-    const url=this.baseUrl+"/save"
-    return this.httpClient.post<Offre>(url,addoffre)
+    const url=this.baseUrl+"/add"
+    return this.httpClient.post<Postuleoffre>(url,addoffre)
   }
 
-  finddpetById(id: number): Observable<Offre> {
-    return this.httpClient.get<Offre>(`${this.baseUrl}/findbyidd/${id}`)
+  finddpetById(id: number): Observable<Postuleoffre> {
+    return this.httpClient.get<Postuleoffre>(`${this.baseUrl}/findByIdPostule/${id}`)
 
   }
-  getList(): Observable<Offre[]> {
-    return this.httpClient.get<Offre[]>(`${this.baseUrl}/findall`)
+  getList(id: number): Observable<Postuleoffre[]> {
+    return this.httpClient.get<Postuleoffre[]>(`${this.baseUrl}/findall/${id}`)
     .pipe(
-      map((response:any) => response as Offre[])
+      map((response:any) => response as Postuleoffre[])
     );
 
   }
