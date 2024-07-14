@@ -12,6 +12,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { EducationDialogComponent } from './education-dialog/education-dialog.component';
 import { ExperienceDialogComponent } from './experience-dialog/experience-dialog.component';
 import { EducationsPopupComponent } from './educations-popup/educations-popup.component';
+import { StudentHeaderComponent } from 'src/app/layouts/student-header/student-header.component';
+
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { EducationsPopupComponent } from './educations-popup/educations-popup.co
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    StudentHeaderComponent
+
 
   ],
 })

@@ -12,11 +12,15 @@ import com.iteam.Gestion.Expert.reposetories.ResponsableSocieteRepository;
 import com.iteam.Gestion.Expert.reposetories.UserRepository;
 import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import lombok.RequiredArgsConstructor;
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 @Service
@@ -133,10 +137,20 @@ public class GestionProfilExpertImpl implements  GestionProfil {
         ResponseEntity<User> userResponse = this.findbyId(Id);
         String imageName=imageStorage.store(image);
         String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/profilexpert/downloadavatar/").path(imageName).toUriString();
+
         User user = userResponse.getBody();
 
         if (user!=null)
-            user.setAvatar(fileImageDownloadUrl);
+            try {
+                user.setAvatar(fileImageDownloadUrl);
+                Thumbnails.of(new File("/api/v1/profilexpert/downloadavatar/").listFiles())
+                        .size(10, 10)
+                        .outputFormat("jpg")
+                        .toFiles(Rename.PREFIX_DOT_THUMBNAIL);
+            }catch (Exception e){
+                e.getMessage();
+            }
+
         User usersaved = repository.save(user);
         return usersaved ;
     }

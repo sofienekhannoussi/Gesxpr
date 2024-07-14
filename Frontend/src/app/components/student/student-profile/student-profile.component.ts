@@ -22,7 +22,10 @@ import { EducationsPopupComponent } from './educations-popup/educations-popup.co
   templateUrl: './student-profile.component.html',
   styleUrls: ['./student-profile.component.scss'],
 })
+
+
 export class StudentProfileComponent implements OnInit {
+
   public studentProfileEducation: Diplome [] = [];
 public exp:Expertbyid = new Expertbyid();
   public studentProfileExperience: ProjetRealise[] = [];
@@ -63,7 +66,6 @@ this.getbyisExpert(id)
       this.getlistDiplome(id)
     });
   }
-
 
 
   getlistDiplome(id : number) {

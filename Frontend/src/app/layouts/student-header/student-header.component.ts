@@ -6,11 +6,16 @@ import { SidebarService } from 'src/app/shared/service/sidebar/sidebar.service';
 import { routes } from 'src/app/shared/service/routes/routes';
 import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { Expertbyid } from 'src/app/modelSTG/expertbyid';
+import { CommonModule } from '@angular/common';
+import { ComponentsRoutingModule } from 'src/app/components/components-routing.module';
+import { SharedModule } from 'src/app/shared/module/shared.module';
 
 @Component({
+  standalone: true,
   selector: 'app-student-header',
   templateUrl: './student-header.component.html',
   styleUrls: ['./student-header.component.scss'],
+  imports: [CommonModule, ComponentsRoutingModule, SharedModule ]
 })
 export class StudentHeaderComponent implements OnInit {
   base: string = '';
