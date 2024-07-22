@@ -5,6 +5,9 @@ import { InstructorCourseRoutingModule } from './instructor-course-routing.modul
 import { InstructorCourseComponent } from './instructor-course.component';
 import { FeatherIconModule } from 'src/app/shared/module/feather.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -16,7 +19,12 @@ import { SharedModule } from 'src/app/shared/module/shared.module';
     CommonModule,
     InstructorCourseRoutingModule,
     FeatherIconModule,
-    SharedModule
+    SharedModule,
+    NgxEditorModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+
   ],
 })
 export class InstructorCourseModule { }

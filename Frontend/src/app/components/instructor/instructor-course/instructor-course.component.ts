@@ -3,6 +3,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { Sort } from '@angular/material/sort';
 import { routes } from 'src/app/shared/service/routes/routes';
+import { MissionService } from 'src/app/servicesSTG/mission.service';
+import { Router } from '@angular/router';
+import { Mission } from 'src/app/modelSTG/mission';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
+import { Respsociete } from 'src/app/modelSTG/respsociete';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -10,6 +16,12 @@ import { routes } from 'src/app/shared/service/routes/routes';
 })
 export class InstructorCourseComponent implements OnInit {
   public routes = routes;
+  errorMsg:string=""
+
+  public exp:Respsociete = new Respsociete();
+    public missionn: Mission [] = [];
+  missionss: Mission = new Mission();
+
   public instructorCourse: any = [];
   public searchDataValue = '';
   dataSource!: MatTableDataSource<any>;
@@ -27,12 +39,14 @@ export class InstructorCourseComponent implements OnInit {
   public pageSelection: Array<pageSelection> = [];
   public totalPages: number = 0;
   selected = '1';
-  constructor(private data: DataService) {
-    
+  registerOffer: any;
+  servoffre: any;
+  constructor(private data: DataService,private  profilexpert : ProfilExpertService ,private missionservice:MissionService,private router: Router) {
+this.missionn = this.instructorCourse
   }
 
   ngOnInit(): void {
-    this.getinstructorCourse();
+    /* this.getinstructorCourse();
   }
   private getinstructorCourse(): void {
     this.instructorCourse = [];
@@ -51,9 +65,42 @@ export class InstructorCourseComponent implements OnInit {
          this.dataSource = new MatTableDataSource<any>(this.instructorCourse);
     this.calculateTotalPages(this.totalData, this.pageSize);
     });
+ */
 
- 
+    const id = Number(localStorage.getItem('userId'));
+    this.getbyisresp(id)
+
+        this.getlistMission(id)
+
   }
+
+
+  getbyisresp(id : number) {
+    this.profilexpert.findrespById(id).subscribe({
+      next: (data) => {
+        this.instructorCourse=data
+       // this.updateEvents()
+       console.log(data);
+
+      },
+      error: console.log,
+    });
+  }
+
+
+  getlistMission(id : number) {
+    this.missionservice.listeallMissionByRESP(id).subscribe({
+      next: (data) => {
+        this.missionn=data
+       // this.updateEvents()
+       console.log(data,"ssssssssssss");
+
+      },
+      error: console.log,
+    });
+  }
+
+
   public sortData(sort: Sort) {
     const data = this.instructorCourse.slice();
 
@@ -73,7 +120,7 @@ export class InstructorCourseComponent implements OnInit {
     this.instructorCourse = this.dataSource.filteredData;
   }
 
-public getMoreData(event: string): void {
+/* public getMoreData(event: string): void {
     if (event == 'next') {
       this.currentPage++;
       this.pageIndex = this.currentPage - 1;
@@ -87,9 +134,9 @@ public getMoreData(event: string): void {
       this.skip = this.pageSize * this.pageIndex;
       this.getinstructorCourse();
     }
-}
+}*/
 
-  public moveToPage(pageNumber: number): void {
+/*   public moveToPage(pageNumber: number): void {
     this.currentPage = pageNumber;
     this.skip = this.pageSelection[pageNumber - 1].skip;
     this.limit = this.pageSelection[pageNumber - 1].limit;
@@ -99,8 +146,8 @@ public getMoreData(event: string): void {
       this.pageIndex = pageNumber + 1;
     }
     this.getinstructorCourse();
-    }
-
+    } */
+/*
   public changePageSize(): void {
     this.pageSelection = [];
     this.limit = this.pageSize;
@@ -108,7 +155,7 @@ public getMoreData(event: string): void {
     this.currentPage = 1;
     this.getinstructorCourse();
   }
-
+ */
   private calculateTotalPages(totalData: number, pageSize: number): void {
     this.pageNumberArray = [];
     this.totalPages = totalData / pageSize;

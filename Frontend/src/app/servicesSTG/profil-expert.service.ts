@@ -26,6 +26,18 @@ export class ProfilExpertService {
   }
 
 
+
+  updateresp(profilExpert : Expertbyid ):Observable<Expertbyid>{
+    const url=this.baseUrl+"/saveResponsable"
+    return this.httpClient.post<Expertbyid>(url,profilExpert )
+  }
+
+  findrespById(id: number): Observable<Expertbyid> {
+    return this.httpClient.get<Expertbyid>(`${this.baseUrl}/findRespbyid/${id}`)
+
+  }
+
+
   uploadartImage(id:number,image:File): Observable<HttpEvent<{}>> {
     const formData:FormData=new FormData();
     formData.append(`image`,image)

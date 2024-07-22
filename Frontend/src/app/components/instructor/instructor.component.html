@@ -11,7 +11,7 @@
                     <div class="settings-widget dash-profile">
                         <div class="settings-menu p-0">
                             <div class="profile-bg">
-                                
+
                                 <img src="assets/img/...........png" alt="">
                                 <div class="profile-img">
                                     <a [routerLink]="routes.instructor_instructor_profile"><img src="assets/img/user/user.png"
@@ -30,8 +30,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="settings-widget account-settings">
-                        <div class="settings-menu">                           
+                     <div class="settings-widget account-settings">
+                        <div class="settings-menu">
                             <ng-container *ngFor="let mainTittle of side_bar_data">
                                 <div [ngClass]="{'instructor-title' :mainTittle.class == true}">
                                     <h3>Menu</h3>
@@ -47,23 +47,23 @@
                                 </ul>
                             </ng-container>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <!-- /Sidebar -->
 
-            <!-- Instructor Content -->
-            <!-- <div class="col-xl-9 col-lg-8 col-md-12" >
+           <!--  < Instructor Content > -->
+            <div class="col-xl-9 col-lg-8 col-md-12" >
                 <router-outlet></router-outlet>
-            </div> -->
-            <!-- /Instructor Content -->
- 
+            </div>
+         <!--    </Instructor Content > -->
+
 
         </div>
     </div>
 </div>
 <!-- /Page Wrapper -->
-    
+
 </ng-container>
 
 <ng-container *ngIf="!instructor">

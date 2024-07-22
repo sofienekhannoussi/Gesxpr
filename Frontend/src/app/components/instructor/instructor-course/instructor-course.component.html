@@ -3,7 +3,7 @@
         <div class="settings-widget">
             <div class="settings-inner-blk p-0">
                 <div class="sell-course-head comman-space">
-                    <h3>Courses</h3>
+                    <h3>Missions</h3>
                     <p>Manage your courses and its update like live, draft and insight.</p>
                 </div>
                 <div class="comman-space pb-0">
@@ -16,7 +16,7 @@
                                             <i-feather name="search"></i-feather>
                                             <input type="text" class="form-control"
                                             [(ngModel)]="searchDataValue" name="one"
-											(ngModelChange)="searchData(searchDataValue)" 
+											(ngModelChange)="searchData(searchDataValue)"
                                                 placeholder="Search our courses">
                                         </div>
                                     </div>
@@ -40,45 +40,44 @@
                         <table class="table table-nowrap mb-2">
                             <thead>
                                 <tr>
-                                    <th>COURSES</th>
-                                    <th>STUDENTS</th>
-                                    <th>STATUS</th>
+                                    <th>missions</th>
+                                    <th>EXPERTS</th>
+                                    <th>STATUT</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let data of instructorCourse">
+                                <tr *ngFor="let data of missionn">
                                     <td>
+                                      {{data.title}}
                                         <div class="sell-table-group d-flex align-items-center">
-                                            <div class="sell-group-img">
+                                          <!--   <div class="sell-group-img">
                                                 <a [routerLink]="routes.page_course_details">
                                                     <img [src]="data.img1" class="img-fluid " alt="">
                                                 </a>
-                                            </div>
+                                            </div> -->
                                             <div class="sell-tabel-info">
                                                 <p><a
-                                                        [routerLink]="routes.page_course_details">{{data.content}}</a>
+                                                        [routerLink]="routes.page_course_details">{{data.description}}</a>
                                                 </p>
                                                 <div
                                                     class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <img [src]="data.img2" alt="">
-                                                        <p>{{data.lesson}}</p>
+                                                        <!-- <img [src]="data.img2" alt=""> -->
+                                                        <p>{{data.dateDebut}}</p>
                                                     </div>
                                                     <div class="course-view d-flex align-items-center">
-                                                        <img [src]="data.img3" alt="">
-                                                        <p>{{data.time}}</p>
+                                                        <!-- <img [src]="data.img3" alt=""> -->
+                                                        <p>{{data.dateFin}}</p>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div [ngClass]="{'progress-bar bg-success progress-bar-striped active-stip course-stip progress-stip course-bar': data.progress === 'progress stip'}" class="progress-bar bg-success progress-bar-striped active-stip"></div>
+                                                    <!-- <div [ngClass]="{'progress-bar bg-success progress-bar-striped active-stip course-stip progress-stip course-bar': data.progress === 'progress stip'}" class="progress-bar bg-success progress-bar-striped active-stip"></div> -->
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{data.students}}</td>
-                                    <td><span
-                                            [ngClass]="{'info-low': data.status === 'Live', 'info-inter' : data.status === 'Draft', 'info-medium' : data.status === 'Pending', 'info-high' : data.status === 'Deleted' }"
-                                            class="badge">{{data.status}}</span></td>
+                                    <td>{{data.id}}</td>
+                                    <td><span>{{data.statut}}</span></td>
                                 </tr>
                             </tbody>
                         </table>
