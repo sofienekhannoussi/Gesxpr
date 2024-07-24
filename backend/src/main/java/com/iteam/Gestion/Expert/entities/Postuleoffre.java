@@ -21,7 +21,7 @@ public class Postuleoffre {
 	 @GeneratedValue(strategy =GenerationType.AUTO )
 	private Long id;
 	private Date datepostule;
-	 @OneToOne(fetch = FetchType.LAZY, mappedBy = "postuleoffre", cascade = CascadeType.ALL)
+	 @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    private Mission missions;
 
 	 @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)

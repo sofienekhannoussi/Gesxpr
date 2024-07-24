@@ -43,10 +43,11 @@
                                     <th>missions</th>
                                     <th>EXPERTS</th>
                                     <th>STATUT</th>
+                                    <th>ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let data of missionn">
+                                <tr *ngFor="let data of missionn;" #itemElement>
                                     <td>
                                       {{data.title}}
                                         <div class="sell-table-group d-flex align-items-center">
@@ -56,9 +57,7 @@
                                                 </a>
                                             </div> -->
                                             <div class="sell-tabel-info">
-                                                <p><a
-                                                        [routerLink]="routes.page_course_details">{{data.description}}</a>
-                                                </p>
+
                                                 <div
                                                     class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
@@ -76,8 +75,11 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{data.id}}</td>
+                                    <td class="text-center">{{expertCountMap.get(data.id) }}</td>
+
                                     <td><span>{{data.statut}}</span></td>
+                                    <td><span>{{data.statut}}</span></td>
+
                                 </tr>
                             </tbody>
                         </table>

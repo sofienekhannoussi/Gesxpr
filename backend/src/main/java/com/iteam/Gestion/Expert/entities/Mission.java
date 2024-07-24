@@ -1,16 +1,10 @@
 package com.iteam.Gestion.Expert.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +25,7 @@ public class Mission {
 
     private Long  id;
     private String title; //intutulé poste
+    @Column(length = 4000)
     private String description;//texte riche : details missions
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
@@ -47,8 +42,8 @@ public class Mission {
     //affecter un expert a une mission
     @OneToOne(fetch = FetchType.LAZY)
     private Expert expert;
-    @OneToOne(fetch = FetchType.LAZY)
-    private Postuleoffre postuleoffre;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "missions")
+    private List<Postuleoffre> postuleoffre;
     
 
 }

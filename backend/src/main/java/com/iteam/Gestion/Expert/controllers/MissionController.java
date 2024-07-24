@@ -6,6 +6,7 @@ import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.entities.Mission;
 import com.iteam.Gestion.Expert.services.MissionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,12 @@ public class MissionController {
 
     public Missiondto updateMission(@RequestBody Missiondto missiondto) {
         return missionService.updateMission(missiondto);
+    }
+
+    @GetMapping("/{id}/postuleoffre/count")
+    public ResponseEntity<Long> countPostuleoffreForMission(@PathVariable("id") Long missionId) {
+        Long count = missionService.countPostuleoffreForMission(missionId);
+        return ResponseEntity.ok(count);
     }
 
 }

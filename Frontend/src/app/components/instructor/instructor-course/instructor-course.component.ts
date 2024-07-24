@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { Sort } from '@angular/material/sort';
@@ -9,6 +9,7 @@ import { Mission } from 'src/app/modelSTG/mission';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { Respsociete } from 'src/app/modelSTG/respsociete';
+import { tap } from 'rxjs';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -17,7 +18,10 @@ import { Respsociete } from 'src/app/modelSTG/respsociete';
 export class InstructorCourseComponent implements OnInit {
   public routes = routes;
   errorMsg:string=""
+  expertCount=0
+  idmission!: number
 
+  expertCountMap: Map<number, number> = new Map();
   public exp:Respsociete = new Respsociete();
     public missionn: Mission [] = [];
   missionss: Mission = new Mission();
@@ -45,6 +49,7 @@ export class InstructorCourseComponent implements OnInit {
 this.missionn = this.instructorCourse
   }
 
+
   ngOnInit(): void {
     /* this.getinstructorCourse();
   }
@@ -68,11 +73,22 @@ this.missionn = this.instructorCourse
  */
 
     const id = Number(localStorage.getItem('userId'));
-    this.getbyisresp(id)
+    this.getbyisresp(id);
+    this.getlistMission(id);
+    // Wait for missionn to be populated before calling getExpertByMission
+    this.getlistMission(id).subscribe(() => {
+      this.missionn.forEach(mission => {
+        this.getExpertByMission(mission.id);
+      });
+    });
 
-        this.getlistMission(id)
+        // getExpertByMission()
+
+
 
   }
+
+
 
 
   getbyisresp(id : number) {
@@ -88,15 +104,37 @@ this.missionn = this.instructorCourse
   }
 
 
-  getlistMission(id : number) {
-    this.missionservice.listeallMissionByRESP(id).subscribe({
-      next: (data) => {
-        this.missionn=data
-       // this.updateEvents()
-       console.log(data,"ssssssssssss");
+  // getlistMission(id : number) {
+  //   this.missionservice.listeallMissionByRESP(id).subscribe({
+  //     next: (data) => {
+  //       this.missionn=data
+  //      // this.updateEvents()
+  //      console.log(data,"ssssssssssss");
 
+
+  //     },
+  //     error: console.log,
+  //   });
+  // }
+
+  getlistMission(id: number) {
+    return this.missionservice.listeallMissionByRESP(id).pipe(
+      tap((data: Mission[]) => {
+        this.missionn = data;
+        console.log(data, "ssssssssssss");
+      })
+    );
+  }
+
+  getExpertByMission(id: number): void {
+    this.missionservice.countExpertByMission(id).subscribe({
+      next: (data) => {
+        this.expertCountMap.set(id, data);
+        console.log(`Expert count for mission ${id}: ${data}`);
       },
-      error: console.log,
+      error: (error) => {
+        console.error('Error fetching expert count:', error);
+      }
     });
   }
 

@@ -28,6 +28,11 @@ export class MissionService {
       return this.httpClient.get<Mission>(`${this.baseUrl}/findByIdPostule/${id}`)
 
     }
+
+    countExpertByMission(id: number): Observable<number> {
+      return this.httpClient.get<number>(`${this.baseUrl}/${id}/postuleoffre/count`)
+
+    }
     listeallMissionByRESP(id: number): Observable<Mission[]> {
       return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbyresp/${id}`)
       .pipe(

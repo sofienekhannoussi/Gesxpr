@@ -8,10 +8,12 @@ import com.iteam.Gestion.Expert.entities.Mission;
 import com.iteam.Gestion.Expert.entities.ResponsableSociete;
 import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
+import com.iteam.Gestion.Expert.reposetories.PostuleoffreRepository;
 import com.iteam.Gestion.Expert.reposetories.ResponsableSocieteRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MissionServiceimpl implements MissionService {
 
+	private final PostuleoffreRepository postuleoffreRepository;
 	private final MissionRepesitory missionRepesitory;
 	private final ResponsableSocieteRepository responsableSocieteRepository;
 
@@ -97,6 +100,13 @@ public class MissionServiceimpl implements MissionService {
 			return Missiondto.fromEntity(missionsaved);
 		} else
 			throw new RuntimeException("err");
+	}
+
+
+
+	public Long countPostuleoffreForMission(Long mission_id) {
+		Optional<Mission> mission=missionRepesitory.findById(mission_id);
+		return postuleoffreRepository.countByMissions(mission.get());
 	}
 }
 

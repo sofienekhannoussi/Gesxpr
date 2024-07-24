@@ -3,18 +3,9 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-12">
-        <div class="add-course-header">
-          <h2>Add New Mission</h2>
-          <div class="add-course-btns">
-            <ul class="nav">
-              <!--<li>
-                <a [routerLink]="routes.dashboard_instructor" class="btn btn-black">Back to Offer</a>
-              </li>>-->
-              <li>
-                <a href="javascript:;" class="btn btn-success-dark" (click)="registeroffre()">Save</a>
-              </li>
-            </ul>
-          </div>
+        <div class="add-course-header d-flex justify-content-center">
+          <h2 >Add New Mission</h2>
+
         </div>
       </div>
     </div>
@@ -23,46 +14,35 @@
         <div class="card">
           <!-- Course Wizard -->
           <div class="widget-set">
-            <div class="widget-setcount">
-              <ul id="progressbar">
-                <li class="progress-active">
-                 <!-- <p><span></span> Basic Information About Offer</p>
-                </li>
-                <li [ngClass]="{'progress-active': activeIndex === 1 ||  activeIndex === 2 ||  activeIndex === 3 ||  activeIndex === 4}">
-                  <p><span></span> Add Offer Picture </p>
-                </li>-->
-                <!-- <li [ngClass]="{'progress-active': activeIndex === 2 ||  activeIndex === 3 ||  activeIndex === 4}">
-                  <p><span></span> Curriculum</p>
-                </li>
-                <li [ngClass]="{'progress-active': activeIndex === 3 ||  activeIndex === 4}">
-                  <p><span></span> Settings</p>
-                </li> -->
-              </ul>
-            </div>
+
             <div class="widget-content multistep-form">
-              <fieldset id="first" [ngStyle]="{'display': activeIndex === 0 ? 'block' : (activeIndex ? 'none' : null) }">
+              <!-- <fieldset id="first" [ngStyle]="{'display': activeIndex === 0 ? 'block' : (activeIndex ? 'none' : null) }"> -->
                 <div class="add-course-info mat-style">
-                  <div class="add-course-inner-header">
-                    <h4>Add Mission</h4>
-                  </div>
-                  <div class="add-course-form">
+
+                  <div class="add-course-form mt-2">
                     <form action="#">
-                      <div class="form-group">
+                      <div class="form-group ">
                         <label class="add-course-label">title</label>
                         <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.title" name="title"  />
-                      </div>
+                        <small *ngIf="submitted && form.get('title')?.invalid" class="text-danger">Title est obligatoire</small> </div>
                       <div class="form-group">
                         <label class="add-course-label">Description</label>
-                        <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.description" name="description"  />
+                        <textarea class="form-control" placeholder="Enter Field "[(ngModel)]="registerOffer.description" name="description" ></textarea>
+                        <small *ngIf="submitted && form.get('description')?.invalid" class="text-danger">Description est obligatoire</small>
                       </div>
 
                       <div class="form-group">
-                        <label class="add-course-label">dateDebut</label>
+                        <label class="add-course-label">date Debut</label>
                         <input type="date" class="form-control" placeholder="Enter Date "[(ngModel)]="registerOffer.dateDebut" name="dateDebut" />
-                        <label class="add-course-label">dateFin</label>
+                        <small *ngIf="submitted && form.get('dateDebut')?.invalid" class="text-danger">Date de debut est obligatoire</small>
+                        <br>
+                        <label class="add-course-label">date Fin</label>
                         <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="registerOffer.dateFin" name="dateFin"/>
+
+                        <small *ngIf="submitted && form.get('dateFin')?.invalid" class="text-danger">Date de debut est obligatoire</small>
+
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="add-course-label">Statut</label>
                         <mat-select class="form-select select country-select"    [(ngModel)]="registerOffer.statut" name="statut">
                           <mat-option value="En cours">En cours</mat-option>
@@ -71,7 +51,7 @@
 
 
                         </mat-select>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label class="add-course-label">Type de contrat</label>
@@ -82,6 +62,8 @@
 
 
                         </mat-select>
+                        <small *ngIf="submitted && form.get('typeContrat')?.invalid" class="text-danger">Type de contrat est obligatoire</small>
+
                       </div>
 
                       <div class="form-group">
@@ -92,6 +74,16 @@
 
 
                         </mat-select>
+                        <small *ngIf="submitted && form.get('typeLieu')?.invalid" class="text-danger">Type de Lieu est obligatoire</small>
+
+                      </div>
+
+                      <p *ngIf="msgSuccess" style="color:green;size:20px" >{{msgSuccess}}</p>
+                      <div style="display: flex; justify-content: center;">
+
+                        <button type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" (click)="registeroffre()">Save</button>
+                        <button  class="btn btn-secondary-dark " style="width:150px" (click)="registeroffre()">Cancel</button>
+
                       </div>
 
                       <!--<div class="form-group">
@@ -125,7 +117,7 @@
                     <a class="btn btn-info-light next_btn" (click)="onSubmit(1)">Continue</a>
                   </div>-->
                 </div>
-              </fieldset>
+              <!-- </fieldset> -->
               <fieldset class="field-card" [ngStyle]="{'display': activeIndex === 1 ? 'block' : (activeIndex ? 'none' : null) }">
                 <div class="add-course-info">
                   <div class="add-course-inner-header">

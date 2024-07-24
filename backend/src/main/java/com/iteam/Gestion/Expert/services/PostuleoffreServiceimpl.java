@@ -14,6 +14,7 @@ import com.iteam.Gestion.Expert.reposetories.PostuleoffreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -61,16 +62,15 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
         Optional<Expert> expert = expertRepository.findById(postuleoffredto.getIdexpert());
         Optional<Mission> mission = missionRepesitory.findById(postuleoffredto.getIdmission());
 
-        Postuleoffre postuleoffre = Postuleoffredto.toEntity(postuleoffredto);
-        System.err.println(postuleoffre);
+        Postuleoffre postuleoffre = new Postuleoffre();
         if (expert.isPresent()&& mission.isPresent()) {
             postuleoffre.setExpert(expert.get());
-          //  postuleoffre.setMissions(mission.get());
+            postuleoffre.setMissions(mission.get());
 
             postuleoffre.setDatepostule(new Date());
             Postuleoffre postulesaved = postuleoffreRepository.save(postuleoffre);
-            mission.get().setPostuleoffre(postulesaved);
-            missionRepesitory.save(mission.get());
+           // mission.get().setPostuleoffre(postulesaved);
+            //missionRepesitory.save(mission.get());
             return Postuleoffredto.fromEntity(postulesaved);
         } else
             throw new RuntimeException("err");

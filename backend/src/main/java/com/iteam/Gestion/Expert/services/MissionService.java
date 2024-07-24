@@ -19,6 +19,7 @@ public interface MissionService {
     Missiondto updateMission(Missiondto missiondto);
 
     Missiondto addMission(Missiondto missiondto);
-   
+
+    Long countPostuleoffreForMission(Long mission_id);
 
 }

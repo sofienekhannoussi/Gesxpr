@@ -305,6 +305,17 @@ System.err.println(user.getFullname());
             user3.setRole(Role.RESP_STE);
             repository.save(user3);
         }
+        User user5 =new Expert();
+        String email5 = "expert5@mail.com";
+        if (!repository.existsByEmail(email5)) {
+            user5.setEmail("expert5@mail.com");
+            user5.setFullname("Sofiene");
+            user5.setPhone("198");
+            user5.setActive(true);
+            user5.setPassword(passwordEncoder.encode("expert"));
+            user5.setRole(Role.EXPERT);
+            repository.save(user5);
+        }
     }
 
 
