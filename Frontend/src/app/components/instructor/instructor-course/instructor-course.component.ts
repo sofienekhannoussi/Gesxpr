@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { Respsociete } from 'src/app/modelSTG/respsociete';
 import { tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -138,6 +139,35 @@ this.missionn = this.instructorCourse
     });
   }
 
+
+  deleteMission(id: number): void {
+    const userId = Number(localStorage.getItem('userId'));
+    if (confirm('Are you sure you want to delete this experience item?')) {
+      this.missionservice.deleteById(id).subscribe( {
+        next: () => {
+
+
+        },  error: (er) => {
+          console.log(er);
+        },
+      })
+    }
+  }
+/*
+  openEducationsDialog() {
+
+
+    const dialogRef = this.dialog.open(EducationsPopupComponent, {
+      width: '600px',
+      data: this.missionn,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      const id = Number(localStorage.getItem('userId'));
+      this.missionservice.getList(id)
+    });
+  }
+ */
 
   public sortData(sort: Sort) {
     const data = this.instructorCourse.slice();

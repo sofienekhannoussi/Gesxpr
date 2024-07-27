@@ -78,7 +78,8 @@
                                     <td class="text-center">{{expertCountMap.get(data.id) }}</td>
 
                                     <td><span>{{data.statut}}</span></td>
-                                    <td><span>{{data.statut}}</span></td>
+                                    <td><span> <mat-icon class="editIcon"   (click)="deleteMission(data.id)">edit</mat-icon></span>
+                                      <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span></td>
 
                                 </tr>
                             </tbody>
