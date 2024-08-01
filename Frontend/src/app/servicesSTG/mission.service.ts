@@ -24,8 +24,10 @@ export class MissionService {
     }
 
 
-    finddpetById(id: number): Observable<Mission> {
-      return this.httpClient.get<Mission>(`${this.baseUrl}/findByIdPostule/${id}`)
+
+
+     finddpetById(id: number): Observable<Mission> {
+      return this.httpClient.get<Mission>(`${this.baseUrl}/findByIdMission/${id}`)
 
     }
 
@@ -35,6 +37,14 @@ export class MissionService {
     }
     listeallMissionByRESP(id: number): Observable<Mission[]> {
       return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbyresp/${id}`)
+      .pipe(
+        map((response:any) => response as Mission[])
+      );
+
+    }
+
+    listeallMissionBySTATUT(sta:string): Observable<Mission[]> {
+      return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbystatut/${sta}`)
       .pipe(
         map((response:any) => response as Mission[])
       );

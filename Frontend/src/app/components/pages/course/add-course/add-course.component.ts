@@ -57,11 +57,25 @@ form!:FormGroup;
   }
 
   registeroffre(){
+    const IDD=localStorage.getItem("userId");
+    this.registerOffer.idresponsablesoci=Number(IDD)
     this.submitted= true
-    if(this.form.valid){
+    this.form.value.title= this.registerOffer.title
+    this.form.value.description= this.registerOffer.description
+    this.form.value.dateDebut= this.registerOffer.dateDebut
+    this.form.value.dateFin= this.registerOffer.dateFin
+    this.form.value.typeContrat= this.registerOffer.typeContrat
+    this.form.value.typeLieu= this.registerOffer.typeLieu
 
-      const IDD=localStorage.getItem("userId");
-      this.registerOffer.idresponsablesoci=Number(IDD)
+    console.log("ssssss", this.registerOffer)
+
+
+
+
+    console.log("sou", this.form.value)
+    // if(this.form.valid){
+
+
 
 
       this.registerOffer.statut="En cours"
@@ -83,7 +97,7 @@ form!:FormGroup;
 
       },
       (err:HttpErrorResponse)=>this.errorMsg='not saved')
-    }
+    //}
     }
 
   ngOnDestroy(): void {

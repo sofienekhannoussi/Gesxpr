@@ -11,6 +11,8 @@ import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { Respsociete } from 'src/app/modelSTG/respsociete';
 import { tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup} from '@angular/forms';
+import { Validators, Editor, Toolbar } from 'ngx-editor';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -21,11 +23,17 @@ export class InstructorCourseComponent implements OnInit {
   errorMsg:string=""
   expertCount=0
   idmission!: number
+  submitted!:boolean
+  form!:FormGroup;
+  msgSuccess:string=""
+
+
 
   expertCountMap: Map<number, number> = new Map();
   public exp:Respsociete = new Respsociete();
     public missionn: Mission [] = [];
   missionss: Mission = new Mission();
+  viewmodelmission: Mission = new Mission();
 
   public instructorCourse: any = [];
   public searchDataValue = '';
@@ -52,6 +60,15 @@ this.missionn = this.instructorCourse
 
 
   ngOnInit(): void {
+
+    this.form = new FormGroup({
+      title:new FormControl("",Validators.required()),
+      description:new FormControl("",Validators.required()),
+      dateDebut:new FormControl("",Validators.required()),
+      dateFin:new FormControl("",Validators.required()),
+      typeContrat:new FormControl("",Validators.required()),
+      typeLieu:new FormControl("",Validators.required())
+    });
     /* this.getinstructorCourse();
   }
   private getinstructorCourse(): void {
@@ -90,6 +107,34 @@ this.missionn = this.instructorCourse
   }
 
 
+
+
+getMission(id:number)
+      {
+        console.log("iiiiiiiiiiiiii",id);
+        if(id!=undefined && id !=null)
+        {
+          this.missionservice.finddpetById(id).subscribe(
+            res=>{
+              console.log(res);
+              this.viewmodelmission=res
+          },error=>{
+            console.error(error)
+          },()=>{
+
+
+            this.form.get("title")?.setValue(this.viewmodelmission.title);
+            this.form.get("Description")?.setValue(this.viewmodelmission.description);
+            this.form.get("dateDebut")?.setValue(this.viewmodelmission.dateDebut);
+            this.form.get("dateFin")?.setValue(this.viewmodelmission.dateFin);
+            this.form.get("typeContrat")?.setValue(this.viewmodelmission.typeContrat);
+            this.form.get("typeLieu")?.setValue(this.viewmodelmission.typeLieu);
+
+            this.form.updateValueAndValidity()
+          });
+        }
+        console.log("iiiiiiiiiiiiii",id);
+      }
 
 
   getbyisresp(id : number) {

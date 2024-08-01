@@ -34,12 +34,12 @@ public class ProfilController {
     }
     @GetMapping("/findRespbyid/{id}")
 
-    public ResponsableSocietedto findRespbyid(Long id) {
+    public ResponsableSocietedto findRespbyid(@PathVariable("id")Long id) {
         return gestionProfilService.findRespbyid(id);
     }
     @PostMapping("/saveResponsable")
 
-    public ResponsableSocietedto updateResp(ResponsableSocietedto profilResponsableDTO) {
+    public ResponsableSocietedto updateResp(@RequestBody  ResponsableSocietedto profilResponsableDTO) {
         return gestionProfilService.updateResp(profilResponsableDTO);
     }
 

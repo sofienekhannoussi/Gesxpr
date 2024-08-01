@@ -5,6 +5,8 @@ import { InstructorEditProfileRoutingModule } from './instructor-edit-profile-ro
 import { InstructorEditProfileComponent } from './instructor-edit-profile.component';
 import { FeatherIconModule } from 'src/app/shared/module/feather.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { SharedModule } from 'src/app/shared/module/shared.module';
     CommonModule,
     InstructorEditProfileRoutingModule,
     FeatherIconModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class InstructorEditProfileModule { }

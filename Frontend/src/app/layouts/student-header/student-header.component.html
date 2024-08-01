@@ -12,18 +12,18 @@
                         </span>
                     </a>
                     <a [routerLink]="routes.home" class="navbar-brand logo">
-                        <img [src]="exp.avatar" class="img-fluid" alt="Logo">
-                    </a>
-                </div>
-                <div class="main-menu-wrapper">
-                    <div class="menu-header">
-                        <a [routerLink]="routes.home" class="menu-logo">
-                            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-                        </a>
-                        <a (click)="hideSidebar()" class="menu-close" href="javascript:;">
-                            <i class="fas fa-times"></i>
-                        </a>
-                    </div>
+                      <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                  </a>
+              </div>
+              <div class="main-menu-wrapper">
+                  <div class="menu-header">
+                      <a [routerLink]="routes.home" class="menu-logo">
+                          <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                      </a>
+                      <a (click)="hideSidebar()" class="menu-close" href="javascript:;">
+                          <i class="fas fa-times"></i>
+                      </a>
+                  </div>
                     <ul class="main-nav">
                         <ng-container *ngFor="let mainMenus of sidebar">
                             <ng-container *ngIf="mainMenus.separateRoute == true">
@@ -323,22 +323,22 @@
                     <li class="nav-item user-nav">
                         <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="user-img">
-                                <img src="assets/img/user/user.png" alt="">
+                                <img [src]="exp.avatar" alt="">
                                 <span class="status online"></span>
                             </span>
                         </a>
                         <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
                             <div class="user-header">
                                 <div class="avatar avatar-sm">
-                                    <img src="assets/img/user/user.png" alt="User Image"
+                                    <img [src]="exp.avatar" alt=""
                                         class="avatar-img rounded-circle">
                                 </div>
                                 <div class="user-text">
-                                    <h6>Rolands R</h6>
-                                    <p class="text-muted mb-0">Student</p>
+                                    <h6>{{exp.fullname}}</h6>
+                                    <p class="text-muted mb-0">Expert</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" [routerLink]="routes.instructor_edit_profile"><i-feather name="user"
+                            <a class="dropdown-item" [routerLink]="routes.students_edit_profile"><i-feather name="user"
                                     class="me-1"></i-feather> Profile</a>
                                 <!-- <a class="dropdown-item" [routerLink]="routes.students_subscription"><i-feather
                                         name="star" class="me-1"></i-feather> Subscription</a>

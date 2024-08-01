@@ -4993,13 +4993,13 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'My Courses',
+          menuValue: 'My Missions',
           route: routes.instructor_course,
           icon: 'book',
           base: 'instructor-course',
           subMenus: [],
         },
-        {
+        /* {
           menuValue: 'Reviews',
           route: routes.instructor_reviews,
           icon: 'star',
@@ -5040,16 +5040,11 @@ export class DataService {
           icon: 'server',
           base: 'instructor-tickets',
           subMenus: [],
-        },
+        },*/
 
 
 
-      ],
-    },
-    {
-      tittle: 'ACCOUNT SETTINGS',
-      class: true,
-      menu: [
+
         {
           menuValue: 'Edit Profile',
           route: routes.instructor_edit_profile,
@@ -5071,7 +5066,7 @@ export class DataService {
           base: 'instructor-social-profiles',
           subMenus: [],
         },
-        {
+        /* {
           menuValue: 'Notifications',
           route: routes.instructor_notification,
           icon: 'bell',
@@ -5084,7 +5079,7 @@ export class DataService {
           icon: 'lock',
           base: 'instructor-profile-privacy',
           subMenus: [],
-        },
+        }, */
         {
           menuValue: 'Delete Profile',
           route: routes.instructor_delete_profile,
@@ -5117,7 +5112,7 @@ export class DataService {
   public Student_sideBar: any = [
 
     {
-      tittle: 'ACCOUNT SETTINGS',
+      tittle: 'Menu',
       class: false,
       menu: [
         {
@@ -5141,7 +5136,7 @@ export class DataService {
           base: 'setting-student-social-profile',
           subMenus: [],
         },
-        {
+    /*     {
           menuValue: 'Notifications',
           route: routes.students_notification,
           icon: 'bell',
@@ -5154,7 +5149,7 @@ export class DataService {
           icon: 'lock',
           base: 'setting-student-privacy',
           subMenus: [],
-        },
+        }, */
         {
           menuValue: 'Delete Profile',
           route: routes.students_delete,
@@ -5169,13 +5164,13 @@ export class DataService {
           base: 'setting-student-accounts',
           subMenus: [],
         },
-        {
+    /*     {
           menuValue: 'Referrals',
           route: routes.students_referral,
           icon: 'user-plus',
           base: 'setting-student-referral',
           subMenus: [],
-        },
+        }, */
         {
           menuValue: 'Sign Out',
           route: routes.login,
@@ -5186,41 +5181,6 @@ export class DataService {
 
 
 
-
-      ],
-    },
-    {
-      tittle: 'SUBSCRIPTION',
-      class: false,
-      menu: [
-        {
-          menuValue: 'My Subscriptions',
-          route: routes.students_subscription,
-          icon: 'calendar',
-          base: 'setting-student-subscription',
-          subMenus: [],
-        },
-        {
-          menuValue: 'Billing Info',
-          route: routes.students_billing,
-          icon: 'credit-card',
-          base: 'setting-student-billing',
-          subMenus: [],
-        },
-        {
-          menuValue: 'Payment',
-          route: routes.students_payments,
-          icon: 'credit-card',
-          base: 'setting-student-payment',
-          subMenus: [],
-        },
-        {
-          menuValue: 'Invoice',
-          route: routes.students_invoice,
-          icon: 'clipboard',
-          base: 'setting-student-invoice',
-          subMenus: [],
-        },
 
       ],
     },

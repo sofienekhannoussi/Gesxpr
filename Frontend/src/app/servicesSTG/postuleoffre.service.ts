@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -35,6 +35,15 @@ idoff!:number
   deleteById(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
 
+  }
+
+
+  uploadCV(id:number,cv:File): Observable<HttpEvent<{}>> {
+    const formData:FormData=new FormData();
+    formData.append(`image`,cv)
+    let url=this.baseUrl+"/uploadFile/"+id;
+    const req=new HttpRequest('POST',url,formData,{reportProgress:true,responseType:'text'})
+    return this.httpClient.request(req);
   }
 
 

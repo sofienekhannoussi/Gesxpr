@@ -39,6 +39,13 @@ public class MissionController {
         return missionService.listeallMissionbyResp(id);
     }
 
+    @GetMapping("/listeallbystatut/{sta}")
+
+
+    public List<Missiondto> listeallMissionBySTATUT(@PathVariable("sta") String sta) {
+        return missionService.listeallMissionbystatut(sta);
+    }
+
     @GetMapping("/findByIdMission/{id}")
     public Missiondto findByIdMission(@PathVariable("id") Long id) {return missionService.findByIdMission(id);
     }

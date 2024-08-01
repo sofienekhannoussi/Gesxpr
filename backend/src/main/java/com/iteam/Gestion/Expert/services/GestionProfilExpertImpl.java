@@ -97,18 +97,17 @@ public class GestionProfilExpertImpl implements  GestionProfil {
 
     @Override
     public ResponsableSocietedto updateResp(ResponsableSocietedto profilResponsableDTO) {
-
         Optional<ResponsableSociete> responsableSociete = responsableSocieteRepository.findById(profilResponsableDTO.getId());
-        System.err.println(responsableSociete);
+        System.err.println(responsableSociete.get());
         System.err.println(profilResponsableDTO.getId());
         if (responsableSociete.isPresent()) {
             ResponsableSociete statoupdate = responsableSociete.get();
             ResponsableSociete ste = ResponsableSocietedto.toEntity(profilResponsableDTO);
-            statoupdate.setId(ste.getId());
             statoupdate.setFullname(ste.getFullname());
             statoupdate.setPresentationsociete(ste.getPresentationsociete());
             statoupdate.setEmail(ste.getEmail());
             statoupdate.setPhone(ste.getPhone());
+            statoupdate.setAdresse(ste.getAdresse());
             System.err.println("//////////////");
             System.err.println(statoupdate);
             ResponsableSociete updatedste = responsableSocieteRepository.save(statoupdate);

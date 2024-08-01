@@ -38,6 +38,10 @@ public class MissionServiceimpl implements MissionService {
 	public List<Missiondto> listeallMission() {
 		return missionRepesitory.findAll().stream().map(Missiondto::fromEntity).collect(Collectors.toList());
 	}
+	@Override
+	public List<Missiondto> listeallMissionbystatut(String sta) {
+		return missionRepesitory.findByStatut(sta).stream().map(Missiondto::fromEntity).collect(Collectors.toList());
+	}
 
 	@Override
 	public List<Missiondto> listeallMissionbyResp(Long id) {

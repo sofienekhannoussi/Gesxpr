@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CrudprofilStagiaireDTO } from '../modelSTG/crudprofil-stagiaire-dto';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Expert } from '../modelSTG/expert';
 import { Expertbyid } from '../modelSTG/expertbyid';
+import { Respsociete } from '../modelSTG/respsociete';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +26,13 @@ export class ProfilExpertService {
 
 
 
-  updateresp(profilExpert : Expertbyid ):Observable<Expertbyid>{
+  updateresp(profilExpert : Respsociete ):Observable<Respsociete>{
     const url=this.baseUrl+"/saveResponsable"
-    return this.httpClient.post<Expertbyid>(url,profilExpert )
+    return this.httpClient.post<Respsociete>(url,profilExpert )
   }
 
-  findrespById(id: number): Observable<Expertbyid> {
-    return this.httpClient.get<Expertbyid>(`${this.baseUrl}/findRespbyid/${id}`)
+  findrespById(id: number): Observable<Respsociete> {
+    return this.httpClient.get<Respsociete>(`${this.baseUrl}/findRespbyid/${id}`)
 
   }
 

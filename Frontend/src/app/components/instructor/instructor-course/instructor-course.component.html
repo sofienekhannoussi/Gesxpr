@@ -4,7 +4,7 @@
             <div class="settings-inner-blk p-0">
                 <div class="sell-course-head comman-space">
                     <h3>Missions</h3>
-                    <p>Manage your courses and its update like live, draft and insight.</p>
+                    <p>Manage your misions and update or delete it.</p>
                 </div>
                 <div class="comman-space pb-0">
                     <div class="instruct-search-blk">
@@ -24,9 +24,9 @@
                                         <div class="form-group select-form mb-0">
                                             <mat-select class="form-select select"  [(value)]="selected">
                                                 <mat-option value="1">Choose</mat-option>
-                                                <mat-option value="angular">Angular</mat-option>
-                                                <mat-option value="nodejs">Node Js</mat-option>
-                                                <mat-option value="react">React</mat-option>
+                                                <mat-option value="angular">En cours</mat-option>
+                                                <mat-option value="nodejs">En attente</mat-option>
+                                                <mat-option value="react">Terminé</mat-option>
                                               </mat-select>
                                         </div>
                                     </div>
@@ -40,10 +40,10 @@
                         <table class="table table-nowrap mb-2">
                             <thead>
                                 <tr>
-                                    <th>missions</th>
-                                    <th>EXPERTS</th>
-                                    <th>STATUT</th>
-                                    <th>ACTIONS</th>
+                                    <th >MISSIONS</th>
+                                    <th class="text-center">EXPERTS</th>
+                                    <th class="text-center">STATUT</th>
+                                    <th class="text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,9 +77,86 @@
                                     </td>
                                     <td class="text-center">{{expertCountMap.get(data.id) }}</td>
 
-                                    <td><span>{{data.statut}}</span></td>
-                                    <td><span> <mat-icon class="editIcon"   (click)="deleteMission(data.id)">edit</mat-icon></span>
+                                    <td class="text-center"><span>{{data.statut}}</span></td>
+                                    <td class="text-center"><span> <mat-icon class="editIcon" data-bs-toggle="modal" data-bs-target="#addempModal"  (click)="getMission(data.id)">edit</mat-icon></span>
                                       <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span></td>
+
+ <div class="modal fade " id="addempModal" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true"  >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addTeacherModalName" >Update Mission</h5>
+            <button #closeModalBtn type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body col-md-12">
+            <form action="!">
+              <div class="form-group ">
+                <label class="add-course-label">title</label>
+                <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="viewmodelmission.title" name="title"  />
+                <small *ngIf="submitted && form.get('title')?.invalid" class="text-danger">Title est obligatoire</small> </div>
+              <div class="form-group">
+                <label class="add-course-label">Description</label>
+                <textarea class="form-control" placeholder="Enter Field "[(ngModel)]="viewmodelmission.description" name="description" ></textarea>
+                <small *ngIf="submitted && form.get('description')?.invalid" class="text-danger">Description est obligatoire</small>
+              </div>
+
+              <div class="form-group">
+                <label class="add-course-label">date Debut</label>
+                <input type="date" class="form-control" placeholder="Enter Date "[(ngModel)]="viewmodelmission.dateDebut" name="dateDebut" />
+                <small *ngIf="submitted && form.get('dateDebut')?.invalid" class="text-danger">Date de debut est obligatoire</small>
+                <br>
+                <label class="add-course-label">date Fin</label>
+                <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="viewmodelmission.dateFin" name="dateFin"/>
+
+                <small *ngIf="submitted && form.get('dateFin')?.invalid" class="text-danger">Date de debut est obligatoire</small>
+
+              </div>
+
+
+              <div class="form-group">
+                <label class="add-course-label">Type de contrat</label>
+                <mat-select class="form-select select country-select"   [(ngModel)]="viewmodelmission.typeContrat" name="TypeContrat">
+                  <mat-option value="CDI">CDI</mat-option>
+                  <mat-option value="CDD">CDD</mat-option>
+                  <mat-option value="CIVP">CIVP</mat-option>
+
+
+                </mat-select>
+                <small *ngIf="submitted && form.get('typeContrat')?.invalid" class="text-danger">Type de contrat est obligatoire</small>
+
+              </div>
+
+              <div class="form-group">
+                <label class="add-course-label">Type lieu</label>
+                <mat-select class="form-select select country-select"    [(ngModel)]="viewmodelmission.typeLieu" name="TypeLieu">
+                  <mat-option value="A distance">A distance</mat-option>
+                  <mat-option value="Sur site">Sur site</mat-option>
+
+
+                </mat-select>
+                <small *ngIf="submitted && form.get('typeLieu')?.invalid" class="text-danger">Type de Lieu est obligatoire</small>
+
+              </div>
+
+              <p *ngIf="msgSuccess" style="color:green;size:20px" >{{msgSuccess}}</p>
+              <div style="display: flex; justify-content: center;">
+
+                <button type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" >Update</button>
+
+              </div>
+
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
 
                                 </tr>
                             </tbody>

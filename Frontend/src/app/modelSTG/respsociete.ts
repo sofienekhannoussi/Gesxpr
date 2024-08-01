@@ -4,5 +4,10 @@ export class Respsociete {
     password !: string;
     fullname !: string;
     phone!: string;
+    avatar!: string;
+    adresse!: string;
     presentationsociete!: string;
 }
+
+
+

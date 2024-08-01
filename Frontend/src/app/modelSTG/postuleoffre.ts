@@ -1,10 +1,6 @@
 export class Postuleoffre {
 
-
-
-
-
-    id!:number
+      id!:number
       datepostule !: Date
       idexpert!:number
       idmission!:number

@@ -22,6 +22,8 @@ import java.util.Set;
 
 public class ResponsableSociete extends User {
     private String presentationsociete;
+    private String adresse;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsableSociete", cascade = CascadeType.ALL)
     Set<Mission> missions=new HashSet<>();
 

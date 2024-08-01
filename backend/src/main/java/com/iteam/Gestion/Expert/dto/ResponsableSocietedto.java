@@ -15,6 +15,8 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class ResponsableSocietedto extends RegisterRequest {
 	 private String presentationsociete;
+    private String adresse;
+
 
     public static ResponsableSociete toEntity(ResponsableSocietedto request)
     {
@@ -26,6 +28,7 @@ public class ResponsableSocietedto extends RegisterRequest {
                 .password(request.getPassword())
                 .presentationsociete(request.getPresentationsociete())
                 .avatar(request.getAvatar())
+                .adresse(request.getAdresse())
                 .build();
 
 
@@ -39,6 +42,7 @@ public class ResponsableSocietedto extends RegisterRequest {
                 .phone(request.getPhone())
                 .presentationsociete(request.getPresentationsociete())
                 .avatar(request.getAvatar())
+                .adresse(request.getAdresse())
                 .build();
 
 

@@ -13,6 +13,7 @@ public interface MissionService {
     List<Missiondto> listeallMission ();
     List<Missiondto> listeallMissionbyResp (Long id);
 
+    List<Missiondto> listeallMissionbystatut(String sta);
 
     Missiondto findByIdMission(Long id);
 
