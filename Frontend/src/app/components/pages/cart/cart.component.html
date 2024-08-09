@@ -45,29 +45,29 @@
 
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <img [src]="data.title" alt="">
-                                                        <h5> Title  : </h5> <h6>{{data.title}}</h6>
+<!--                                                         <img [src]="data.title" alt="">
+ -->                                                        <h5> Title  : </h5> <h6>{{data.title}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <img [src]="data.dateDebut" alt="">
+                                                        <!-- <img [src]="data.dateDebut" alt=""> -->
                                                         <h6> Statut : </h6> <h6>{{data.statut}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <img [src]="data.dateDebut" alt="">
+                                                       <!--  <img [src]="data.dateDebut" alt=""> -->
                                                         <h6> From : </h6> <h6>{{data.dateDebut| date}}</h6>
                                                     </div>
                                                     <div class="course-view d-flex align-items-center">
-                                                        <img [src]="data.dateFin" alt="">
+                                                        <!-- <img [src]="data.dateFin" alt=""> -->
                                                         <h6>To : </h6><h6>{{data.dateFin| date}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <img [src]="data.typeContrat" alt="">
+                                                     <!--    <img [src]="data.typeContrat" alt=""> -->
                                                         <h6> Type de contrat : </h6> <h6> {{data.typeContrat}}</h6>
                                                     </div>
 
@@ -109,8 +109,8 @@
                                     <div class="course-group mb-0 d-flex">
                                       <div class="form-group ">
                                         <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
-                                            <img (error)="changeSource($event)"        [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
-                                            <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.cv" name="cv">
+                                            <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
+                                            <input  hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.cv" name="cv">
                                         </button>
                                     </div>
                                     </div>
@@ -124,7 +124,7 @@
                                   <p *ngIf="msgSuccess" style="color:green;size:20px" >{{msgSuccess}}</p>
                                   <div style="display: flex; justify-content: center;">
 
-                                    <button type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" >Postuler</button>
+                                    <button (click)="uploadcv()" type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" >Postuler</button>
 
                                   </div>
 

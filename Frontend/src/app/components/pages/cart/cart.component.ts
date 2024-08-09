@@ -23,7 +23,8 @@ export class CartComponent implements OnInit {
   missionss: Mission = new Mission();
   editproRequest: Expertbyid = new Expertbyid();
 
-  imgUrl:string | ArrayBuffer = 'assets/img/ssssss.jpeg'
+ myidmission:number=0
+  imgUrl:string | ArrayBuffer = 'assets/img/student.png'
 
   file!: File;
 
@@ -67,44 +68,30 @@ alert("fffffffff")
 
 
   Postuleoffre(idmissions: number){
-    const IDD=localStorage.getItem("userId");
-    this.postule.idexpert=Number(IDD)
-    this.postule.idmission=idmissions
-
-
-    console.log("ssssss", this.postule)
-
-
-      this.offreservice.addoffre(this.postule)
-
-      .subscribe(result=>{
-
-this.uploadcv(Number(IDD))
-
-console.log("ssssssof", this.file)
-console.log("sssqqaqaqas", Number(IDD))
-
-
-
-        this.msgSuccess="Votre demande de postule a été prise en charge"
-
-
-      },
-      (err:HttpErrorResponse)=>this.errorMsg='Votre demande de postule n a pas été prise en charge')
-    //}
+this.myidmission=idmissions
     }
 
-    uploadcv(id:number) {
-      this.offreservice.uploadCV(id,this.file).subscribe({
-        next: (data) => {
-   //      // this.updateEvents()
-         console.log(data,"ssssssssssss");
+    uploadcv() {
+      const IDD=localStorage.getItem("userId");
+        this.postule.idexpert=Number(IDD)
+        this.postule.idmission=this.myidmission
+console.log(this.file)
+          this.offreservice.uploadCV(Number(IDD),this.file).subscribe({
+            next: (data) => {
+          this.offreservice.addoffre(this.postule).subscribe(result=>{
 
 
-        },
-      error: console.log,
-      });
-    }
+            this.msgSuccess="Votre demande de postule a été prise en charge"
+
+
+          },
+          (err:HttpErrorResponse)=>this.errorMsg='Votre demande de postule n a pas été prise en charge')
+
+
+            },
+          error: console.log,
+          });
+        }
 
 
     onFileInput(files: FileList | null): void {
@@ -128,13 +115,12 @@ console.log("sssqqaqaqas", Number(IDD))
     }
 
 
-
    getlistMission() {
      this.missionservice.listeallMissionBySTATUT("En cours").subscribe({
        next: (data) => {
         this.missionn=data
   //      // this.updateEvents()
-        console.log(data,"ssssssssssss");
+        console.log(data);
 
 
        },

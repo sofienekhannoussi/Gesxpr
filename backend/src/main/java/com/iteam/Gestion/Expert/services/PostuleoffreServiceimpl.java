@@ -1,5 +1,6 @@
 package com.iteam.Gestion.Expert.services;
 
+import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import com.iteam.Gestion.Expert.dto.Competencesdto;
 import com.iteam.Gestion.Expert.dto.ListPostuledto;
 import com.iteam.Gestion.Expert.dto.Missiondto;
@@ -12,7 +13,10 @@ import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import com.iteam.Gestion.Expert.reposetories.PostuleoffreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +31,9 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
     private final MissionRepesitory missionRepesitory;
 
      private final ExpertRepository expertRepository;
+
+    private final ImageStorage imageStorage;
+
 
 
     @Override
@@ -74,5 +81,27 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
             return Postuleoffredto.fromEntity(postulesaved);
         } else
             throw new RuntimeException("err");
+    }
+
+    public ResponseEntity<Expert> findbyIdExpert(Long id) {
+        if (id == null) {
+            //  log.error("student ID is null");
+            return null;
+        }
+        return ResponseEntity.ok(expertRepository.findById(id).get());
+
+    }
+    @Override
+
+    public Expert uploadFile(Long Id, MultipartFile image) {
+        ResponseEntity<Expert> userResponse = this.findbyIdExpert(Id);
+        String imageName=imageStorage.store(image);
+        String fileImageDownloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/offre/downloadFileCV/").path(imageName).toUriString();
+        Expert expert = userResponse.getBody();
+
+        if (expert!=null)
+            expert.setCv(fileImageDownloadUrl);
+        Expert expertsaved = expertRepository.save(expert);
+        return expertsaved;
     }
 }
