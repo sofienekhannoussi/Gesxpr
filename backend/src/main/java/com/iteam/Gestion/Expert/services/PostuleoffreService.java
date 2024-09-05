@@ -22,8 +22,9 @@ public interface PostuleoffreService {
 
 
 
-        Expert uploadFile(Long Id, MultipartFile image) ;
+    Expert uploadFile(Long Id, MultipartFile image) ;
 
 
-    Postuleoffredto addPostule(Postuleoffredto postuleoffredto);
+    // Postuleoffredto addPostule(Postuleoffredto postuleoffredto);
+    Postuleoffredto addPostule(Postuleoffredto postuleoffredto, MultipartFile cvFile);
 }

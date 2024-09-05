@@ -1,17 +1,20 @@
-<div class="container" style="text-align: center" height="400" width="400">
-    <h2>Qui je suis?</h2>
+<div class="container" style="text-align: center; " height="400" width="400">
+    <h2 style="padding: 40px !important; margin-bottom: 30px; color: #ff725e; font-size:45px;">Qui je suis?</h2>
+
 <div class="card" height="200" width="400">
     <div class="card-body" style="text-align: center"  >
-        <img src="/assets/img/manager.jpg" alt="Image" height="200" width="300">
+        <img  src="/assets/img/manager.jpg" alt="Image" height="200" width="300" class="img-1">
+<div class="titre-1 d-flex">
         <a
         class="nav-link header-login"
         [routerLink]="routes.register"
         >Manager</a
       >
+    </div>
         <p></p>
         <div class="card-body" style="text-align: center"  >
-            <img src="/assets/img/expert.jpg" alt="Image" height="200" width="300">
-
+            <img src="/assets/img/expert.jpg" alt="Image" height="200" width="300" class="img-1">
+            <div class="titre-1 d-flex">
             <a
         class="nav-link header-login"
         [routerLink]="routes.registerexpert"
@@ -19,6 +22,7 @@
       >
             <p></p>
         </div>
+      </div>
 
     </div>
   </div>

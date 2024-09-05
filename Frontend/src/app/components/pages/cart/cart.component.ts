@@ -71,7 +71,26 @@ alert("fffffffff")
 this.myidmission=idmissions
     }
 
-    uploadcv() {
+    addpostule()
+{
+const IDD=localStorage.getItem("userId");
+    this.postule.idexpert=Number(IDD)
+    this.postule.idmission=this.myidmission
+
+    this.offreservice.addoffre(this.postule).subscribe({
+          next: (res) => {
+
+            console.log(res)
+              this.offreservice.uploadCV(Number(IDD),this.file).subscribe(
+              val =>  {} , error => { alert('oups')} , () => {
+
+
+              });
+
+          },
+        });}
+
+   /*  uploadcv() {
       const IDD=localStorage.getItem("userId");
         this.postule.idexpert=Number(IDD)
         this.postule.idmission=this.myidmission
@@ -91,7 +110,7 @@ console.log(this.file)
             },
           error: console.log,
           });
-        }
+        } */
 
 
     onFileInput(files: FileList | null): void {

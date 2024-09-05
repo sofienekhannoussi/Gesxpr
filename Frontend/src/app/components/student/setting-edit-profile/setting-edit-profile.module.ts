@@ -7,6 +7,7 @@ import { FeatherIconModule } from 'src/app/shared/module/feather.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentHeaderComponent } from 'src/app/layouts/student-header/student-header.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     FeatherIconModule,
     SharedModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StudentHeaderComponent
   ]
 })
 export class SettingEditProfileModule { }

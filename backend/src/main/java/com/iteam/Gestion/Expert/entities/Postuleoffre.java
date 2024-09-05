@@ -23,6 +23,7 @@ public class Postuleoffre {
 	private Date datepostule;
 	 @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    private Mission missions;
+	private Double matchingPercentage;
 
 	 @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
          private  Expert expert;

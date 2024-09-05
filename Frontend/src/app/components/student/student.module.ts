@@ -5,6 +5,7 @@ import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
 import { FeatherIconModule } from 'src/app/shared/module/feather.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { StudentHeaderComponent } from 'src/app/layouts/student-header/student-header.component';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { SharedModule } from 'src/app/shared/module/shared.module';
     CommonModule,
     StudentRoutingModule,
     FeatherIconModule,
-    SharedModule
+    SharedModule,
+    StudentHeaderComponent
+
   ]
 })
 export class StudentModule { }

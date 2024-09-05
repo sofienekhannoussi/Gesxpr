@@ -86,7 +86,29 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-
+		<!--  bibliothèque Tesseract OCR matching cv  -->
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>tess4j</artifactId>
+			<version>4.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.6.0</version>
+		</dependency>
+		<!--  lucene :utilisée pour indexer et rechercher des données textuelles extraites à partir d'images ou de documents scannés. -->
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>8.11.1</version>
+			<!--  ocr  -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-analyzers-common</artifactId>
+			<version>8.11.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.mysql</groupId>

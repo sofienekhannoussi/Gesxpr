@@ -2600,7 +2600,7 @@ export class DataService {
   ];
   public welcomeLogin = [
     {
-      img: 'assets/img/login-img.png',
+      img: 'assets/img/looo.gif',
       content1: 'Welcome to',
       content2: 'Expert consulting.',
       paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
@@ -4365,13 +4365,13 @@ export class DataService {
         },*/
       ],
     },
-    {
+    /*{
       tittle: 'Company',
       base: 'Company',
       showAsTab: false,
       separateRoute: false,
       menu: [
-        {
+   /*      {
           menuValue: 'Dashboard',
           route: routes.instructor_dashboard,
           hasSubRoute: false,
@@ -4380,7 +4380,7 @@ export class DataService {
           page: 'instructor-dashboard',
           last: '',
           subMenus: [],
-        },
+        }, */
        /* {
           menuValue: 'Instructor',
           // route: '/instructor/instructor-view/instructor-list',
@@ -4472,7 +4472,7 @@ export class DataService {
           last: '',
           subMenus: [],
         },*/
-        {
+       /*  {
           menuValue: 'Company Profile',
           route: routes.instructor_edit_profile,
           hasSubRoute: false,
@@ -4481,7 +4481,7 @@ export class DataService {
           page: 'instructor-edit-profile',
           last: '',
           subMenus: [],
-        },
+        }, */
         /*{
           menuValue: 'Security',
           route: routes.instructor_security,
@@ -4541,9 +4541,9 @@ export class DataService {
           page: 'instructor-linked-account',
           last: '',
           subMenus: [],
-        },*/
+        },
       ],
-    },
+    },*/
     {
       tittle: 'Expert',
       base: 'Expert',
@@ -4869,12 +4869,12 @@ export class DataService {
           subMenus: [],
         },*/
         {
-          menuValue: 'Cart',
+          menuValue: 'Liste des offres',
           route: routes.page_cart,
           hasSubRoute: false,
           showSubRoute: false,
           base: 'pages',
-          page: 'cart',
+          page: 'Liste-des-offres',
           last: '',
           subMenus: [],
         },

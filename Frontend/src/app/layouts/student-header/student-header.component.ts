@@ -60,14 +60,17 @@ export class StudentHeaderComponent implements OnInit {
       next: (data) => {
         this.exp=data
        // this.updateEvents()
-       console.log(data);
+       console.log("qqqqqqq",data);
 
       },
       error: console.log,
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getbyisExpert();
+
+  }
   public toggleSidebar(): void {
     this.sidebarService.openSidebar();
   }
