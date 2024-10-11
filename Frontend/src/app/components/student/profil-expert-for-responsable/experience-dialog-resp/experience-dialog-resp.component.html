@@ -1,0 +1,134 @@
+<div class="modal-header">
+    <h5 class="subs-title">
+      Experience
+      <mat-icon
+        class="icon"
+        matTooltip="Add or edit education"
+        style="font-size: 14px"
+        (click)="addExperience()"
+        >add</mat-icon
+      >
+    </h5>
+    <mat-icon class="closeIcon" (click)="closeDialog()">close</mat-icon>
+  </div>
+  <div mat-dialog-content class="modal-body">
+   <div *ngIf="addNewExperience">
+      <!-- New Education Form -->
+      <form
+      class="new-edu-form"
+      [formGroup]="experienceForm"
+      *ngIf="addNewExperience"
+      (ngSubmit)="onSubmit()"
+    >
+    <div class="formHeader" >
+      <h6>{{experienceSelected.id > -1 ? "Edit" : "Add"}}  Experience</h6>
+      <mat-icon class="addCloseIcon" (click)="closeFormExperience()">keyboard_backspace</mat-icon>
+    </div>
+  
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Title</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="title"
+  
+              placeholder="Diploma"
+            />
+            <span class="errors" *ngIf="experienceForm.get('title')!.hasError('required') && experienceForm.get('title')!.touched">
+              Title is required
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Nom du societe </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="nomSociete"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="experienceForm.get('nomSociete')!.hasError('required') && experienceForm.get('nomSociete')!.touched">
+              Nom du societe is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de debut </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateDebut"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="experienceForm.get('dateDebut')!.hasError('required') && experienceForm.get('dateDebut')!.touched">
+              date Debut is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de fin</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateFin"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="experienceForm.get('dateFin')!.hasError('required') && experienceForm.get('dateFin')!.touched">
+              dateFin is required
+            </span>
+          </div>
+        </div>
+  
+  
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label">Description</label>
+            <textarea
+              required
+              style="min-width: 100%"
+              class="form-control"
+              formControlName="description"
+              placeholder="Description"
+            ></textarea>
+            <span  class="errors" *ngIf="experienceForm.get('description')!.hasError('required') && experienceForm.get('description')!.touched">
+              Description is required
+            </span>
+          </div>
+        </div>
+      </div>
+  
+      <button mat-button class="btn btn-primary" type="submit"> {{experienceSelected.id > -1 ? "Edit" : "Add"}}</button>
+    </form>
+   </div>
+   <div *ngIf="!addNewExperience">
+    <div *ngIf="data.length>0" >
+      <div class="edu-wrap" style="margin-top: 2rem;" *ngFor="let projet of data">
+        <div class="edu-name">
+          <span>{{ projet.title.charAt(0).toUpperCase() }}</span>
+        </div>
+  
+        <div class="edu-detail">
+          <h6>{{ projet.title }}   <mat-icon class="editIcon" (click)="selectExperience(projet)"
+            >edit</mat-icon
+          >
+          <mat-icon class="editIcon" (click)="deleteExperience(projet.id)">delete</mat-icon>
+        </h6>
+          <p class="edu-duration">{{ projet.nomSociete }} - ({{ projet.dateDebut }} - {{ projet.dateFin }})</p>
+          <p>{{ projet.description }}</p>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+  

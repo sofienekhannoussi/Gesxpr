@@ -42,14 +42,22 @@ export class MissionService {
       );
 
     }
-
-    listeallMissionBySTATUT(sta:string): Observable<Mission[]> {
-      return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbystatut/${sta}`)
+///////////////////////// note ///////////////
+    listeallMissionBySTATUT(sta:string, id:number): Observable<Mission[]> {
+      return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbystatut/${sta}/${id}`)
       .pipe(
         map((response:any) => response as Mission[])
       );
 
     }
+//////////////////////
+listeallMissionBySTATUTs(sta:string): Observable<Mission[]> {
+  return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeallbystatuts/${sta}`)
+  .pipe(
+    map((response:any) => response as Mission[])
+  );
+
+}
 
     getList(): Observable<Mission[]> {
       return this.httpClient.get<Mission[]>(`${this.baseUrl}/listeall`)

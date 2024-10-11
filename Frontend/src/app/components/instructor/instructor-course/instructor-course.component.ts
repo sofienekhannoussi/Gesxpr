@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { Sort } from '@angular/material/sort';
@@ -13,6 +13,8 @@ import { tap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup} from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
+import { OffreService } from 'src/app/servicesSTG/postuleoffre.service';
+import { ListpostuleBymission } from 'src/app/modelSTG/listpostule-bymission';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -26,6 +28,7 @@ export class InstructorCourseComponent implements OnInit {
   submitted!:boolean
   form!:FormGroup;
   msgSuccess:string=""
+  listPostuleoffre!:ListpostuleBymission[]
 
 
 
@@ -38,6 +41,9 @@ export class InstructorCourseComponent implements OnInit {
   public instructorCourse: any = [];
   public searchDataValue = '';
   dataSource!: MatTableDataSource<any>;
+
+  @ViewChild('closeModalBtns') closeModalBtns!: ElementRef;
+
 
   // pagination variables
   public lastIndex: number = 0;
@@ -54,7 +60,8 @@ export class InstructorCourseComponent implements OnInit {
   selected = '1';
   registerOffer: any;
   servoffre: any;
-  constructor(private data: DataService,private  profilexpert : ProfilExpertService ,private missionservice:MissionService,private router: Router) {
+  constructor(private data: DataService,private  profilexpert : ProfilExpertService ,private missionservice:MissionService,
+    private router: Router, private postuleoffre:OffreService) {
 this.missionn = this.instructorCourse
   }
 
@@ -69,27 +76,7 @@ this.missionn = this.instructorCourse
       typeContrat:new FormControl("",Validators.required()),
       typeLieu:new FormControl("",Validators.required())
     });
-    /* this.getinstructorCourse();
-  }
-  private getinstructorCourse(): void {
-    this.instructorCourse = [];
-    this.serialNumberArray = [];
-
-    this.data.instructorCourseList().subscribe((res: any) => {
-      this.totalData = res.totalData;
-      res.data.map((res: any, index: number) => {
-        let serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-          res.id = serialNumber;
-          this.instructorCourse.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-         this.dataSource = new MatTableDataSource<any>(this.instructorCourse);
-    this.calculateTotalPages(this.totalData, this.pageSize);
-    });
- */
-
+    
     const id = Number(localStorage.getItem('userId'));
     this.getbyisresp(id);
     this.getlistMission(id);
@@ -99,9 +86,6 @@ this.missionn = this.instructorCourse
         this.getExpertByMission(mission.id);
       });
     });
-
-        // getExpertByMission()
-
 
 
   }
@@ -180,6 +164,16 @@ getMission(id:number)
       },
       error: (error) => {
         console.error('Error fetching expert count:', error);
+      }
+    });
+  }
+  getPostuletByMission(id: number): void {
+    this.postuleoffre.getLisPostulBymissiont(id).subscribe({
+      next: (data) => {
+        this.listPostuleoffre = data
+      },
+      error: (error) => {
+      
       }
     });
   }
@@ -281,7 +275,26 @@ getMission(id:number)
       this.pageNumberArray.push(i);
       this.pageSelection.push({ skip: skip, limit: limit });
     }
+
     }
+
+navigateToProfil(id:number){
+  console.log('idExpert',id)
+  this.closeModalBtns.nativeElement.click()
+  this.router.navigate(["expert/profil-expert-for-responsable", id]);
+
+}
+navigateToContrat(id:number,idMission:number){
+  console.log('idExpert',id)
+  this.closeModalBtns.nativeElement.click()
+  this.router.navigate(["instructor/contrat", id,idMission]);
+
+}
+
+
+
+
+
 }
 export interface pageSelection {
   skip: number;

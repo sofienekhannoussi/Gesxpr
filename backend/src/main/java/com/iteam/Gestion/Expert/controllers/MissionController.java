@@ -39,23 +39,24 @@ public class MissionController {
         return missionService.listeallMissionbyResp(id);
     }
 
-    @GetMapping("/listeallbystatut/{sta}")
-
-
-    public List<Missiondto> listeallMissionBySTATUT(@PathVariable("sta") String sta) {
-        return missionService.listeallMissionbystatut(sta);
+    @GetMapping("/listeallbystatut/{sta}/{id}")
+    public List<Missiondto> listeallMissionBySTATUT(@PathVariable("sta") String sta ,@PathVariable("id") Long id) {
+        return missionService.listeallMissionbystatut(sta, id);
+    }
+    @GetMapping("/listeallbystatuts/{sta}")
+    public List<Missiondto> listeallMissionBySTATUTs(@PathVariable("sta") String sta) {
+        return missionService.listeallMissionbystatuts(sta);
     }
 
     @GetMapping("/findByIdMission/{id}")
     public Missiondto findByIdMission(@PathVariable("id") Long id) {return missionService.findByIdMission(id);
     }
-    @PostMapping("/add")
 
+    @PostMapping("/add")
     public Missiondto addMission(@RequestBody Missiondto missiondto) {
         return missionService.addMission(missiondto);
     }
     @PostMapping("/update")
-
     public Missiondto updateMission(@RequestBody Missiondto missiondto) {
         return missionService.updateMission(missiondto);
     }

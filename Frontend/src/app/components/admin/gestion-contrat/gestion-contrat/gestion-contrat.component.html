@@ -1,0 +1,65 @@
+
+
+<table class="table table-hover table-striped mb-4">
+    <thead class="thead-dark">
+        <tr>  
+           
+            <th>Reference</th>
+            <th class="text-center">type</th>
+            <th class="text-center">duree</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listContrat;" #itemElement>
+            <td class="text-center">{{data.reference}}</td>
+            <td class="text-center">{{data.type}}</td>
+            <td class="text-center">{{data.duree}}</td>
+          
+            <td class="text-center">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"  (click)="getContratId(data.id)">
+                    <i class="fas fa-edit"></i> Détail
+                </button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal for Updating Mission -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateMissionModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateMissionModal">Update Contrat</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Modal body content (e.g. form for updating mission) -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Détails de Contrat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- User details -->
+                <p><strong>reference:</strong> {{viewmodelContrat.reference}}</p>
+                <p><strong>type:</strong> {{viewmodelContrat.type}}</p>
+                <p><strong>duree:</strong> {{viewmodelContrat.duree}}</p>
+                <p><strong>dateContrat:</strong> {{viewmodelContrat.dateContrat}}</p>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+

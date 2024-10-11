@@ -22,7 +22,7 @@ public class Postuleoffredto {
     public static Postuleoffre toEntity(Postuleoffredto request) {
         return Postuleoffre.builder()
                 .id(request.getId())
-                .datepostule(request.getDatepostule())
+                .datepostule(new Date())
                 .build();
     }
     public static Postuleoffredto fromEntity(Postuleoffre request) {

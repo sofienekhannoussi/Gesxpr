@@ -25,6 +25,7 @@ public class Postuleoffre {
 	    private Mission missions;
 	private Double matchingPercentage;
 
+	// validé
 	 @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
          private  Expert expert;
 }

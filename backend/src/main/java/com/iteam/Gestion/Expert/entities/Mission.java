@@ -35,13 +35,12 @@ public class Mission {
     private Boolean isActive;
     private String typeContrat;
     private String typeLieu;//a distance ou sur site
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     private ResponsableSociete responsableSociete;
     //affecter un expert a une mission
-    @OneToOne(fetch = FetchType.LAZY)
-    private Expert expert;
+    //validé
+    @OneToOne(fetch = FetchType.LAZY , mappedBy = "missions")
+    private  Expert expert;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "missions")
     private List<Postuleoffre> postuleoffre;
     

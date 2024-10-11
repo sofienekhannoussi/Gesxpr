@@ -13,8 +13,9 @@ public interface MissionService {
     List<Missiondto> listeallMission ();
     List<Missiondto> listeallMissionbyResp (Long id);
 
-    List<Missiondto> listeallMissionbystatut(String sta);
+    List<Missiondto> listeallMissionbystatut(String sta , Long id);
 
+    List<Missiondto> listeallMissionbystatuts(String sta);
     Missiondto findByIdMission(Long id);
 
     Missiondto updateMission(Missiondto missiondto);

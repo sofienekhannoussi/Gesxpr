@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ProfilResponsable } from 'src/app/modelSTG/profil-responsable';
+import { ProfilExpertService } from 'src/app/servicesSTG/profil-expert.service';
 import { CommonService } from 'src/app/shared/service/common/common.service';
 import { DataService } from 'src/app/shared/service/data/data.service';
 import { routes } from 'src/app/shared/service/routes/routes';
@@ -17,7 +19,9 @@ export class InstructorComponent implements OnInit {
   side_bar_data: Array<any> = [];
   instructor: boolean = true;
   dashboard: boolean = true;
-  constructor(private common : CommonService,private Router: Router,private data: DataService,) { 
+  exp : ProfilResponsable= new ProfilResponsable()
+  
+  constructor(private common : CommonService,private Router: Router,private data: DataService,private profilexpert:ProfilExpertService) { 
     this.common.base.subscribe((res:string)=>{
       this.base =res;
     })
@@ -40,6 +44,9 @@ export class InstructorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+this.getbyisResponsable()
+
+
   }
   setcontent(){
 
@@ -62,5 +69,19 @@ export class InstructorComponent implements OnInit {
           this.instructor = true;
         }
 
+  }
+  
+  getbyisResponsable() {
+    const id=Number(localStorage.getItem("userId"))
+
+    this.profilexpert.findrespById(id).subscribe({
+      next: (data) => {
+        this.exp=data
+       // this.updateEvents()
+       console.log("soffffffff",data);
+
+      },
+      error: console.log,
+    });
   }
 }

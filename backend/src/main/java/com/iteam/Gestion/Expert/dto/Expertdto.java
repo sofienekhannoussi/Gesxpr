@@ -41,6 +41,7 @@ public class Expertdto extends RegisterRequest {
     public static Expertdto fromEntity(Expert request)
     {
         return Expertdto.builder()
+                .id(request.getId())
                 .fullname(request.getFullname())
                 .email(request.getEmail())
                 .phone(request.getPhone())

@@ -1,0 +1,349 @@
+<div>
+    <!---page Header-->
+  
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="breadcrumb-list">
+              <nav aria-label="breadcrumb" class="page-breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a [routerLink]="routes.home">Home</a>
+                  </li>
+                  <li class="breadcrumb-item" aria-current="page">Expert</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Expert Profile
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- /Breadcrumb -->
+  
+  <!-- Breadcrumb -->
+  <div class="page-banner student-bg-blk">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="profile-info-blk">
+            <a href="javascript:;" class="profile-info-img">
+              <img [src]="exp.avatar" class="img-fluid avatar" />
+            </a>
+            <h4>
+              <a href="javascript:;">{{ exp.fullname }}</a
+              ><span>Expert</span>
+            </h4>
+            <p>{{ exp.specialite }}</p>
+            <ul class="list-unstyled inline-inline profile-info-social">
+              <li class="list-inline-item">
+                <a href="javascript:;">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:;">
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:;">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:;">
+                  <i class="fa-brands fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Breadcrumb -->
+  
+  <!-- Course Content -->
+  <section class="page-content course-sec">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Overview -->
+          <div class="card overview-sec">
+            <div class="card-body">
+              <h5 class="subs-title">About Me</h5>
+              <p>
+                {{ exp.biography }}
+              </p>
+            </div>
+          </div>
+          <!-- /Overview -->
+  
+          <!-- Education Content -->
+          <div class="card education-sec">
+            <div class="card-body">
+              <h5 class="subs-title">
+                Education
+                <mat-icon
+                  class="icon"
+                  matTooltip="Add or edit education"
+                  style="font-size: 14px"
+                  (click)="openEducationsDialog()"
+                  >add</mat-icon
+                >
+              </h5>
+              <div class="edu-wrap" *ngFor="let data of studentProfileEducation">
+                <div class="edu-name">
+                  <span>{{ data.title }}</span>
+                </div>
+                <div class="edu-detail">
+                  <h6>{{ data.title }}</h6>
+                  <p class="edu-duration">
+                    {{ data.universityName }} - ({{ data.dateDebut }} -
+                    {{ data.dateFin }})
+                  </p>
+                  <p>{{ data.description }}</p>
+                </div>
+              </div>
+            </div>
+            <!-- /Education Content -->
+  
+            <!-- Experience Content -->
+            <div class="card education-sec">
+              <div class="card-body">
+                <h5 class="subs-title">
+                  Experience
+                  <mat-icon
+                    class="icon"
+                    matTooltip="Add or edit experience"
+                    style="font-size: 14px"
+                    (click)="openExperienceDialog()"
+                    >add</mat-icon
+                  >
+                </h5>
+                <div
+                  class="edu-wrap"
+                  *ngFor="let data of studentProfileExperience"
+                >
+                  <div class="edu-name">
+                    <span>{{ data.title }}</span>
+                  </div>
+                  <div class="edu-detail">
+                    <h6>{{ data.title }}</h6>
+                    <p class="edu-duration">
+                      {{ data.nomSociete }} - ({{ data.dateDebut }} -
+                      {{ data.dateFin }})
+                    </p>
+                    <p>{{ data.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Experience Content -->
+  
+            <!-- Courses Content -->
+            <!--   <div class="card education-sec">
+              <div class="card-body pb-0">
+                <h5 class="subs-title">Courses</h5>
+                <div class="row">
+                  <div
+                    class="col-lg-6 col-md-6 d-flex"
+                    *ngFor="let data of studentProfileCourses"
+                  >
+                    <div class="course-box course-design d-flex">
+                      <div class="product">
+                        <div class="product-img">
+                          <a [routerLink]="routes.page_course_details">
+                            <img class="img-fluid" alt="" [src]="data.img1" />
+                          </a>
+                          <div class="price">
+                            <h3>
+                              {{ data.price1 }}<span>{{ data.price2 }}</span>
+                            </h3>
+                          </div>
+                        </div>
+                        <div class="product-content">
+                          <div class="course-group d-flex">
+                            <div class="course-group-img d-flex">
+                              <a [routerLink]="routes.students_profile"
+                                ><img [src]="data.img2" alt="" class="img-fluid"
+                              /></a>
+                              <div class="course-name">
+                                <h4>
+                                  <a [routerLink]="routes.students_profile">{{
+                                    data.name
+                                  }}</a>
+                                </h4>
+                                <p>{{ data.role }}</p>
+                              </div>
+                            </div>
+                            <div
+                              class="course-share d-flex align-items-center justify-content-center"
+                            >
+                              <a href="javascript:void(0)"></a>
+                            </div>
+                          </div>
+                          <h3 class="title instructor-text">
+                            <a [routerLink]="routes.page_course_details">{{
+                              data.content
+                            }}</a>
+                          </h3>
+                          <div
+                            class="course-info d-flex align-items-center border-0 m-0"
+                          >
+                            <div class="rating-img d-flex align-items-center">
+                              <img src="assets/img/icon/icon-01.svg" alt="" />
+                              <p>{{ data.lesson }}</p>
+                            </div>
+                            <div class="course-view d-flex align-items-center">
+                              <img src="assets/img/icon/icon-02.svg" alt="" />
+                              <p>{{ data.time }}</p>
+                            </div>
+                          </div>
+                          <div class="rating">
+                            <i class="fas fa-star filled me-1"></i>
+                            <i class="fas fa-star filled me-1"></i>
+                            <i class="fas fa-star filled me-1"></i>
+                            <i class="fas fa-star filled me-1"></i>
+                            <i class="fas fa-star me-1"></i>
+                            <span class="d-inline-block average-rating"
+                              ><span>4.0</span> (15)</span
+                            >
+                          </div>
+                          <div
+                            class="all-btn all-category d-flex align-items-center"
+                          >
+                            <a
+                              [routerLink]="routes.page_checkout"
+                              class="btn btn-primary"
+                              >BUY NOW</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <!-- /Courses Content -->
+  
+     
+  
+          <!-- Comment -->
+         
+          <!-- /Comment -->
+        </div>
+  
+        <div class="col-lg-4 theiaStickySidebar">
+          <div class="stickybar">
+            <!-- Right Sidebar Tags Label -->
+            <div class="card overview-sec">
+              <div class="card-body overview-sec-body">
+                <h5 class="subs-title">
+                  Professional Skills
+                  <mat-icon
+                    matTooltip="Add or edit skills"
+                    (click)="openSkillsDialog()"
+                    class="icon"
+                    >add</mat-icon
+                  >
+                </h5>
+  
+                <div class="sidebar-tag-labels">
+                  <ul class="list-unstyled">
+                    <li *ngFor="let skill of skills">
+                      <a href="javascript:;">{{ skill.competenceName }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- /Right Sidebar Tags Label -->
+  
+            <!-- Right Contact Details -->
+            <div class="card overview-sec">
+              <div class="card-body">
+                <h5 class="subs-title">Contact Details</h5>
+                <div class="contact-info-list">
+                  <!-- <div
+                    class="edu-wrap"
+                    *ngFor="let data of studentProfileContactDetails"
+                  >
+                    <div class="edu-name">
+                      <span><img src="assets/img/instructor/email-icon.png" alt="Address" /></span>
+                    </div>
+                    <div class="edu-detail">
+                      <h6>Email</h6>
+                      <p>
+                        <a href="javascript:;">{{ exp.email }}</a>
+                      </p>
+                    </div>
+                  </div> -->
+                  <div class="contact">
+                    <div class="edu-name">
+                      <span
+                        ><img
+                          src="assets/img/instructor/email-icon.png"
+                          alt="email"
+                      /></span>
+                    </div>
+                    <div class="edu-detail">
+                      <h6>Email</h6>
+                      <p>
+                        <a href="javascript:;">{{ exp.email }}</a>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="contact">
+                    <div class="edu-name">
+                      <span
+                        ><img
+                          src="assets/img/instructor/address-icon.png"
+                          alt="Address"
+                      /></span>
+                    </div>
+                    <div class="edu-detail">
+                      <h6>Adresse</h6>
+                      <p>
+                        <a href="javascript:;">{{
+                          exp.adresse ? exp.adresse : "---- -- ----"
+                        }}</a>
+                      </p>
+                    </div>
+                  </div>
+  
+                  <div class="contact">
+                    <div class="edu-name">
+                      <span
+                        ><img
+                          src="assets/img/instructor/phone-icon.png"
+                          alt="phone"
+                      /></span>
+                    </div>
+                    <div class="edu-detail">
+                      <h6>Phone</h6>
+                      <p>
+                        <a href="javascript:;">{{ exp.phone }}</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Right Contact Details -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Pricing Plan -->
+  

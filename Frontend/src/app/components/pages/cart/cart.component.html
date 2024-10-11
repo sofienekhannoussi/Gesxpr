@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="cart-head text-center">
-                            <h4> Missions List</h4>
+                            <h4>Missions List</h4>
                         </div>
                         <div class="cart-group">
                             <div class="row">
@@ -37,125 +37,115 @@
                                                 <a [routerLink]="routes.page_course_details">
                                                     <img class="rating-img" alt="" src="assets/img/iteam.jpeg">
                                                 </a>
-                                                <div class="price" [ngClass]="{'combo': data.title === 'FREE'}">
-
-                                                </div>
+                                                <div class="price" [ngClass]="{'combo': data.title === 'FREE'}"></div>
                                             </div>
                                             <div class="product-content">
-
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-<!--                                                         <img [src]="data.title" alt="">
- -->                                                        <h5> Title  : </h5> <h6>{{data.title}}</h6>
+                                                        <h6>Statut :</h6>
+                                                        <h6>{{data.statut}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <!-- <img [src]="data.dateDebut" alt=""> -->
-                                                        <h6> Statut : </h6> <h6>{{data.statut}}</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
-                                                    <div class="rating-img d-flex align-items-center">
-                                                       <!--  <img [src]="data.dateDebut" alt=""> -->
-                                                        <h6> From : </h6> <h6>{{data.dateDebut| date}}</h6>
+                                                        <h6>From :</h6>
+                                                        <h6>{{data.dateDebut | date}}</h6>
                                                     </div>
                                                     <div class="course-view d-flex align-items-center">
-                                                        <!-- <img [src]="data.dateFin" alt=""> -->
-                                                        <h6>To : </h6><h6>{{data.dateFin| date}}</h6>
+                                                        <h6>To :</h6>
+                                                        <h6>{{data.dateFin | date}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                     <!--    <img [src]="data.typeContrat" alt=""> -->
-                                                        <h6> Type de contrat : </h6> <h6> {{data.typeContrat}}</h6>
+                                                        <h6>Type de contrat :</h6>
+                                                        <h6>{{data.typeContrat}}</h6>
                                                     </div>
-
                                                 </div>
-                                                <!-- <div class="rating">
-                                                    <i class="fas fa-star filled me-1"></i>
-                                                    <i class="fas fa-star filled me-1"></i>
-                                                    <i class="fas fa-star filled me-1"></i>
-                                                    <i class="fas fa-star filled me-1"></i>
-                                                    <i class="fas fa-star me-1"></i>
-                                                    <span class="d-inline-block average-rating"><span>{{data.sujet}}</span> {{data.sujet}}</span>
-                                                </div> -->
                                             </div>
-                                            <div class="cart-remove" *ngIf="isstudentHeader == true">
-
-                                                <a href="javascript:;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addempModal" on (click)="Postuleoffre(data.id)" >Postuler</a>
-
-
-                                              </div>
+                                            <div class="cart-remove" *ngIf="isstudentHeader">
+                                                <button 
+                                                class="btn btn-outline-primary btn-lg me-3" 
+                                                style="margin: 1em;" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#addempModal" 
+                                                (click)="Postuleoffre(data.id)" 
+                                                >
+                                                <i class="bi bi-send"></i> 
+                                                Postuler
+                                             </button>
+                                                <a href="javascript:;" 
+                                                   class="btn btn-outline-primary btn-lg"
+                                                   (click)="getMissionById(data.id)" 
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#detailOffreModal">
+                                                    <i class="bi bi-info-circle"></i> Détails Offre
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="modal fade " id="addempModal" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true"  >
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="addTeacherModalName" >Postuler</h5>
-                                <button #closeModalBtn type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body col-md-12">
-                                <form action="l">
-                                  <div class="form-group ">
-                                    <label class="add-course-label">Upload CV</label>
-                                    <div class="course-group mb-0 d-flex">
-                                      <div class="form-group ">
-                                        <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
-                                            <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
-                                            <input  hidden type="file" #fileInput (change)="onFileInput(fileInput.files)"  [(ngModel)]="editproRequest.cv" name="cv">
-                                        </button>
+                        <!-- Modal pour télécharger le CV -->
+                        <div class="modal fade" id="addempModal" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body col-md-12">
+                                        <form>
+                                            <div class="form-group">
+                                                <label class="add-course-label">Upload CV</label>
+                                                <div class="course-group mb-0 d-flex">
+                                                    <div class="form-group">
+                                                        <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
+                                                            <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
+                                                            <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)" [(ngModel)]="editproRequest.cv" name="cv">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <p *ngIf="msgSuccess" style="color:green; size:20px">{{msgSuccess}}</p>
+                                            <div style="display: flex; justify-content: center;">
+                                                <button (click)="addpostule()" type="submit" class="btn btn-success-dark" style="width:150px; margin-right:20px;" [disabled]="loading">
+                                                    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status" style="margin-right: 5px;">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                    <span *ngIf="!loading">Postuler</span>
+                                                </button>
+                                            </div>
+                                            <p *ngIf="errorMessage" style="color:red; size:20px">{{ errorMessage }}</p>
+                                        </form>
                                     </div>
-                                    </div>
-
-
-                                    </div>
-
-
-
-
-                                  <p *ngIf="msgSuccess" style="color:green;size:20px" >{{msgSuccess}}</p>
-                                  <div style="display: flex; justify-content: center;">
-
-                                    <button (click)="addpostule()" type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" >Postuler</button>
-
-                                  </div>
-
-
-                                </form>
-
-                              </div>
-
+                                </div>
                             </div>
-                          </div>
                         </div>
-                        <!-- <div class="cart-total">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="cart-subtotal">
-                                        <p>Subtotal <span>$600.00</span></p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="check-outs">
-                                        <a [routerLink]="routes.page_checkout" class="btn btn-primary">Checkout</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="condinue-shop">
-                                        <a [routerLink]="routes.page_course_list" class="btn btn-primary">Continue Shopping</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
+                    
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour les détails de l'offre -->
+    <div class="modal fade" id="detailOffreModal" tabindex="-1" aria-labelledby="detailMissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailMissionModalLabel">{{ missionsbyId.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Description :</strong> {{ missionsbyId.description }}</p>
+                    <p><strong>Date de début :</strong> {{ missionsbyId.dateDebut | date:'dd/MM/yyyy' }}</p>
+                    <p><strong>Date de fin :</strong> {{ missionsbyId.dateFin | date:'dd/MM/yyyy' }}</p>
+                    <p><strong>Statut :</strong> {{ missionsbyId.statut }}</p>
+                    <p><strong>Type de contrat :</strong> {{ missionsbyId.typeContrat }}</p>
+                    <p><strong>Lieu :</strong> {{ missionsbyId.typeLieu }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>

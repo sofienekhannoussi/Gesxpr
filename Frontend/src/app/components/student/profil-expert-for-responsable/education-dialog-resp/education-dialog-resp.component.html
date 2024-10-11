@@ -1,0 +1,137 @@
+<div class="modal-header">
+    <h5 class="subs-title">Education</h5>
+    <mat-icon class="closeIcon" (click)="closeDialog()">close</mat-icon>
+  </div>
+  <div mat-dialog-content>
+    <div class="edu-wrap" *ngFor="let item of data; let i = index">
+      <div class="edu-name">
+      </div>
+      <div class="edu-detail" [formGroup]="educationForms[i]">
+        <h6>
+          <span *ngIf="!editingtitle[i]">{{ item.title }}</span>
+          <input *ngIf="editingtitle[i]" formControlName="title" />        <mat-icon class="icon" (click)="updateDiplome(i)">
+            {{ editingtitle[i] ? "check" : "edit" }}
+          </mat-icon>
+          <mat-icon class="icon" (click)="deleteDiplome(i)">delete</mat-icon>
+        </h6>
+        <p>
+          <span *ngIf="!editinguniversityName[i]">{{ item.universityName }} - ({{ item.dateDebut }} - {{ item.dateFin }})</span>
+  
+          <textarea *ngIf="editinguniversityName[i]" formControlName="universityName" style="min-width: 100%;" ></textarea>
+        </p>
+        <p class="edu-duration">
+          <span *ngIf="!editingdescription[i]">{{ item.description }}</span>
+          <input *ngIf="editingdescription[i]" formControlName="description" />
+        </p>
+  
+      </div>
+    </div>
+  
+    <!-- New Education Form -->
+    <form
+      class="new-edu-form"
+      [formGroup]="newEducationForm"
+      *ngIf="addNewEducation"
+      (ngSubmit)="addDiplome()"
+    >
+      <h6>Add New Education</h6>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Diploma</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="title"
+  
+              placeholder="Diploma"
+            />
+            <span class="errors" *ngIf="newEducationForm.get('title')!.hasError('required') && newEducationForm.get('title')!.touched">
+              Diploma is required
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Universityname </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="universityName"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="newEducationForm.get('universityName')!.hasError('required') && newEducationForm.get('universityName')!.touched">
+              UniversityName is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de debut </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateDebut"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="newEducationForm.get('dateDebut')!.hasError('required') && newEducationForm.get('dateDebut')!.touched">
+              date Debut is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de fin</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateFin"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="newEducationForm.get('dateFin')!.hasError('required') && newEducationForm.get('dateFin')!.touched">
+              dateFin is required
+            </span>
+          </div>
+        </div>
+  
+  
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label">Description</label>
+            <textarea
+              required
+              style="min-width: 100%"
+              class="form-control"
+              formControlName="description"
+              placeholder="Description"
+            ></textarea>
+            <span  class="errors" *ngIf="newEducationForm.get('description')!.hasError('required') && newEducationForm.get('description')!.touched">
+              Description is required
+            </span>
+          </div>
+        </div>
+      </div>
+  
+      <button mat-button class="btn btn-primary" type="submit">Add</button>
+    </form>
+  </div>
+  <div mat-dialog-actions *ngIf="!addNewEducation">
+    <button
+      mat-button
+      class="btn btn-primary"
+      style="margin-left: auto"
+      (click)="addNew()"
+    >
+      Add new education
+    </button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button class="btn btn-primary" (click)="closeDialog()">Close</button>
+  </div>
+  

@@ -12,6 +12,9 @@ public interface MissionRepesitory extends JpaRepository<Mission, Long> {
     @Query( "select o from Mission o where o.responsableSociete.id = :id" )
     List<Mission> findByIdRespMission(@Param("id") Long id);
 
-    @Query( "select o from Mission o where o.statut = :sta" )
-    List<Mission> findByStatut(@Param("sta") String sta);
+    @Query( "select o from Mission o where o.statut = :sta and o.responsableSociete.id = :id" )
+    List<Mission> findByStatut(@Param("sta") String sta, @Param("id") Long id );
+
+    @Query( "select o from Mission o where o.statut = :sta"  )
+    List<Mission> findByStatuts(@Param("sta") String sta );
 }

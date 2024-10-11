@@ -19,7 +19,7 @@ public class Societe {
     private Long  id;
     private String nameSociete;
     private String description;
-@ManyToOne
+    @ManyToOne
    private ResponsableSociete responsable;
 
 

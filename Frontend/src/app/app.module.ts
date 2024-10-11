@@ -8,6 +8,7 @@ import { SharedModule } from './shared/module/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminHeaderComponent } from './layouts/admin-header/admin-header.component';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

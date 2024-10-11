@@ -3,8 +3,10 @@ package com.iteam.Gestion.Expert.controllers;
 
 import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import com.iteam.Gestion.Expert.dto.ListPostuledto;
+import com.iteam.Gestion.Expert.dto.Listpostuleoffre;
 import com.iteam.Gestion.Expert.dto.Postuleoffredto;
 import com.iteam.Gestion.Expert.entities.Expert;
+import com.iteam.Gestion.Expert.entities.Mission;
 import com.iteam.Gestion.Expert.entities.Postuleoffre;
 import com.iteam.Gestion.Expert.services.CompetencesService;
 import com.iteam.Gestion.Expert.services.PostuleoffreService;
@@ -41,6 +43,8 @@ import org.springframework.http.MediaType;
 public class PostuloffreController {
 
     private final PostuleoffreService postuleoffreService;
+
+
     private final ImageStorage imageStorage;
 
     @DeleteMapping("/delete/{id}")
@@ -53,6 +57,12 @@ public class PostuloffreController {
 
     public List<ListPostuledto> listeallPostule(@PathVariable("idmission") Long idmission) {
         return postuleoffreService.listeallPostule(idmission);
+    }
+
+    @GetMapping("/listePostuleByMission/{idmission}")
+
+    public List<Listpostuleoffre> listePostuleByIdMissions(@PathVariable("idmission") Long idmission) {
+        return postuleoffreService.listePostuleByIdMission(idmission);
     }
 
 
@@ -85,7 +95,8 @@ public class PostuloffreController {
         return postuleoffreService.uploadFile(Id, image);
     }
 
-
-
-
+    @GetMapping("/listePostuleByExpert/{idmission}/{idexpert}")
+    public Listpostuleoffre listePostuleByIdExpert(@PathVariable("idmission")  Long idmission , @PathVariable("idexpert")  Long idexpert ) {
+        return postuleoffreService.listePostuleByIdExpert(idmission,idexpert);
+    }
 }

@@ -5,11 +5,13 @@ import { InstructorRoutingModule } from './instructor-routing.module';
 import { InstructorComponent } from './instructor.component';
 import { FeatherIconModule } from 'src/app/shared/module/feather.module';
 import { SharedModule } from 'src/app/shared/module/shared.module';
+import { HeaderResponsableComponent } from 'src/app/layouts/header-responsable/header-responsable.component';
 
 
 @NgModule({
   declarations: [
-    InstructorComponent
+    InstructorComponent,
+    HeaderResponsableComponent
   ],
   imports: [
     CommonModule,

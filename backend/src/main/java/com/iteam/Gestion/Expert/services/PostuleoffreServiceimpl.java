@@ -1,19 +1,13 @@
 package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.configimage.ImageStorage;
-import com.iteam.Gestion.Expert.dto.Competencesdto;
-import com.iteam.Gestion.Expert.dto.ListPostuledto;
-import com.iteam.Gestion.Expert.dto.Missiondto;
-import com.iteam.Gestion.Expert.dto.Postuleoffredto;
-import com.iteam.Gestion.Expert.entities.Competences;
+import com.iteam.Gestion.Expert.dto.*;
 import com.iteam.Gestion.Expert.entities.Expert;
 import com.iteam.Gestion.Expert.entities.Mission;
 import com.iteam.Gestion.Expert.entities.Postuleoffre;
 import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import com.iteam.Gestion.Expert.reposetories.PostuleoffreRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
@@ -21,18 +15,13 @@ import net.sourceforge.tess4j.Tesseract;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.fr.FrenchAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +52,17 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
                 ListPostuledto::fromEntity).collect(Collectors.toList());
     }
 
+    @Override
+    public List<Listpostuleoffre> listePostuleByIdMission(Long id){
+        return postuleoffreRepository.findByMissions_Id(id).stream().map(
+                Listpostuleoffre::fromEntity).collect(Collectors.toList());
+    }
 
+    @Override
+    public Listpostuleoffre listePostuleByIdExpert(Long idmission, Long idexpert) {
+
+        return Listpostuleoffre.fromEntity(postuleoffreRepository.findByMissionsIdAndExpertId(idmission, idexpert));
+    }
 
     @Override
     public ListPostuledto findByIdpostule(Long id) {
@@ -117,12 +116,25 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
             }
         }
     */
+
+
+
+
     @Override
     public Postuleoffredto addPostule(Postuleoffredto postuleoffredto, MultipartFile cvFile) {
         // Récupération des entités Expert et Mission
         Optional<Expert> expert = expertRepository.findById(postuleoffredto.getIdexpert());
         Optional<Mission> mission = missionRepesitory.findById(postuleoffredto.getIdmission());
+         // debut methode
+        Optional<Postuleoffre> existingPostule = postuleoffreRepository.findByExpertAndMissions(expert.get(), mission.get());
 
+        if (existingPostule.isPresent()) {
+            throw new IllegalStateException("L'expert a déjà postulé à cette mission.");
+        }
+
+        // Si aucune postulation n'existe, créer une nouvelle postulation
+
+        //fin methode
         if (expert.isPresent() && mission.isPresent()) {
             // Extraction des mots-clés de la description de la mission
             String missionDescription = mission.get().getDescription();
@@ -175,6 +187,12 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
         return expertsaved;
     }
 
+    @Override
+    public Postuleoffre existingPostule(Expert expert, Mission mission) {
+      Postuleoffre existingPostule = postuleoffreRepository.findByExpertAndMissions(expert, mission).get();
+
+      return  existingPostule;
+    }
 
 
     public ResponseEntity<Expert> findbyIdExpert(Long id) {
@@ -190,26 +208,17 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
         }
     }
 
-
-
-
-    @GetMapping("/downloadFileCV/{imageName}")
-    public ResponseEntity<Resource> downloadFilecv(@PathVariable String imageName, HttpServletRequest request) {
-        return this.imageStorage.downloadUserImage(imageName, request);
-    }
-
-
-
-
-
-
-
+//    @GetMapping("/downloadFileCV/{imageName}")
+//    public ResponseEntity<Resource> downloadFilecv(@PathVariable String imageName, HttpServletRequest request) {
+//        return this.imageStorage.downloadUserImage(imageName, request);
+//    }
 
     /** OCR: methode pour extracter les mots clés de cv sans bruit**/
     /** OCR: Methode pour extraire les mots clés du CV **/
     private String extractTextFromPDFWithOCR(MultipartFile pdf) {
         ITesseract tesseract = new Tesseract();
-        tesseract.setDatapath("E:\\springWorkspace\\Gesxpr-master\\backend\\tessdata-main");
+//        tesseract.setDatapath("C:\\Users\\rimzh\\OneDrive\\Bureau\\Gesxpr-master\\backend\\tessdata-main");
+        tesseract.setDatapath("C:\\Users\\rimzh\\OneDrive\\Bureau\\backend\\tessdata");
         tesseract.setLanguage("fra");
         File tempFile = null;
         try {

@@ -1,4 +1,4 @@
-
+<app-header-responsable></app-header-responsable>
 <ng-container *ngIf="instructor">
     <!-- Page Wrapper -->
 <div class="page-content instructor-page-content">
@@ -14,14 +14,14 @@
 
                                 <img src="assets/img/...........png" alt="">
                                 <div class="profile-img">
-                                    <a [routerLink]="routes.instructor_instructor_profile"><img src="assets/img/user/user.png"
-                                            alt=""></a>
+                                    <img src="assets/img/user/user.png"
+                                            alt="">
                                 </div>
                             </div>
                             <div class="profile-group">
                                 <div class="profile-name text-center">
-                                    <h4><a [routerLink]="routes.instructor_instructor_profile">Admin</a></h4>
-                                    <p>Suporvior</p>
+                                    <h4>{{exp.fullname}}</h4>
+                            
                                 </div>
                                 <div class="go-dashboard text-center">
                                     <a [routerLink]="routes.page_add_course" class="btn btn-primary">Create New
@@ -39,7 +39,7 @@
                                 <ul>
                                     <ng-container *ngFor="let menu of mainTittle?.menu">
                                         <li class="nav-item">
-                                            <a class="nav-link ">
+                                            <a [routerLink]="menu.route" [class.active]="page === menu.base" class="nav-link ">
                                                 <i-feather [name]="menu.icon"></i-feather> {{ menu?.menuValue }}
                                             </a>
                                         </li>
@@ -47,6 +47,10 @@
                                 </ul>
                             </ng-container>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>

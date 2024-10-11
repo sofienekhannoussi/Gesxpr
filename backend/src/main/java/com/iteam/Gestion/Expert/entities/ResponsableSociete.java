@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +25,7 @@ import java.util.Set;
 public class ResponsableSociete extends User {
     private String presentationsociete;
     private String adresse;
-
+    // validé
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsableSociete", cascade = CascadeType.ALL)
     Set<Mission> missions=new HashSet<>();
 
@@ -31,7 +33,9 @@ public class ResponsableSociete extends User {
     Set<EvaluationExpert> evaluationExpert=new HashSet<>();
 
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "responsable", cascade = CascadeType.ALL)
-    private Societe societe;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "responsable", cascade = CascadeType.ALL)
+    private List <Societe> societes=new ArrayList<>();;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Contrat> contrats=new ArrayList<>();
 }

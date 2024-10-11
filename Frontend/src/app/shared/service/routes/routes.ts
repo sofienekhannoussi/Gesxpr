@@ -58,7 +58,7 @@ export class routes {
     return this.instructor + 'instructor-view/instructor-grid';
   }
   public static get instructor_course(): string {
-    return this.instructor + 'instructor-course';
+    return this.instructor + 'mymissions';
   }
   public static get instructor_reviews(): string {
     return this.instructor + 'instructor-reviews';

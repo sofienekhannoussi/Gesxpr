@@ -27,6 +27,7 @@ public class Expert extends User {
     private String cv;
 
 
+
     //les projets realises
     @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.ALL,mappedBy="expert")
     private List<ProjetRealise> projetRealises;
@@ -36,9 +37,9 @@ public class Expert extends User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private    Set<Diplomes> diplomes =new HashSet<>();
 
-//
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
-    private Mission mission;
+//// validé
+    @OneToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    private Mission missions;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "expert", cascade = CascadeType.ALL)
     private    Set<Postuleoffre> postuleoffres =new HashSet<>();
@@ -46,4 +47,6 @@ public class Expert extends User {
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private EvaluationExpert evaluationExpert;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Contrat contrat;
 }

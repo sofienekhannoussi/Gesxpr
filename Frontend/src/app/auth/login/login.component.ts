@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
           if(role=="RESP_STE")
             {
 
-              this.router.navigate(['/instructor']);
+              this.router.navigate(['/instructor/instructor-edit-profile']);
 
             }
 

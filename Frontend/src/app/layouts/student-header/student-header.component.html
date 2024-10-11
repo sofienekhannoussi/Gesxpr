@@ -24,7 +24,7 @@
                           <i class="fas fa-times"></i>
                       </a>
                   </div>
-                    <ul class="main-nav">
+                   <!--  <ul class="main-nav">
                         <ng-container *ngFor="let mainMenus of sidebar">
                             <ng-container *ngIf="mainMenus.separateRoute == true">
                                 <li [class.active]="base === mainMenus.base">
@@ -79,8 +79,30 @@
                         <li class="login-link">
                             <a [routerLink]="routes.login">Login / Signup</a>
                         </li>
-                    </ul>
+                    </ul> -->
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav align-items-center">
+                          <li class="nav-item">
+                            <a  routerLink="/home" class="nav-link active text-dark" aria-current="page" >Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" routerLink="/expert/setting-edit-profile"  >Frofil</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" routerLink="/pages/cart" >Offres</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" routerLink="/pages/support" >Contact</a>
+                          </li>
+                          
+                        </ul>
+                      </div>
                 </div>
+                <ul class="nav header-navbar-rht d-none d-lg-flex">
+                    <li class="login-link">
+                      <a [routerLink]="routes.login" class="btn btn-primary ms-3">Login / Signup</a>
+                    </li>
+                  </ul>
                 <ul class="nav header-navbar-rht">
                     <!-- <li class="nav-item">
                         <a [routerLink]="routes.page_course_message"><img src="assets/img/icon/messages.svg"
@@ -321,12 +343,12 @@
                         </div>
                     </li> -->
                     <li class="nav-item user-nav">
-                        <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown">
+                     <!--    <a href="javascript:;" class="dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="user-img">
                                 <img [src]="exp.avatar" alt="avatar">
                                 <span class="status online"></span>
                             </span>
-                        </a>
+                        </a> -->
                         <div class="users dropdown-menu dropdown-menu-right" data-popper-placement="bottom-end">
                             <div class="user-header">
                                 <div class="avatar avatar-sm">
@@ -337,7 +359,7 @@
                                     <h6>{{exp.fullname}}</h6>
                                     <p class="text-muted mb-0">Expert</p>
                                 </div>
-                            </div>
+                            </div> 
                             <a class="dropdown-item" [routerLink]="routes.students_edit_profile"><i-feather name="user"
                                     class="me-1"></i-feather> Profile</a>
                                 <!-- <a class="dropdown-item" [routerLink]="routes.students_subscription"><i-feather

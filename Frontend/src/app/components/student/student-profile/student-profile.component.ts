@@ -46,7 +46,7 @@ public exp:Expertbyid = new Expertbyid();
 
   ngOnInit(): void {
     const id = Number(localStorage.getItem('userId'));
-this.getbyisExpert(id)
+    this.getbyisExpert(id)
     this.getlistSkills(id)
     this.getlistDiplome(id)
     this.getlistProjet(id)

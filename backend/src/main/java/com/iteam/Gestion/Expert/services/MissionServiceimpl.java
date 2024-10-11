@@ -39,8 +39,12 @@ public class MissionServiceimpl implements MissionService {
 		return missionRepesitory.findAll().stream().map(Missiondto::fromEntity).collect(Collectors.toList());
 	}
 	@Override
-	public List<Missiondto> listeallMissionbystatut(String sta) {
-		return missionRepesitory.findByStatut(sta).stream().map(Missiondto::fromEntity).collect(Collectors.toList());
+	public List<Missiondto> listeallMissionbystatut(String sta, Long id) {
+		return missionRepesitory.findByStatut(sta , id).stream().map(Missiondto::fromEntity).collect(Collectors.toList());
+	}
+	@Override
+	public List<Missiondto> listeallMissionbystatuts(String sta) {
+		return missionRepesitory.findByStatuts(sta).stream().map(Missiondto::fromEntity).collect(Collectors.toList());
 	}
 
 	@Override

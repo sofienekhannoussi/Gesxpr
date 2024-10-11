@@ -36,6 +36,7 @@ public class ProfilExpertdto {
     }
     public static ProfilExpertdto FromEntity(Expert request) {
         return ProfilExpertdto .builder()
+                .id(request.getId())
                 .fullname(request.getFullname())
                 .email(request.getEmail())
                 .phone(request.getPhone())

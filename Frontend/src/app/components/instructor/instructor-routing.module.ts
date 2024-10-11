@@ -15,10 +15,17 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'instructor-course',
+        path: 'mymissions',
         loadChildren: () =>
           import('./instructor-course/instructor-course.module').then(
             (m) => m.InstructorCourseModule
+          ),
+      },
+      {
+        path: 'contrat/:id/:idMission',
+        loadChildren: () =>
+          import('./contrat/contrat.module').then(
+            (m) => m.ContratModule
           ),
       },
       {

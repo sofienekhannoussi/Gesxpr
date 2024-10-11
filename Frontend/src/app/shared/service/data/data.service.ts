@@ -4996,7 +4996,7 @@ export class DataService {
           menuValue: 'My Missions',
           route: routes.instructor_course,
           icon: 'book',
-          base: 'instructor-course',
+          base: 'mymissions',
           subMenus: [],
         },
         /* {
@@ -5107,6 +5107,94 @@ export class DataService {
     },
 
   ];
+  /////////////// sidebar Admin ///////////////
+  public Admin_sideBar: any = [
+
+    {
+      tittle: 'DASHBOARD',
+      class: false,
+      menu: [
+        {
+          menuValue: 'My Dashboard',
+          route: routes.instructor_dashboard,
+          icon: 'home',
+          base: 'instructor-dashboard',
+          subMenus: [],
+        },
+        {
+          menuValue: 'My Missions',
+          route: routes.instructor_course,
+          icon: 'book',
+          base: 'mymissions',
+          subMenus: [],
+        },
+       
+        {
+          menuValue: 'Edit Profile',
+          route: routes.instructor_edit_profile,
+          icon: 'settings',
+          base: 'instructor-edit-profile',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Security',
+          route: routes.instructor_security,
+          icon: 'user',
+          base: 'instructor-security',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Social Profiles',
+          route: routes.instructor_social_profiles,
+          icon: 'refresh-cw',
+          base: 'instructor-social-profiles',
+          subMenus: [],
+        },
+        /* {
+          menuValue: 'Notifications',
+          route: routes.instructor_notification,
+          icon: 'bell',
+          base: 'instructor-notification',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Profile Privacy',
+          route: routes.instructor_profile_privacy,
+          icon: 'lock',
+          base: 'instructor-profile-privacy',
+          subMenus: [],
+        }, */
+        {
+          menuValue: 'Delete Profile',
+          route: routes.instructor_delete_profile,
+          icon: 'trash-2',
+          base: 'instructor-delete-profile',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Linked Accounts',
+          route: routes.instructor_linked_account,
+          icon: 'user',
+          base: 'instructor-linked-account',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Sign Out',
+          route: routes.home,
+          icon: 'power',
+          base: '',
+          subMenus: [],
+        },
+
+
+      ],
+    },
+
+  ];
+
+
+
+  /////////////////////////////////////////////
   public getInstructorSideBarData: BehaviorSubject<Array<any>> = new BehaviorSubject<Array<any>>(this.Instructor_sideBar);
 
   public Student_sideBar: any = [

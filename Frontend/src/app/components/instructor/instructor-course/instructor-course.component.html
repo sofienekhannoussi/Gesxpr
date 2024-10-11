@@ -79,7 +79,11 @@
 
                                     <td class="text-center"><span>{{data.statut}}</span></td>
                                     <td class="text-center"><span> <mat-icon class="editIcon" data-bs-toggle="modal" data-bs-target="#addempModal"  (click)="getMission(data.id)">edit</mat-icon></span>
-                                      <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span></td>
+                                      <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span>
+                                      
+                                      <span class="text-center" (click)="getPostuletByMission(data.id)" data-bs-toggle="modal" data-bs-target="#ListModalPostule">
+                                        <mat-icon class="editIcon">list</mat-icon> <!-- Remplace 'info' par 'list' -->
+                                      </span>
 
  <div class="modal fade " id="addempModal" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true"  >
       <div class="modal-dialog" role="document">
@@ -169,3 +173,59 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="modal fade" id="ListModalPostule" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document"> <!-- Remplacement de 'modal-lg' par 'modal-xl' pour une plus grande modale -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTeacherModalName">Liste postule</h5>
+        <button #closeModalBtns type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;"> <!-- Table responsive avec un max-height -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date postule</th>
+                <th scope="col">Pourcentage de matching</th>
+                <th scope="col">Expert</th>
+                <th scope="col">Mission</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listPostuleoffre">
+                <td>{{ item.id }}</td>
+                <td>{{ item.datepostule | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ item.matchingPercentage | number:'1.2-2' }}%</td>
+                <td>{{ item.expertdto.fullname }}</td>
+                <td>{{ item.missionsdto.title }}</td>
+                <td>
+                  <div class="d-flex gap-2"> <!-- Flexbox pour aligner les boutons -->
+                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
+                            (click)="navigateToProfil(item.expertdto.id)">
+                      Profil expert
+                    </button>
+                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
+                    (click)="navigateToContrat(item.expertdto.id,item.missionsdto.id)">
+                      Ajouter contrat
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 

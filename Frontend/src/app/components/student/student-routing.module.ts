@@ -122,6 +122,17 @@ const routes: Routes = [
           './setting-student-delete-profile/setting-student-delete-profile.module'
         ).then((m) => m.SettingStudentDeleteProfileModule),
     },
+
+    {
+      path: 'profil-expert-for-responsable/:id',
+      loadChildren: () =>
+        import(
+          './profil-expert-for-responsable/profil-expert-for-responsable.module'
+        ).then((m) => m.ProfilExpertForResponsableModule),
+    },
+
+
+
     {
       path: 'view-invoice',
       loadChildren: () =>

@@ -1,1 +1,85 @@
-<p>gestion-des-experts works!</p>
+<table class="table table-hover table-striped mb-4">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nom et prénom</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Tél</th>
+            <th class="text-center">Role</th>
+            <th class="text-center">Statut</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listUserr;" #itemElement>
+            <td class="text-center">{{data.fullname}}</td>
+            <td class="text-center">{{data.email}}</td>
+            <td class="text-center">{{data.phone}}</td>
+            <td class="text-center">{{data.role}}</td>
+            <td class="text-center">
+                <span class="badge badge-{{data.active ? 'success' : 'danger'}}">
+                    {{data.active ? 'Actif' : 'Inactif'}}
+                </span>
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"  (click)="getUserId(data.id)">
+                    <i class="fas fa-edit"></i> Détail
+                </button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal for Updating Mission -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateMissionModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateMissionModal">Update Mission</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Modal body content (e.g. form for updating mission) -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Détails de l'utilisateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- User details -->
+                <p><strong>Nom et prénom:</strong> {{viewmodeluser.fullname}}</p>
+                <p><strong>Email:</strong> {{viewmodeluser.email}}</p>
+                <p><strong>Téléphone:</strong> {{viewmodeluser.phone}}</p>
+                <p><strong>Role:</strong> {{viewmodeluser.role}}</p>
+                <p><strong>Statut:</strong> 
+                    <span class="badge badge-{{viewmodeluser.active ? 'success' : 'danger'}}">
+                        {{viewmodeluser.active ? 'Actif' : 'Inactif'}}
+                    </span>
+                </p>
+                    <form [formGroup]="FormGroupart" >
+                      
+                        <select class="form-control" formControlName="active" id="active" name="active">
+                            <option value="">Sélectionnez un status</option>
+                            <option value="true">true</option>
+                            <option value="false">false</option>  
+                          </select>   
+                          <div class="modal-footer">
+                            <button   type="button" class="btn btn-primary"  (click)="updateSatusUser()">Enregistrer</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        </div>   
+                    </form>
+                    
+             
+            </div>
+            
+        </div>
+    </div>
+</div>

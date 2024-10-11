@@ -1,0 +1,134 @@
+<div class="modal-header">
+    <h5 class="subs-title">
+      Education
+      <mat-icon
+        class="icon"
+        matTooltip="Add or edit education"
+        style="font-size: 14px"
+        (click)="addEducation()"
+        >add</mat-icon
+      >
+    </h5>
+    <mat-icon class="closeIcon" (click)="closeDialog()">close</mat-icon>
+  </div>
+  <div mat-dialog-content class="modal-body">
+   <div *ngIf="addNewEducation">
+      <!-- New Education Form -->
+      <form
+      class="new-edu-form"
+      [formGroup]="educationForm"
+      *ngIf="addNewEducation"
+      (ngSubmit)="onSubmit()"
+    >
+    <div class="formHeader" >
+      <h6>{{educationSelected.id > -1 ? "Edit" : "Add"}}  Education</h6>
+      <mat-icon class="addCloseIcon" (click)="closeFormEducation()">keyboard_backspace</mat-icon>
+    </div>
+  
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Diploma</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="title"
+  
+              placeholder="Diploma"
+            />
+            <span class="errors" *ngIf="educationForm.get('title')!.hasError('required') && educationForm.get('title')!.touched">
+              Diploma is required
+            </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Universityname </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="universityName"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="educationForm.get('universityName')!.hasError('required') && educationForm.get('universityName')!.touched">
+              UniversityName is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de debut </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateDebut"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="educationForm.get('dateDebut')!.hasError('required') && educationForm.get('dateDebut')!.touched">
+              date Debut is required
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label">Date de fin</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="dateFin"
+              placeholder="Establishment and date"
+            />
+            <span  class="errors" *ngIf="educationForm.get('dateFin')!.hasError('required') && educationForm.get('dateFin')!.touched">
+              dateFin is required
+            </span>
+          </div>
+        </div>
+  
+  
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="form-control-label">Description</label>
+            <textarea
+              required
+              style="min-width: 100%"
+              class="form-control"
+              formControlName="description"
+              placeholder="Description"
+            ></textarea>
+            <span  class="errors" *ngIf="educationForm.get('description')!.hasError('required') && educationForm.get('description')!.touched">
+              Description is required
+            </span>
+          </div>
+        </div>
+      </div>
+  
+      <button mat-button class="btn btn-primary" type="submit"> {{educationSelected.id > -1 ? "Edit" : "Add"}}</button>
+    </form>
+   </div>
+   <div *ngIf="!addNewEducation">
+    <div *ngIf="data.length>0" >
+      <div class="edu-wrap" style="margin-top: 2rem;" *ngFor="let diplome of data">
+        <div class="edu-name">
+          <span>{{ diplome.title.charAt(0).toUpperCase() }}</span>
+        </div>
+  
+        <div class="edu-detail">
+          <h6>{{ diplome.title }}   <mat-icon class="editIcon" (click)="selectEducation(diplome)"
+            >edit</mat-icon
+          >
+          <mat-icon class="editIcon" (click)="deleteEducation(diplome.id)">delete</mat-icon>
+        </h6>
+          <p class="edu-duration">{{ diplome.universityName }} - ({{ diplome.dateDebut }} - {{ diplome.dateFin }})</p>
+          <p>{{ diplome.description }}</p>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+  
