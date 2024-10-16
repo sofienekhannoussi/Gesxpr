@@ -140,6 +140,17 @@ const routes: Routes = [
         import('../student/support/support.module').then((m) => m.SupportModule),
     }
 ,
+{
+  path: 'contrat',
+  loadChildren: () =>
+    import('../student/gestion-contrat/gestion-contrat.module').then((m) => m.GestionContratModule),
+},  {
+  path: 'dashboard',
+  loadChildren: () =>
+    import('../student/dashboard-admin/dashboard-admin.module').then(
+      (m) => m.DashboardAdminModule
+    ),
+},
 
     {
       path: 'view-invoice',

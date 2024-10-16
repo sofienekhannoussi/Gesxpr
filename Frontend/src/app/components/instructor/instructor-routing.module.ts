@@ -35,10 +35,22 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'contrat',
+        loadChildren: () =>
+          import('../instructor/gestion-contrat/gestion-contrat.module').then((m) => m.GestionContratModule),
+      },
+      {
         path: 'instructor-dashboard',
         loadChildren: () =>
           import('./instructor-dashboard/instructor-dashboard.module').then(
             (m) => m.InstructorDashboardModule
+          ),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../instructor/dashboard-admin/dashboard-admin.module').then(
+            (m) => m.DashboardAdminModule
           ),
       },
       {

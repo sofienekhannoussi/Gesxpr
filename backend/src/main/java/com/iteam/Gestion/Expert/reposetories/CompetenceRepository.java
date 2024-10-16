@@ -11,5 +11,10 @@ import java.util.List;
 public interface CompetenceRepository extends JpaRepository  <Competences, Long>{
     @Query( "select o from Competences o where o.expert.id = :id" )
     List<Competences> findByIdcompetences(@Param("id") Long id);
+
+
+    @Query("SELECT COUNT(o) FROM Competences o where o.expert.id = :id")
+    Long countCompetencesByExpert(@Param("id") Long id);
+
 }
 

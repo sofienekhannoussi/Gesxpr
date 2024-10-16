@@ -13,9 +13,9 @@ public interface ContratService {
     void deleteContrat(Long id);
     List<Contratdto> listeallContrat ();
     Contratdto findByIdContrat(Long id);
-    List<Contratdto> listeallContratbyExpert(Long id) ;
+    Long listeallContratbyExpert(Long id) ;
 
-    List<Contratdto> listeallContratbyResp(Long id) ;
+    Long listeallContratbyResp(Long id) ;
 
     Contratdto addContrat(Contratdto contratdto);
 

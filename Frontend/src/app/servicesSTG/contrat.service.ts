@@ -21,7 +21,17 @@ export class ContratService {
 
   findContratById(id: number): Observable<Contrat> {
     return this.httpClient.get<Contrat>(`${this.baseUrl}/findByIdContrat/${id}`)
-    
+
+  }
+
+  findContratByIdExpert(id: number): Observable<Contrat[]> {
+    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratbyexpert/${id}`)
+
+  }
+
+  findContratByIdResp(id: number): Observable<Contrat[]> {
+    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratbyresp/${id}`)
+
   }
 
   getListContrat(): Observable<Contrat[]> {
@@ -29,7 +39,7 @@ export class ContratService {
     .pipe(
       map((response:any) => response as Contrat[])
     );
-    
+
   }
 
   deleteByIdContrat(id: number): Observable<void> {
@@ -44,6 +54,16 @@ export class ContratService {
 
   countContrat(): Observable<number> {
     return this.httpClient.get<number>(`${this.baseUrl}/countAll`)
+
+  }
+
+  countContratbyexpert(id:number): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/NombreContratbyexpert/${id}`)
+
+  }
+
+  countContratbyresp(id:number): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/NombreContratbyresp/${id}`)
 
   }
 }

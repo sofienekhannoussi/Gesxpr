@@ -17,7 +17,7 @@ public interface MissionRepesitory extends JpaRepository<Mission, Long> {
 
     @Query( "select o from Mission o where o.statut = :sta"  )
     List<Mission> findByStatuts(@Param("sta") String sta );
-
+//sesion responsable
     @Query("SELECT COUNT(m) FROM Mission m WHERE m.responsableSociete.id = :responsableSocieteId")
     Long countMissionsByResponsableSociete(@Param("responsableSocieteId") Long responsableSocieteId);
 

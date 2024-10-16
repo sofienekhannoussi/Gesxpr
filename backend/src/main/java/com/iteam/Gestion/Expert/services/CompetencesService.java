@@ -12,6 +12,8 @@ public interface CompetencesService {
     void deleteCompetences(Long id);
     List<Competencesdto> listeallCompetences ();
 
+    Long   listeallCompetencesByExpert(Long id);
+
     List<Competencesdto> listCompetencesByidexpert (Long id);
 
 

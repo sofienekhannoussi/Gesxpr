@@ -2,18 +2,11 @@ package com.iteam.Gestion.Expert.services;
 
 
 import com.iteam.Gestion.Expert.dto.Competencesdto;
-import com.iteam.Gestion.Expert.dto.Diplomesdto;
-import com.iteam.Gestion.Expert.dto.Missiondto;
-import com.iteam.Gestion.Expert.dto.ProfilExpertdto;
 import com.iteam.Gestion.Expert.entities.Competences;
 import com.iteam.Gestion.Expert.entities.Expert;
-import com.iteam.Gestion.Expert.entities.Mission;
-import com.iteam.Gestion.Expert.entities.ResponsableSociete;
 import com.iteam.Gestion.Expert.reposetories.CompetenceRepository;
 import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
-import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +34,12 @@ public class CompetencesServiceimpl implements CompetencesService {
 
     }
 
+    @Override
+    public Long   listeallCompetencesByExpert(Long id) {
+
+        return competenceRepository.countCompetencesByExpert(id);
+
+    }
     @Override
     public List<Competencesdto> listCompetencesByidexpert(Long id) {
         return competenceRepository.findByIdcompetences(id).stream().map( Competencesdto::fromEntity).collect(Collectors.toList());

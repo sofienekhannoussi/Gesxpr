@@ -104,14 +104,14 @@ public class ContratServiceimpl implements ContratService{
     }
 
     @Override
-    public List<Contratdto> listeallContratbyExpert(Long id) {
-        return contratRepository.findByIdExpertContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    public Long listeallContratbyExpert(Long id) {
+        return contratRepository.countAllContraByExpert(id);
     }
 
 
     @Override
-    public List<Contratdto> listeallContratbyResp(Long id) {
-        return contratRepository.findByIdRespContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    public Long listeallContratbyResp(Long id) {
+        return contratRepository.countAllContraByResp(id);
     }
     @Override
     public Contratdto uploadcoursfile(Long id, MultipartFile image) {

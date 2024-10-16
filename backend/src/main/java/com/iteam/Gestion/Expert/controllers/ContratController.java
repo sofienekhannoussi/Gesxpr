@@ -40,13 +40,13 @@ public class ContratController {
         return contratService.listeallContrat();
     }
 
-    @GetMapping("/findallContratbyexpert/{id}")
-    public List<Contratdto> listeallContratByExpert(@PathVariable("id") Long id) {
+    @GetMapping("/NombreContratbyexpert/{id}")
+    public Long listeallContratByExpert(@PathVariable("id") Long id) {
         return contratService.listeallContratbyExpert(id);
     }
 
-    @GetMapping("/findallContratbyresp/{id}")
-    public List<Contratdto> listeallContratByResp(@PathVariable("id") Long id) {
+    @GetMapping("/NombreContratbyresp/{id}")
+    public Long listeallContratByResp(@PathVariable("id") Long id) {
         return contratService.listeallContratbyResp(id);
     }
 

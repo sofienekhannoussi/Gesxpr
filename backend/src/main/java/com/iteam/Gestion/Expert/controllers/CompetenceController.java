@@ -30,8 +30,11 @@ public class CompetenceController {
     public List<Competencesdto> listeallCompetences() {
         return competencesServiceService.listeallCompetences();
     }
+    @GetMapping("/NombreCompetenceByExpert/{id}")
 
-
+    public Long listeallCompetencesByExpert(@PathVariable("id")Long id) {
+        return competencesServiceService.listeallCompetencesByExpert(id);
+    }
 
     @GetMapping("/listeallcompetencesbyexpert/{id}")
 

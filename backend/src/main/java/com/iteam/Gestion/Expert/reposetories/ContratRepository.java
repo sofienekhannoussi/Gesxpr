@@ -17,4 +17,11 @@ public interface ContratRepository extends JpaRepository<Contrat, Long> {
     List<Contrat> findByIdExpertContrat(@Param("id") Long id);
     @Query( "select o from Contrat o where o.responsableSociete.id = :id" )
     List<Contrat> findByIdRespContrat(@Param("id") Long id);
+    // session responsable
+    @Query("SELECT COUNT(o) FROM Contrat o where o.responsableSociete.id = :id")
+    Long countAllContraByResp(@Param("id") Long id);
+
+    // session expert
+    @Query("SELECT COUNT(o) FROM Contrat o  where o.expert.id = :id")
+    Long countAllContraByExpert(@Param("id") Long id);
 }
