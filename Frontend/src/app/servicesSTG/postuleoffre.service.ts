@@ -72,5 +72,9 @@ idoff!:number
     return this.httpClient.get<ListpostuleBymission>(`${this.baseUrl}/listePostuleByExpert/${idmission}/${idexpert}`)
   
   }
+  countPostule(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/countAll`)
+
+  }
 
 }

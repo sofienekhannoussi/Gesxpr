@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -24,17 +25,12 @@ public class MissionController {
         missionService.deleteMission(id);
     }
 
-
-    @GetMapping("/listeall")
-
-
-    public List<Missiondto> listeallMission() {
-        return missionService.listeallMission();
+    @GetMapping("/countAll")
+    public Long countallMission() {
+        return missionService.countallMission();
     }
 
     @GetMapping("/listeallbyresp/{id}")
-
-
     public List<Missiondto> listeallMissionByRESP(@PathVariable("id") Long id) {
         return missionService.listeallMissionbyResp(id);
     }
@@ -67,4 +63,17 @@ public class MissionController {
         return ResponseEntity.ok(count);
     }
 
+    @GetMapping("/missions/count/{responsableSocieteId}")
+    public Long getMissionCount(@PathVariable("responsableSocieteId")  Long responsableSocieteId) {
+        return missionService.getMissionCountByResponsableSociete(responsableSocieteId);
+    }
+
+    @GetMapping("/countByMonthAndYear")
+    public Map<Integer, Map<Integer, Long>> getMissionCountByMonthAndYear() {
+        return missionService.getMissionCountByMonthAndYear();
+    }
+    @GetMapping("/listeall")
+    public List<Missiondto> listeallMission() {
+        return missionService.listeallMission();
+    }
 }

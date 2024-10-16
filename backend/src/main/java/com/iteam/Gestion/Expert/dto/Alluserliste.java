@@ -22,7 +22,6 @@ public class Alluserliste {
 	    private String email;
 	    private String phone;
 	    private boolean active;
-	    @Enumerated(EnumType.STRING)
 	    private Role role;
 	    public static Alluserliste fromEntity(User request)
 	    {

@@ -1,23 +1,19 @@
 package com.iteam.Gestion.Expert.services;
 
-import com.iteam.Gestion.Expert.dto.Competencesdto;
 import com.iteam.Gestion.Expert.dto.Missiondto;
-import com.iteam.Gestion.Expert.entities.Competences;
-import com.iteam.Gestion.Expert.entities.Expert;
 import com.iteam.Gestion.Expert.entities.Mission;
 import com.iteam.Gestion.Expert.entities.ResponsableSociete;
-import com.iteam.Gestion.Expert.reposetories.ExpertRepository;
 import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import com.iteam.Gestion.Expert.reposetories.PostuleoffreRepository;
 import com.iteam.Gestion.Expert.reposetories.ResponsableSocieteRepository;
+import java.util.TreeMap;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -116,5 +112,32 @@ public class MissionServiceimpl implements MissionService {
 		Optional<Mission> mission=missionRepesitory.findById(mission_id);
 		return postuleoffreRepository.countByMissions(mission.get());
 	}
+	@Override
+	public Long getMissionCountByResponsableSociete(Long responsableSocieteId) {
+		return missionRepesitory.countMissionsByResponsableSociete(responsableSocieteId);
+	}
+
+	@Override
+	public Map<Integer, Map<Integer, Long>> getMissionCountByMonthAndYear() {
+		List<Object[]> results = missionRepesitory.countMissionByMonthAndYear();
+		return results.stream()
+				.collect(Collectors.groupingBy(
+						result -> ((Number) result[0]).intValue(),
+						TreeMap::new,
+						Collectors.toMap(
+								result -> ((Number) result[1]).intValue(),
+								result -> ((Number) result[2]).longValue(),
+								(oldValue, newValue) -> oldValue,
+								TreeMap::new
+						)
+				));
+
+
+	}
+	@Override
+	public Long countallMission() {
+		return missionRepesitory.countAllMissions();
+	}
+
 }
 

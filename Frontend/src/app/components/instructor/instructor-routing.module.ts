@@ -15,6 +15,12 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'support',
+        loadChildren: () =>
+          import('../instructor/support/support.module').then((m) => m.SupportModule),
+      },
+
+      {
         path: 'mymissions',
         loadChildren: () =>
           import('./instructor-course/instructor-course.module').then(

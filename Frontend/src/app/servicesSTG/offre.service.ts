@@ -36,6 +36,6 @@ idoff!:number
     return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
 
   }
-
+ 
 
 }

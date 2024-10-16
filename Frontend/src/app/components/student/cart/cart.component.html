@@ -1,5 +1,5 @@
 <!-- Breadcrumb -->
-<div class="breadcrumb-bar">
+<!-- <div class="breadcrumb-bar">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-12">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- /Breadcrumb -->
 
 <!-- Cart -->
@@ -63,20 +63,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="cart-remove" *ngIf="isstudentHeader">
-                                                <button 
-                                                class="btn btn-outline-primary btn-lg me-3" 
-                                                style="margin: 1em;" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#addempModal" 
-                                                (click)="Postuleoffre(data.id)" 
+                                            <div class="cart-remove" >
+                                                <button
+                                                class="btn btn-outline-primary btn-lg me-3"
+                                                style="margin: 1em;"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#addempModal"
+                                                (click)="Postuleoffre(data.id)"
                                                 >
-                                                <i class="bi bi-send"></i> 
+                                                <i class="bi bi-send"></i>
                                                 Postuler
                                              </button>
-                                                <a href="javascript:;" 
+                                                <a href="javascript:;"
                                                    class="btn btn-outline-primary btn-lg"
-                                                   (click)="getMissionById(data.id)" 
+                                                   (click)="getMissionById(data.id)"
                                                    data-bs-toggle="modal"
                                                    data-bs-target="#detailOffreModal">
                                                     <i class="bi bi-info-circle"></i> Détails Offre
@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             </div>

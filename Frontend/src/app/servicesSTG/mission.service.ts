@@ -71,6 +71,14 @@ listeallMissionBySTATUTs(sta:string): Observable<Mission[]> {
       return this.httpClient.delete<void>(`${this.baseUrl}/delete/${id}`)
 
     }
+    
+    getMissionCountByMonthAndYear(): Observable<any> {
+      return this.httpClient.get<any>(`${this.baseUrl}/countByMonthAndYear`);
+    }
+    
+    countMission(): Observable<number> {
+      return this.httpClient.get<number>(`${this.baseUrl}/countAll`)
 
+    }
 
   }

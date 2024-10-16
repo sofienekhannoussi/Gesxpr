@@ -58,6 +58,10 @@ public class PostuloffreController {
     public List<ListPostuledto> listeallPostule(@PathVariable("idmission") Long idmission) {
         return postuleoffreService.listeallPostule(idmission);
     }
+    @GetMapping("/countAll")
+    public Long countallPostule() {
+        return postuleoffreService.countallPostule();
+    }
 
     @GetMapping("/listePostuleByMission/{idmission}")
 

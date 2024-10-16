@@ -1,20 +1,68 @@
+
+<div class="d-flex justify-content-between mb-2">
+    <h4></h4>
+    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addUserModal">
+        <i class="fas fa-plus"></i> Ajouter un Responsable
+    </button>
+</div>
+<br>
+
+
 <table class="table table-hover table-striped mb-4">
     <thead class="thead-dark">
+    
+
         <tr>
-            <th>Nom et prénom</th>
-            <th class="text-center">Email</th>
-            <th class="text-center">Tél</th>
-            <th class="text-center">Role</th>
-            <th class="text-center">Statut</th>
-            <th class="text-center">Actions</th>
+            <th scope="col" (click)="sortData('id')">
+                Id
+                <span *ngIf="sortField === 'id'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+            <th scope="col" (click)="sortData('fullname')">
+                Nom et prénom
+                <span *ngIf="sortField === 'fullname'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+            <th scope="col" (click)="sortData('email')">
+                Email
+                <span *ngIf="sortField === 'email'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+
+            <th scope="col" (click)="sortData('phone')">
+                Tél
+                <span *ngIf="sortField === 'phone'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+            <th scope="col" (click)="sortData('role')">
+                Role
+                <span *ngIf="sortField === 'role'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+            <th scope="col" (click)="sortData('active')">
+                Statut
+                <span *ngIf="sortField === 'active'">
+                    <i class="fas" [ngClass]="sortDirection === 'asc' ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+                </span>
+            </th>
+        
+            <th scope="col" class="text-center">Action</th>
         </tr>
+
     </thead>
     <tbody>
-        <tr *ngFor="let data of listUserr;" #itemElement>
+        <tr *ngFor="let data of paginatedList;" #itemElement>
+            <td class="text-center">{{data.id}}</td>
             <td class="text-center">{{data.fullname}}</td>
             <td class="text-center">{{data.email}}</td>
             <td class="text-center">{{data.phone}}</td>
             <td class="text-center">{{data.role}}</td>
+           
             <td class="text-center">
                 <span class="badge badge-{{data.active ? 'success' : 'danger'}}">
                     {{data.active ? 'Actif' : 'Inactif'}}
@@ -29,6 +77,21 @@
         </tr>
     </tbody>
 </table>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+            [class.active]="currentPage === (i + 1)">
+            <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+        </li>
+    </ul>
+</nav>
+
 
 <!-- Modal for Updating Mission -->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateMissionModal" aria-hidden="true">
@@ -83,3 +146,48 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addUserModalLabel">Ajouter un Responsable</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="FormGroupviewupd">
+                    <div class="form-group">
+                        <label for="fullname">Nom et prénom</label>
+                        <input type="text" formControlName="fullname" class="form-control" id="fullname" placeholder="Nom et prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" formControlName="password" class="form-control" id="password" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="Téléphone">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="role">Adress</label>
+                        <input type="text" formControlName="adresse" class="form-control" id="adresse" placeholder="Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">presentation societe</label>
+                        <input type="text" formControlName="presentationsociete" class="form-control" id="presentationsociete" placeholder="presentationsociete">
+                    </div>
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"  (click)="registerresponsables()">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+

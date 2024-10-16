@@ -28,6 +28,7 @@ public interface PostuleoffreService {
     // changement de dto pour la liste et le detail
 
 
+    Long countallPostule();
 
     Expert uploadFile(Long Id, MultipartFile image) ;
 

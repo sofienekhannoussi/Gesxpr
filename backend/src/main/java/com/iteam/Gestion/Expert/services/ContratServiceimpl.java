@@ -2,6 +2,7 @@ package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import com.iteam.Gestion.Expert.dto.Contratdto;
+import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.entities.Contrat;
 import com.iteam.Gestion.Expert.entities.Expert;
 import com.iteam.Gestion.Expert.entities.Mission;
@@ -12,13 +13,13 @@ import com.iteam.Gestion.Expert.reposetories.MissionRepesitory;
 import com.iteam.Gestion.Expert.reposetories.ResponsableSocieteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +38,7 @@ public class ContratServiceimpl implements ContratService{
 
     @Override
     public List<Contratdto> listeallContrat() {
-        return null;
+        return contratRepository.findAll().stream().map(Contratdto::fromEntity).collect(Collectors.toList());
     }
 
     @Override
@@ -101,6 +102,17 @@ public class ContratServiceimpl implements ContratService{
         return ResponseEntity.ok(contratRepository.findById(id).get());
 
     }
+
+    @Override
+    public List<Contratdto> listeallContratbyExpert(Long id) {
+        return contratRepository.findByIdExpertContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<Contratdto> listeallContratbyResp(Long id) {
+        return contratRepository.findByIdRespContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    }
     @Override
     public Contratdto uploadcoursfile(Long id, MultipartFile image) {
         ResponseEntity<Contrat> contratResponse = this.findbyId(id);
@@ -113,5 +125,10 @@ public class ContratServiceimpl implements ContratService{
         Contrat contratsaved = contratRepository.save(contrat);
         return  Contratdto.fromEntity(contratsaved);
 
+    }
+
+    @Override
+    public Long countallContrat() {
+        return contratRepository.countAllContra();
     }
 }

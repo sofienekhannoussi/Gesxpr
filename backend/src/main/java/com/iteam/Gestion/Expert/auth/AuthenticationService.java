@@ -100,6 +100,7 @@ public class AuthenticationService {
             user = new ResponsableSociete();
             user = ResponsableSocietedto.toEntity((ResponsableSocietedto) request);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setActive(true);
 System.err.println(user.getFullname());
 
             user.setRole(Role.RESP_STE);
@@ -109,8 +110,8 @@ System.err.println(user.getFullname());
             saveUserToken(savedUser, jwtToken);
             //verification email
             final String token = UUID.randomUUID().toString();
-            createVerificationTokenForUser(user, token);
-            mailService.sendVerificationToken(token, user);
+            //createVerificationTokenForUser(user, token);
+           // mailService.sendVerificationToken(token, user);
             return Messgchekmail.builder()
                     .msg("Success! Please, check your email to complete your registration")
                     .build();

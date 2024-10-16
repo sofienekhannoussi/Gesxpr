@@ -5,6 +5,7 @@ import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.entities.Mission;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface MissionService {
@@ -23,5 +24,8 @@ public interface MissionService {
     Missiondto addMission(Missiondto missiondto);
 
     Long countPostuleoffreForMission(Long mission_id);
+    public Long getMissionCountByResponsableSociete(Long responsableSocieteId);
+    Map<Integer, Map<Integer, Long>> getMissionCountByMonthAndYear();
 
+    Long countallMission();
 }

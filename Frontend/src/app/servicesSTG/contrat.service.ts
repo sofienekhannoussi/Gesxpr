@@ -42,5 +42,8 @@ export class ContratService {
     return this.httpClient.post<Contrat>(`${this.baseUrl}/uploadFile/${id}`, formData);
   }
 
+  countContrat(): Observable<number> {
+    return this.httpClient.get<number>(`${this.baseUrl}/countAll`)
 
+  }
 }

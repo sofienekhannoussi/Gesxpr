@@ -17,4 +17,16 @@ public interface MissionRepesitory extends JpaRepository<Mission, Long> {
 
     @Query( "select o from Mission o where o.statut = :sta"  )
     List<Mission> findByStatuts(@Param("sta") String sta );
+
+    @Query("SELECT COUNT(m) FROM Mission m WHERE m.responsableSociete.id = :responsableSocieteId")
+    Long countMissionsByResponsableSociete(@Param("responsableSocieteId") Long responsableSocieteId);
+
+    @Query("SELECT EXTRACT(YEAR FROM r.dateDebut) AS year, EXTRACT(MONTH FROM r.dateDebut) AS month, COUNT(r) AS count " +
+            "FROM Mission r " +
+            "GROUP BY EXTRACT(YEAR FROM r.dateDebut), EXTRACT(MONTH FROM r.dateDebut) " +
+            "ORDER BY year, month")
+    List<Object[]> countMissionByMonthAndYear();
+
+    @Query("SELECT COUNT(m) FROM Mission m ")
+    Long countAllMissions();
 }

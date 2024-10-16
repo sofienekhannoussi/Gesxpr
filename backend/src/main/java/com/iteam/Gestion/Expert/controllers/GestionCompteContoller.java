@@ -23,14 +23,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GestionCompteContoller {
 	private final GestionCompte gestionCompte;
+
 @GetMapping("/findbyidexpert/{id}")
 	public Expertdto findbyidExpert(@PathVariable("id") Long id) {
 		return gestionCompte.findbyidExpert(id);
 	}
+
 @GetMapping("/findbyidAdmin/{id}")
 	public Admindto findbyidAdmin(@PathVariable("id") Long id) {
 		return gestionCompte.findbyidAdmin(id);
 	}
+
 @GetMapping("/findbyidResponsableSociete/{id}")
 	public ResponsableSocietedto findbyidResponsableSociete(@PathVariable("id") Long id) {
 		return gestionCompte.findbyidResponsableSociete(id);
@@ -43,6 +46,7 @@ public class GestionCompteContoller {
 	public Admindto updateAdmindto(Admindto eleedto) {
 		return gestionCompte.updateAdmindto(eleedto);
 	}
+
 @PostMapping("/updateExpert")
 	public Expertdto updateExpertdto(Expertdto expdto) {
 		return gestionCompte.updateExpertdto(expdto);
@@ -51,11 +55,19 @@ public class GestionCompteContoller {
 	public void deletebyid(@PathVariable("id")  Long id) {
 		gestionCompte.deletebyid(id);
 	}
+
 @GetMapping("/alluser")
 	public List<Alluserliste> listeall() {
 		return gestionCompte.listeall();
 	}
 
+	@GetMapping("/findbyidUser/{id}")
+	public Alluserliste findbyidUser(@PathVariable("id") Long id) {
+		return gestionCompte.findbyidUser(id);
+	}
 
-
+	@GetMapping("activateCompte/{status}/{id}")
+	public Alluserliste updateStatudto( @PathVariable("status") Boolean status, @PathVariable("id") Long id) {
+		return gestionCompte.updateStatudto(status, id);
+	}
 }

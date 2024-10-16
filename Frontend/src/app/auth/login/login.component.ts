@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         console.log("ggggggg",IDD);
         if(role=="EXPERT")
           {
-            this.router.navigate(['/expert']);
+            this.router.navigate(['/expert/setting-edit-profile']);
 
           }
           if(role=="RESP_STE")
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
             if(role=="ADMIN")
               {
 
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin/dashboard-admin']);
 
               }
 

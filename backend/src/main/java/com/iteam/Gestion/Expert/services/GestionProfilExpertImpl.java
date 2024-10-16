@@ -73,24 +73,9 @@ public class GestionProfilExpertImpl implements  GestionProfil {
         {
             throw new RuntimeException("no Expert to update");
         }
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public ResponsableSocietedto findRespbyid(Long id) {
-
         ResponsableSociete repsocite =responsableSocieteRepository.findById(id).get();
         return ResponsableSocietedto.fromEntity(repsocite);
     }

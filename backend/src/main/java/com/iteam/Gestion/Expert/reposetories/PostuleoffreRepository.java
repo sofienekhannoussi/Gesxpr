@@ -19,4 +19,6 @@ public interface PostuleoffreRepository extends JpaRepository <Postuleoffre, Lon
     List<Postuleoffre> findByMissions_Id(Long missionId);
 
     Postuleoffre findByMissionsIdAndExpertId(Long idMission, Long idExpert);
+    @Query("SELECT COUNT(m) FROM Postuleoffre m ")
+    Long countAllPostules();
 }

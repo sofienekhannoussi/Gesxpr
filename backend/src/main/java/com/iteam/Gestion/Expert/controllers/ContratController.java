@@ -23,6 +23,12 @@ public class ContratController {
     private final ContratService contratService;
     private final ImageStorage imageStorage ;
 
+    @GetMapping("/countAll")
+    public Long countallcontrat() {
+        return contratService.countallContrat();
+    }
+
+
 
     @DeleteMapping("/delete/{id}")
     public void deleteContrat(@PathVariable("id") Long id) {
@@ -34,9 +40,18 @@ public class ContratController {
         return contratService.listeallContrat();
     }
 
+    @GetMapping("/findallContratbyexpert/{id}")
+    public List<Contratdto> listeallContratByExpert(@PathVariable("id") Long id) {
+        return contratService.listeallContratbyExpert(id);
+    }
+
+    @GetMapping("/findallContratbyresp/{id}")
+    public List<Contratdto> listeallContratByResp(@PathVariable("id") Long id) {
+        return contratService.listeallContratbyResp(id);
+    }
 
     @GetMapping("/findByIdContrat/{id}")
-    public Contratdto findByIdContrat(Long id) {
+    public Contratdto findByIdContrat(@PathVariable("id")  Long id) {
         return contratService.findByIdContrat(id);
     }
 

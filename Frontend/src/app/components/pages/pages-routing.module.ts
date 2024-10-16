@@ -7,11 +7,7 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      {
-        path: 'cart',
-        loadChildren: () =>
-          import('./cart/cart.module').then((m) => m.CartModule),
-      },
+
       {
         path: 'checkout',
         loadChildren: () =>
@@ -48,11 +44,7 @@ const routes: Routes = [
             (m) => m.PricingPlanModule
           ),
       },
-      {
-        path: 'support',
-        loadChildren: () =>
-          import('./support/support.module').then((m) => m.SupportModule),
-      },
+     
       {
         path: 'wishlist',
         loadChildren: () =>

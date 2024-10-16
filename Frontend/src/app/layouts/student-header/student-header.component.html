@@ -89,12 +89,15 @@
                             <a class="nav-link text-dark" routerLink="/expert/setting-edit-profile"  >Frofil</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/pages/cart" >Offres</a>
+                            <a class="nav-link text-dark" routerLink="/expert/cart" >Offres</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/pages/support" >Contact</a>
+                            <a class="nav-link text-dark" routerLink="/expert/cart" >Contrats</a>
                           </li>
-                          
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" routerLink="/expert/support" >Contact</a>
+                          </li>
+
                         </ul>
                       </div>
                 </div>
@@ -359,7 +362,7 @@
                                     <h6>{{exp.fullname}}</h6>
                                     <p class="text-muted mb-0">Expert</p>
                                 </div>
-                            </div> 
+                            </div>
                             <a class="dropdown-item" [routerLink]="routes.students_edit_profile"><i-feather name="user"
                                     class="me-1"></i-feather> Profile</a>
                                 <!-- <a class="dropdown-item" [routerLink]="routes.students_subscription"><i-feather

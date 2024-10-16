@@ -8,6 +8,8 @@ import com.iteam.Gestion.Expert.dto.Expertdto;
 import com.iteam.Gestion.Expert.dto.ResponsableSocietedto;
 
 public interface GestionCompte {
+	Alluserliste findbyidUser(Long id);
+
 	Expertdto findbyidExpert(Long id);
 	Admindto findbyidAdmin(Long id);
 	ResponsableSocietedto findbyidResponsableSociete(Long id );
@@ -16,7 +18,7 @@ public interface GestionCompte {
 	Expertdto updateExpertdto(Expertdto expdto);
 	void deletebyid(Long id);
 	List<Alluserliste> listeall();
-	
-	
 
+
+	Alluserliste updateStatudto(Boolean status, Long id);
 }

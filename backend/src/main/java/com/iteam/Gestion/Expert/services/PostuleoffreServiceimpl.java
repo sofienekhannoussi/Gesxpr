@@ -176,6 +176,17 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
     }
 
     @Override
+    public Long countallPostule() {
+        return postuleoffreRepository.countAllPostules();
+    }
+
+
+
+
+
+
+
+    @Override
     public Expert uploadFile(Long Id, MultipartFile image) {
         ResponseEntity<Expert> userResponse = this.findbyIdExpert(Id);
         String imageName=imageStorage.store(image);
@@ -218,7 +229,7 @@ public class PostuleoffreServiceimpl implements PostuleoffreService{
     private String extractTextFromPDFWithOCR(MultipartFile pdf) {
         ITesseract tesseract = new Tesseract();
 //        tesseract.setDatapath("C:\\Users\\rimzh\\OneDrive\\Bureau\\Gesxpr-master\\backend\\tessdata-main");
-        tesseract.setDatapath("C:\\Users\\rimzh\\OneDrive\\Bureau\\backend\\tessdata");
+        tesseract.setDatapath("C:\\Users\\Skander\\OneDrive - Pharmalys Laboratories\\Desktop\\PFE\\backend\\tessdata");
         tesseract.setLanguage("fra");
         File tempFile = null;
         try {

@@ -33,12 +33,11 @@ public class ProfilController {
         return gestionProfilService.updateExpert(expertdto);
     }
     @GetMapping("/findRespbyid/{id}")
-
     public ResponsableSocietedto findRespbyid(@PathVariable("id")Long id) {
         return gestionProfilService.findRespbyid(id);
     }
-    @PostMapping("/saveResponsable")
 
+    @PostMapping("/saveResponsable")
     public ResponsableSocietedto updateResp(@RequestBody  ResponsableSocietedto profilResponsableDTO) {
         return gestionProfilService.updateResp(profilResponsableDTO);
     }

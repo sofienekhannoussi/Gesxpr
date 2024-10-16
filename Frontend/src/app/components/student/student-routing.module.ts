@@ -14,7 +14,11 @@ const routes: Routes = [
         ),
     },
 
-    //lien add demande
+    {
+      path: 'cart',
+      loadChildren: () =>
+        import('../student/cart/cart.module').then((m) => m.CartModule),
+    },//lien add demande
 
     {
       path: 'demande',
@@ -130,8 +134,12 @@ const routes: Routes = [
           './profil-expert-for-responsable/profil-expert-for-responsable.module'
         ).then((m) => m.ProfilExpertForResponsableModule),
     },
-
-
+    {
+      path: 'support',
+      loadChildren: () =>
+        import('../student/support/support.module').then((m) => m.SupportModule),
+    }
+,
 
     {
       path: 'view-invoice',
