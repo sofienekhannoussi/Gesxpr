@@ -22,12 +22,13 @@
 <section class="course-content cart-widget">
     <div class="container">
         <div class="student-widget">
-            <div class="student-widget-group">
+            <div class="settings-menu p-0">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="cart-head text-center">
-                            <h4>Missions List</h4>
-                        </div>
+                      <div class="profile-heading">
+                        <div class="cart-head ">
+                            <h3>Liste des offres</h3>
+                        </div></div>
                         <div class="cart-group">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 d-flex" *ngFor="let data of missionn">
@@ -42,18 +43,18 @@
                                             <div class="product-content">
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <h6>Statut :</h6>
-                                                        <h6>{{data.statut}}</h6>
+                                                        <h6>Statut : </h6>
+                                                        <h6> {{data.statut}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <h6>From :</h6>
-                                                        <h6>{{data.dateDebut | date}}</h6>
+                                                        <h6>From : </h6>
+                                                        <h6> {{data.dateDebut | date}}</h6>
                                                     </div>
                                                     <div class="course-view d-flex align-items-center">
-                                                        <h6>To :</h6>
-                                                        <h6>{{data.dateFin | date}}</h6>
+                                                        <h6>To : </h6>
+                                                        <h6> {{data.dateFin | date}}</h6>
                                                     </div>
                                                 </div>
                                                 <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
@@ -63,10 +64,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="cart-remove" >
+                                            <div class="cart-remove d-flex justify-content-between align-items-center" style="gap:5px;" >
                                                 <button
-                                                class="btn btn-outline-primary btn-lg me-3"
-                                                style="margin: 1em;"
+                                                class="btn btn-outline-primary btn-lg"
+                                                style="border-color: #ff875a; color: #ff875a; margin: 1em;"
+
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#addempModal"
                                                 (click)="Postuleoffre(data.id)"
@@ -75,12 +77,13 @@
                                                 Postuler
                                              </button>
                                                 <a href="javascript:;"
-                                                   class="btn btn-outline-primary btn-lg"
+                                                class="btn btn-outline-primary btn-lg"
+                                                style="border-color: #ff875a; color: #ff875a;"
+
                                                    (click)="getMissionById(data.id)"
                                                    data-bs-toggle="modal"
                                                    data-bs-target="#detailOffreModal">
-                                                    <i class="bi bi-info-circle"></i> Détails Offre
-                                                </a>
+                                                    <i class="bi bi-info-circle"></i> Détails                                              </a>
                                             </div>
                                         </div>
                                     </div>
@@ -90,37 +93,45 @@
 
                         <!-- Modal pour télécharger le CV -->
                         <div class="modal fade" id="addempModal" tabindex="-1" role="dialog" aria-labelledby="addTeacherModalName" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body col-md-12">
-                                        <form>
-                                            <div class="form-group">
-                                                <label class="add-course-label">Upload CV</label>
-                                                <div class="course-group mb-0 d-flex">
-                                                    <div class="form-group">
-                                                        <button (click)="fileInput.click()" style="background-color: transparent; border: none;">
-                                                            <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" />
-                                                            <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)" [(ngModel)]="editproRequest.cv" name="cv">
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="addTeacherModalName">Télécharger CV</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form>
+                                          <!-- Section pour le téléchargement du CV -->
+                                          <div class="form-group text-center mb-4">
+                                              <label class="add-course-label mb-3">Téléchargez votre CV</label>
+                                              <div class="d-flex justify-content-center">
+                                                  <button (click)="fileInput.click()" class="btn" style="background-color: transparent; border: none;">
+                                                      <img (error)="changeSource($event)" [src]="imgUrl" class="rounded-circle" width="100px" height="100px" alt="Votre CV" />
+                                                      <input hidden type="file" #fileInput (change)="onFileInput(fileInput.files)" [(ngModel)]="editproRequest.cv" name="cv">
+                                                  </button>
+                                              </div>
+                                          </div>
 
-                                            <p *ngIf="msgSuccess" style="color:green; size:20px">{{msgSuccess}}</p>
-                                            <div style="display: flex; justify-content: center;">
-                                                <button (click)="addpostule()" type="submit" class="btn btn-success-dark" style="width:150px; margin-right:20px;" [disabled]="loading">
-                                                    <div *ngIf="loading" class="spinner-border spinner-border-sm" role="status" style="margin-right: 5px;">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                    <span *ngIf="!loading">Postuler</span>
-                                                </button>
-                                            </div>
-                                            <p *ngIf="errorMessage" style="color:red; size:20px">{{ errorMessage }}</p>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                          <!-- Message de succès ou d'erreur -->
+                                          <div class="text-center">
+                                              <p *ngIf="msgSuccess" class="text-success">{{msgSuccess}}</p>
+                                              <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>
+                                          </div>
+
+                                          <!-- Bouton Postuler -->
+                                          <div class="d-flex justify-content-center mt-4">
+                                              <button (click)="addpostule()" type="submit" class="btn btn-primary" style="width: 150px;" [disabled]="loading">
+                                                  <div *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status">
+                                                      <span class="sr-only">Loading...</span>
+                                                  </div>
+                                                  <span *ngIf="!loading">Postuler</span>
+                                              </button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
                     </div>
                 </div>

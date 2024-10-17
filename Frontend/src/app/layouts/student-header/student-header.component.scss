@@ -1,0 +1,15 @@
+.custom-login-btn {
+  background-color: #ff875a;
+  border-color: #ff875a;
+  color: white;
+}
+
+.custom-login-btn:hover {
+  background-color: #e96d45; /* Une couleur plus foncée pour l'effet hover */
+  border-color: #e96d45;
+  color: white;
+}
+.active-link {
+  color: #ff875a !important; /* La couleur du lien actif */
+  font-weight: bold; /* Facultatif, pour rendre le texte en gras */
+}

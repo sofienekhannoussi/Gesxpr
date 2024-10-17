@@ -19,7 +19,7 @@ export class GestionDesExpertsComponent implements OnInit{
   FormGroupart: any;
   IdUser!: number
   currentPage: number = 1;
-  itemsPerPage: number = 5; // Number of items per page
+  itemsPerPage: number = 10; // Number of items per page
   totalItems: number = 0; // Total items for pagination
   sortedColumn: string = ''; // Column for sorting
   sortDirections: boolean = true; // true for ascending, false for descending
@@ -34,24 +34,24 @@ constructor(private  gestionProfilService:GestionProfilUserService,private authS
 
 }
   ngOnInit(): void {
- 
+
     this.FormGroupviewupd = new FormGroup({
       'email': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required),
       'fullname': new FormControl(''),
       'phone': new FormControl('', Validators.required),
-   
+
       'adresse': new FormControl('', Validators.required),
-   
+
       'presentationsociete': new FormControl('', Validators.required),
     });
 
-    this.getlistUser() 
-    this.totalItems = this.listUserr.length; 
+    this.getlistUser()
+    this.totalItems = this.listUserr.length;
     this.FormGroupart = new FormGroup({
-  
+
       'active' : new FormControl('', Validators.required),
-     
+
     });
   }
 
@@ -92,7 +92,7 @@ getlistUser() {
     this.gestionProfilService.getList().subscribe(res => {
       this.listUserr = res
       console.log(res)
-     
+
     } , error => {
         console.error(error)
     } , ()=> {
@@ -114,14 +114,14 @@ getUserId(id:number)
           },error=>{
             console.error(error)
           },()=>{
-          
+
           });
         }
         console.log("iiiiiiiiiiiiii",id);
       }
 
  updateSatusUser() {
-      
+
         console.log('status',this.FormGroupart.value.active)
         console.log('idUser',this.IdUser)
           this.gestionProfilService.ModifiedSatusUser(this.FormGroupart.value.active, this.IdUser ).subscribe(
@@ -129,14 +129,14 @@ getUserId(id:number)
               alert('status modifie')
               console.log(res);
               this.viewmodeluser=res
-              this.getlistUser() 
+              this.getlistUser()
           },error=>{
             console.error(error)
           },()=>{
-          
+
           });
-        
-    
+
+
       }
       registerresponsables(){
 
@@ -150,9 +150,9 @@ getUserId(id:number)
         .subscribe(result=>{
           console.log("TTTTTTTT")
           console.log(result)
-          this.getlistUser() 
+          this.getlistUser()
         },
-      
+
         (err:HttpErrorResponse)=>this.errorMsg='this email is existe')
       }
 }

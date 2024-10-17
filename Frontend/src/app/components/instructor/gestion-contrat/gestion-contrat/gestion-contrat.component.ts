@@ -15,7 +15,6 @@ constructor(private contratservice:ContratService ){
 }
   ngOnInit(): void {
     const id = Number(localStorage.getItem('userId'));
-
     this.getlistContra(id)
 
   }

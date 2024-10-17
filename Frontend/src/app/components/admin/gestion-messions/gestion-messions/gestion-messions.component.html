@@ -1,11 +1,18 @@
-<table class="table table-hover table-striped mb-4">
+
+<div class="settings-widget profile-details">
+  <div class="settings-menu p-0">
+  <div class="profile-heading">
+  <h3>Liste des Missions</h3>
+
+  </div>
+  <table class="table table-hover table-striped mb-4">
     <thead class="thead-dark">
-        <tr>  
-           
-            <th>title</th>
-            <th class="text-center">statut</th>
-            <th class="text-center">typeContrat</th>
-          
+        <tr>
+
+            <th class="text-center">Title</th>
+            <th class="text-center">Statut</th>
+            <th class="text-center">Type de contrat</th>
+
         </tr>
     </thead>
     <tbody>
@@ -13,7 +20,7 @@
             <td class="text-center">{{data.title}}</td>
             <td class="text-center">{{data.statut}}</td>
             <td class="text-center">{{data.typeContrat}}</td>
-          
+
             <td class="text-center">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"  (click)="getMissionId(data.id)">
                     <i class="fas fa-edit"></i> Détail
@@ -58,9 +65,9 @@
                 <p><strong>typeLieu:</strong> {{viewmodelMission.typeLieu}}</p>
                 <p><strong>typeTravail:</strong> {{viewmodelMission.typeTravail}}</p>
                 <p><strong>isActive:</strong> {{viewmodelMission.isActive}}</p>
-              
+
             </div>
-            
+
         </div>
     </div>
 </div>

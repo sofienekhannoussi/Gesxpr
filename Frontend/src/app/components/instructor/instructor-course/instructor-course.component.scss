@@ -5,3 +5,16 @@
   cursor: pointer;
   color: #FF875A;
 }
+
+
+.custom-btn {
+    background-color: #ff875a; /* Couleur de fond */
+    border: none; /* Supprime la bordure par défaut */
+    color: white; /* Couleur du texte */
+    transition: background-color 0.3s ease; /* Ajoute une transition douce */
+}
+
+.custom-btn:hover {
+    background-color: #e96d45; /* Couleur lors du survol */
+    color: white; /* Couleur du texte lors du survol */
+}

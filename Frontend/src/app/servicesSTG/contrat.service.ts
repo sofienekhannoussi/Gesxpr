@@ -25,12 +25,12 @@ export class ContratService {
   }
 
   findContratByIdExpert(id: number): Observable<Contrat[]> {
-    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratbyexpert/${id}`)
+    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratByExpert/${id}`)
 
   }
 
   findContratByIdResp(id: number): Observable<Contrat[]> {
-    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratbyresp/${id}`)
+    return this.httpClient.get<Contrat[]>(`${this.baseUrl}/findallContratByResp/${id}`)
 
   }
 

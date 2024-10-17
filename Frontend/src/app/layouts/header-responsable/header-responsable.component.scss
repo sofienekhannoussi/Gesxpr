@@ -1,0 +1,15 @@
+.custom-btn{
+  background-color: #ff875a;
+  border-color: #ff875a;
+  color: white;
+}
+
+.custom-btn:hover {
+  background-color: #e96d45; /* Une couleur plus foncée pour l'effet hover */
+  border-color: #e96d45;
+  color: white;
+}
+.active-link {
+  color: #e96d45 !important; /* Couleur pour la page active */
+  font-weight: bold; /* Optionnel : pour un texte plus distinctif */
+}

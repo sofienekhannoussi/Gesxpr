@@ -17,7 +17,7 @@
                                             <input type="text" class="form-control"
                                             [(ngModel)]="searchDataValue" name="one"
 											(ngModelChange)="searchData(searchDataValue)"
-                                                placeholder="Search our courses">
+                                                placeholder="Search our missions">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-item">
@@ -80,7 +80,7 @@
                                     <td class="text-center"><span>{{data.statut}}</span></td>
                                     <td class="text-center"><span> <mat-icon class="editIcon" data-bs-toggle="modal" data-bs-target="#addempModal"  (click)="getMission(data.id)">edit</mat-icon></span>
                                       <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span>
-                                      
+
                                       <span class="text-center" (click)="getPostuletByMission(data.id)" data-bs-toggle="modal" data-bs-target="#ListModalPostule">
                                         <mat-icon class="editIcon">list</mat-icon> <!-- Remplace 'info' par 'list' -->
                                       </span>
@@ -181,7 +181,7 @@
   <div class="modal-dialog modal-xl" role="document"> <!-- Remplacement de 'modal-lg' par 'modal-xl' pour une plus grande modale -->
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addTeacherModalName">Liste postule</h5>
+        <h5 class="modal-title" id="addTeacherModalName">Liste des postules</h5>
         <button #closeModalBtns type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -208,15 +208,15 @@
                 <td>{{ item.missionsdto.title }}</td>
                 <td>
                   <div class="d-flex gap-2"> <!-- Flexbox pour aligner les boutons -->
-                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
+                    <button #closeModalBtn type="button" class="btn custom-btn" aria-label="Details"
                             (click)="navigateToProfil(item.expertdto.id)">
-                      Profil expert
+                        Profil expert
                     </button>
-                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
-                    (click)="navigateToContrat(item.expertdto.id,item.missionsdto.id)">
-                      Ajouter contrat
+                    <button #closeModalBtn type="button" class="btn custom-btn" aria-label="Details"
+                            (click)="navigateToContrat(item.expertdto.id, item.missionsdto.id)">
+                        Ajouter contrat
                     </button>
-                  </div>
+                </div>
                 </td>
               </tr>
             </tbody>
@@ -228,4 +228,4 @@
 </div>
 
 
- 
+

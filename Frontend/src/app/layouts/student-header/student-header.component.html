@@ -81,34 +81,32 @@
                         </li>
                     </ul> -->
                     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav align-items-center">
-                          <li class="nav-item">
-                            <a  routerLink="/home" class="nav-link active text-dark" aria-current="page" >Home</a>
-                          </li>
-
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/expert/dashboard">Dashboard</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/expert/setting-edit-profile"  >Frofil</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/expert/cart" >Offres</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/expert/contrat" >Contrats</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link text-dark" routerLink="/expert/support" >Contact</a>
-                          </li>
-
-                        </ul>
+                      <ul class="navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a routerLink="/home" routerLinkActive="active-link" class="nav-link text-dark">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/expert/dashboard" routerLinkActive="active-link" class="nav-link text-dark">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/expert/setting-edit-profile" routerLinkActive="active-link" class="nav-link text-dark">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/expert/cart" routerLinkActive="active-link" class="nav-link text-dark">Offres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/expert/contrat" routerLinkActive="active-link" class="nav-link text-dark">Contrats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/expert/support" routerLinkActive="active-link" class="nav-link text-dark">Contact</a>
+                        </li>
+                    </ul>
                       </div>
                 </div>
                 <ul class="nav header-navbar-rht d-none d-lg-flex">
-                    <li class="login-link">
-                      <a [routerLink]="routes.login" class="btn btn-primary ms-3">Login / Signup</a>
-                    </li>
+                  <li class="login-link">
+                    <a [routerLink]="routes.login" class="btn ms-3 custom-login-btn">Login / Signup</a>
+                </li>
                   </ul>
                 <ul class="nav header-navbar-rht">
                     <!-- <li class="nav-item">

@@ -22,28 +22,27 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-                <a class="nav-link active text-dark" aria-current="page" href="#">Home</a>
+                  <a class="nav-link text-dark" routerLink="/"  aria-current="page">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/admin/dashboard-admin">Dashboard</a>
+                  <a class="nav-link text-dark" routerLink="/admin/dashboard-admin" routerLinkActive="active-link">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/admin/gestion-des-experts">Gestion Users</a>
+                  <a class="nav-link text-dark" routerLink="/admin/gestion-des-experts" routerLinkActive="active-link">Gestion Users</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/admin/gestion-messions">Gestion Missions</a>
+                  <a class="nav-link text-dark" routerLink="/admin/gestion-messions" routerLinkActive="active-link">Gestion Missions</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/admin/gestion-contrat">Gestion Contrats</a>
+                  <a class="nav-link text-dark" routerLink="/admin/gestion-contrat" routerLinkActive="active-link">Gestion Contrats</a>
               </li>
-
-            </ul>
+          </ul>
           </div>
 
           <!-- User Menu / Login -->
           <ul class="nav header-navbar-rht d-none d-lg-flex">
             <li class="login-link">
-              <a [routerLink]="routes.login" class="btn btn-primary ms-3">Login / Signup</a>
+              <a [routerLink]="routes.login" class="btn ms-3 custom-login-btn">Login / Signup</a>
             </li>
           </ul>
 

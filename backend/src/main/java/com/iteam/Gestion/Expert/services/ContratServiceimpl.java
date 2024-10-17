@@ -2,7 +2,6 @@ package com.iteam.Gestion.Expert.services;
 
 import com.iteam.Gestion.Expert.configimage.ImageStorage;
 import com.iteam.Gestion.Expert.dto.Contratdto;
-import com.iteam.Gestion.Expert.dto.Missiondto;
 import com.iteam.Gestion.Expert.entities.Contrat;
 import com.iteam.Gestion.Expert.entities.Expert;
 import com.iteam.Gestion.Expert.entities.Mission;
@@ -39,6 +38,16 @@ public class ContratServiceimpl implements ContratService{
     @Override
     public List<Contratdto> listeallContrat() {
         return contratRepository.findAll().stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Contratdto> listeallContratByResp(Long id) {
+        return contratRepository.findByIdRespContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Contratdto> listeallContratByExpert(Long id) {
+        return contratRepository.findByIdExpertContrat(id).stream().map(Contratdto::fromEntity).collect(Collectors.toList());
     }
 
     @Override

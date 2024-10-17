@@ -22,33 +22,31 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-                <a  routerLink="/home" class="nav-link active text-dark" aria-current="page" >Home</a>
-
+                  <a routerLink="/home" class="nav-link text-dark" routerLinkActive="active-link">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/instructor/dashboard">Dashboard</a>
+                  <a class="nav-link text-dark" routerLinkActive="active-link" routerLink="/instructor/dashboard">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/instructor/instructor-edit-profile"  >Frofil</a>
+                  <a class="nav-link text-dark" routerLinkActive="active-link" routerLink="/instructor/instructor-edit-profile">Profil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/instructor/mymissions" >Offres</a>
+                  <a class="nav-link text-dark" routerLinkActive="active-link" routerLink="/instructor/mymissions">Offres</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/instructor/contrat" >Contrats</a>
+                  <a class="nav-link text-dark" routerLinkActive="active-link" routerLink="/instructor/contrat">Contrats</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-dark" routerLink="/instructor/support" >Contact</a>
+                  <a class="nav-link text-dark" routerLinkActive="active-link" routerLink="/instructor/support">Contact</a>
               </li>
-
-            </ul>
+          </ul>
           </div>
 
           <!-- User Menu / Login -->
           <ul class="nav header-navbar-rht d-none d-lg-flex">
-            <li class="login-link">
-              <a [routerLink]="routes.login" class="btn btn-primary ms-3">Login / Signup</a>
-            </li>
+          <li class="login-link">
+    <a [routerLink]="routes.login" class="btn custom-btn ms-3">Login / Signup</a>
+</li>
           </ul>
 
           <!-- Mobile Toggler -->

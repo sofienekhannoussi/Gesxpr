@@ -8,10 +8,22 @@
     border-radius: 50%;
     animation: spinner-border 0.75s linear infinite;
   }
-  
+
   @keyframes spinner-border {
     100% {
       transform: rotate(360deg);
     }
+
+
   }
-  
+
+  .btn-outline-primary {
+    border-color: #ff875a;
+    color: #ff875a;
+}
+
+.btn-outline-primary:hover {
+    background-color: #ff875a;
+    color: #fff !important;
+    border-color: #ff875a;
+}

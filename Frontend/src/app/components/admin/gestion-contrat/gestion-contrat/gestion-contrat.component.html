@@ -1,13 +1,20 @@
 
 
+<div class="settings-widget profile-details">
+  <div class="settings-menu p-0">
+  <div class="profile-heading">
+  <h3>Liste des Contrats</h3>
+
+  </div>
 <table class="table table-hover table-striped mb-4">
     <thead class="thead-dark">
-        <tr>  
-           
-            <th>Reference</th>
-            <th class="text-center">type</th>
-            <th class="text-center">duree</th>
-          
+        <tr>
+
+            <th class="text-center">Reference</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Duree</th>
+            <th class="text-center">Actions</th>
+
         </tr>
     </thead>
     <tbody>
@@ -15,7 +22,7 @@
             <td class="text-center">{{data.reference}}</td>
             <td class="text-center">{{data.type}}</td>
             <td class="text-center">{{data.duree}}</td>
-          
+
             <td class="text-center">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"  (click)="getContratId(data.id)">
                     <i class="fas fa-edit"></i> Détail
@@ -55,11 +62,13 @@
                 <p><strong>type:</strong> {{viewmodelContrat.type}}</p>
                 <p><strong>duree:</strong> {{viewmodelContrat.duree}}</p>
                 <p><strong>dateContrat:</strong> {{viewmodelContrat.dateContrat}}</p>
-                
+
             </div>
-            
+
         </div>
     </div>
 </div>
 
+</div>
+</div>
 
