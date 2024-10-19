@@ -9,7 +9,7 @@ export class routes {
     return this.Url;
   }
   public static get instructor(): string {
-    return this.baseUrl + '/instructor/';
+    return this.baseUrl + '/manager/';
   }
   public static get students(): string {
     return this.baseUrl + '/expert/';

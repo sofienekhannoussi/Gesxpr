@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent implements OnInit, OnDestroy {
   registerOffer: Mission = new Mission();
   errorMsg:string=""
   msgSuccess:string=""
@@ -98,19 +98,20 @@ form!:FormGroup;
 
         this.msgSuccess="Mission created successfully"
         this.router.navigate(['instructor', 'mymissions'])
-      /*   setTimeout(() => {
-          this.router.navigate(['instructor', 'mymissions'])
+
+        setTimeout(() => {
+          this.router.navigate(["instructor/mymissions"])
         }, 2000);
- */
+
 
       },
       (err:HttpErrorResponse)=>this.errorMsg='not saved')
     //}
     }
-/*
+
   ngOnDestroy(): void {
     this.editor.destroy();
-  } */
+  }
 
   public onSubmit(index:number){
     this.activeIndex = index

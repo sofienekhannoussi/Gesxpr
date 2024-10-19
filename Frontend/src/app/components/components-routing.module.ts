@@ -15,7 +15,7 @@ const routes: Routes = [
           import('./blog/blog.module').then((m) => m.BlogModule),
       },
       {
-        path: 'instructor',
+        path: 'manager',
         loadChildren: () =>
           import('./instructor/instructor.module').then(
             (m) => m.InstructorModule

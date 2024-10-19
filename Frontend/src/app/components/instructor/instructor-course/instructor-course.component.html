@@ -42,14 +42,14 @@
                                 <tr>
                                     <th >MISSIONS</th>
                                     <th class="text-center">EXPERTS</th>
-                                    <th class="text-center">STATUT</th>
-                                    <th class="text-center">ACTIONS</th>
+                                    <th  class="text-center">STATUT</th>
+                                    <th  class="text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of missionn;" #itemElement>
                                     <td>
-                                      {{data.title}}
+                                     <h6> {{data.title}}</h6>
                                         <div class="sell-table-group d-flex align-items-center">
                                           <!--   <div class="sell-group-img">
                                                 <a [routerLink]="routes.page_course_details">
@@ -61,13 +61,10 @@
                                                 <div
                                                     class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                        <!-- <img [src]="data.img2" alt=""> -->
-                                                        <p>{{data.dateDebut}}</p>
-                                                    </div>
-                                                    <div class="course-view d-flex align-items-center">
-                                                        <!-- <img [src]="data.img3" alt=""> -->
-                                                        <p>{{data.dateFin}}</p>
-                                                    </div>
+                                                      <p class="me-3">From: {{data.dateDebut}}</p>
+                                                      <p>To: {{data.dateFin}}</p>
+                                                  </div>
+
                                                 </div>
                                                 <div>
                                                     <!-- <div [ngClass]="{'progress-bar bg-success progress-bar-striped active-stip course-stip progress-stip course-bar': data.progress === 'progress stip'}" class="progress-bar bg-success progress-bar-striped active-stip"></div> -->
@@ -97,7 +94,7 @@
           <div class="modal-body col-md-12">
             <form action="!">
               <div class="form-group ">
-                <label class="add-course-label">title</label>
+                <label class="add-course-label">Title</label>
                 <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="viewmodelmission.title" name="title"  />
                 <small *ngIf="submitted && form.get('title')?.invalid" class="text-danger">Title est obligatoire</small> </div>
               <div class="form-group">
@@ -107,11 +104,11 @@
               </div>
 
               <div class="form-group">
-                <label class="add-course-label">date Debut</label>
+                <label class="add-course-label">Date Debut</label>
                 <input type="date" class="form-control" placeholder="Enter Date "[(ngModel)]="viewmodelmission.dateDebut" name="dateDebut" />
                 <small *ngIf="submitted && form.get('dateDebut')?.invalid" class="text-danger">Date de debut est obligatoire</small>
                 <br>
-                <label class="add-course-label">date Fin</label>
+                <label class="add-course-label">Date Fin</label>
                 <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="viewmodelmission.dateFin" name="dateFin"/>
 
                 <small *ngIf="submitted && form.get('dateFin')?.invalid" class="text-danger">Date de debut est obligatoire</small>

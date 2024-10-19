@@ -28,6 +28,19 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'course',
+        loadChildren: () =>
+          import('./course/course.module').then((m) => m.CourseModule),
+      },
+      {
+        path: 'add-course',
+        loadChildren: () =>
+          import('./course/add-course/add-course.module').then(
+            (m) => m.AddCourseModule
+          ),
+      },
+
+      {
         path: 'contrat/:id/:idMission',
         loadChildren: () =>
           import('./contrat/contrat.module').then(
