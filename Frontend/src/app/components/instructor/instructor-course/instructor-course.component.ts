@@ -15,6 +15,7 @@ import { FormControl, FormGroup} from '@angular/forms';
 import { Validators, Editor, Toolbar } from 'ngx-editor';
 import { OffreService } from 'src/app/servicesSTG/postuleoffre.service';
 import { ListpostuleBymission } from 'src/app/modelSTG/listpostule-bymission';
+import { Status } from 'filepond';
 @Component({
   selector: 'app-instructor-course',
   templateUrl: './instructor-course.component.html',
@@ -22,11 +23,15 @@ import { ListpostuleBymission } from 'src/app/modelSTG/listpostule-bymission';
 })
 export class InstructorCourseComponent implements OnInit {
   public routes = routes;
+  modelmission: Mission = new Mission();
+
   errorMsg:string=""
   expertCount=0
   idmission!: number
   submitted!:boolean
   form!:FormGroup;
+  formUPDATE!:FormGroup;
+
   msgSuccess:string=""
   listPostuleoffre!:ListpostuleBymission[]
 
@@ -76,7 +81,21 @@ this.missionn = this.instructorCourse
       typeContrat:new FormControl("",Validators.required()),
       typeLieu:new FormControl("",Validators.required())
     });
-    
+
+
+    this.formUPDATE = new FormGroup({
+      title:new FormControl("",Validators.required()),
+      description:new FormControl("",Validators.required()),
+      dateDebut:new FormControl("",Validators.required()),
+      dateFin:new FormControl("",Validators.required()),
+      typeContrat:new FormControl("",Validators.required()),
+      typeLieu:new FormControl("",Validators.required()),
+      statut:new FormControl("",Validators.required())
+
+    });
+
+
+
     const id = Number(localStorage.getItem('userId'));
     this.getbyisresp(id);
     this.getlistMission(id);
@@ -90,17 +109,66 @@ this.missionn = this.instructorCourse
 
   }
 
+  updateMission()
+
+  {   if (this.formUPDATE.invalid && this.submitted==true) {
+    alert("Vous devez remplir les champs");
+
+    return;
+  }
+  const idd = Number(localStorage.getItem('userId'));
+  this.modelmission.idresponsablesoci=Number(idd)
+  this.modelmission.title =this.formUPDATE.value.title
+  this.modelmission.description=    this.formUPDATE.value.description
+  this.modelmission.dateDebut= this.formUPDATE.value.dateDebut
+  this.modelmission.dateFin=this.formUPDATE.value.dateFin
+  this.modelmission.typeContrat=this.formUPDATE.value.typeContrat
+  this.modelmission.typeLieu=this.formUPDATE.value.typeLieu
+  this.modelmission.statut=this.formUPDATE.value.statut
+
+this.missionservice.updateMission(this.modelmission).subscribe({
+
+next:(res)=>{
+  alert("Mission a été modifié")
+  this.getlistMission(idd);
+  console.log(res)
+  this.submitted=true
+}
+
+})
+
+  }
 
 
+  getMissionByid(id: number) {
+    this.missionservice.finddpetById(id).subscribe(
+      res => {
+        // Affectation des données de la mission au modèle
+        this.modelmission = res;
+
+        // Utilisation de patchValue pour pré-remplir le formulaire avec les données récupérées
+        this.formUPDATE.patchValue({
+          title: this.modelmission.title,
+          description: this.modelmission.description,
+          dateDebut: this.modelmission.dateDebut,
+          dateFin: this.modelmission.dateFin,
+          typeContrat: this.modelmission.typeContrat,
+          typeLieu: this.modelmission.typeLieu,
+          statut: this.modelmission.statut
+        });
+      },
+      err => {
+        console.error('Erreur lors de la récupération des données de la mission', err);
+      }
+    );
+  }
 
 getMission(id:number)
       {
-        console.log("iiiiiiiiiiiiii",id);
         if(id!=undefined && id !=null)
         {
           this.missionservice.finddpetById(id).subscribe(
             res=>{
-              console.log(res);
               this.viewmodelmission=res
           },error=>{
             console.error(error)
@@ -108,7 +176,7 @@ getMission(id:number)
 
 
             this.form.get("title")?.setValue(this.viewmodelmission.title);
-            this.form.get("Description")?.setValue(this.viewmodelmission.description);
+            this.form.get("description")?.setValue(this.viewmodelmission.description);
             this.form.get("dateDebut")?.setValue(this.viewmodelmission.dateDebut);
             this.form.get("dateFin")?.setValue(this.viewmodelmission.dateFin);
             this.form.get("typeContrat")?.setValue(this.viewmodelmission.typeContrat);
@@ -117,8 +185,9 @@ getMission(id:number)
             this.form.updateValueAndValidity()
           });
         }
-        console.log("iiiiiiiiiiiiii",id);
       }
+
+
 
 
   getbyisresp(id : number) {
@@ -173,7 +242,7 @@ getMission(id:number)
         this.listPostuleoffre = data
       },
       error: (error) => {
-      
+
       }
     });
   }
@@ -287,7 +356,7 @@ navigateToProfil(id:number){
 navigateToContrat(id:number,idMission:number){
   console.log('idExpert',id)
   this.closeModalBtns.nativeElement.click()
-  this.router.navigate(["instructor/contrat", id,idMission]);
+  this.router.navigate(["manager/contrat", id,idMission]);
 
 }
 

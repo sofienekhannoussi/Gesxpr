@@ -40,10 +40,10 @@ export class routes {
   }
   // Instructor Routings
   public static get instructor_dashboard(): string {
-    return this.instructor + 'instructor-dashboard';
+    return this.instructor + 'dashboard';
   }
   public static get dashboard_instructor(): string {
-    return this.instructor + 'dashboard-instructor';
+    return this.instructor + 'dashboard';
   }
   public static get instructor_chat(): string {
     return this.instructor + 'instructor-chat';
@@ -85,13 +85,13 @@ export class routes {
     return this.instructor + 'instructor-tickets';
   }
   public static get instructor_edit_profile(): string {
-    return this.instructor + 'instructor-edit-profile';
+    return this.instructor + 'manager-edit-profile';
   }
   public static get instructor_security(): string {
-    return this.instructor + 'instructor-security';
+    return this.instructor + 'manager-security';
   }
   public static get instructor_social_profiles(): string {
-    return this.instructor + 'instructor-social-profiles';
+    return this.instructor + 'manager-social-profiles';
   }
   public static get instructor_notification(): string {
     return this.instructor + 'instructor-notification';
@@ -100,10 +100,10 @@ export class routes {
     return this.instructor + 'instructor-profile-privacy';
   }
   public static get instructor_delete_profile(): string {
-    return this.instructor + 'instructor-delete-profile';
+    return this.instructor + 'manager-delete-profile';
   }
   public static get instructor_linked_account(): string {
-    return this.instructor + 'instructor-linked-account';
+    return this.instructor + 'manager-linked-account';
   }
   public static get instructor_instructor_profile(): string {
     return this.instructor + 'instructor-profile';

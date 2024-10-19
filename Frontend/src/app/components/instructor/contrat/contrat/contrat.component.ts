@@ -26,13 +26,13 @@ export class ContratComponent implements OnInit{
   id!:number
   imgUrl: string | ArrayBuffer = 'assets/components/logo.png'
   public contrat:Contrat = new Contrat();
- 
-  
+
+
 
 
   expertCountMap: Map<number, number> = new Map();
   public exp:Respsociete = new Respsociete();
-   
+
 
   viewmodelcontrat: Contrat = new Contrat();
   listContrat:Contrat[] = [];
@@ -64,7 +64,7 @@ export class ContratComponent implements OnInit{
 
   ngOnInit(): void {
 
-  
+
     /* this.getinstructorCourse();
   }
   private getinstructorCourse(): void {
@@ -88,7 +88,7 @@ export class ContratComponent implements OnInit{
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.idMission = +this.route.snapshot.paramMap.get('idMission')!;
     const id = Number(localStorage.getItem('userId'));
-    
+
         // getExpertByMission()
 
 
@@ -100,14 +100,13 @@ AddContrat(){
   this.serviceContrat.addContrat(this.contrat)
   .subscribe(result=>{
     console.log(result)
-  
+
   },
   (err:HttpErrorResponse)=>this.errorMsg='not saved')
 }
 /////////////////////////
 saveContrat() {
   const ids=Number(localStorage.getItem("userId"))
-  console.log("nour",ids)
   this.contrat.responsibleId = ids
   this.contrat.missionId=this.idMission
   this.contrat.expertId = this.id
@@ -115,18 +114,16 @@ saveContrat() {
   this.serviceContrat.addContrat(this.contrat)
       .subscribe({
         next: (res) => {
-          console.log('ridha',this.file)
           console.log(res)
           this.serviceContrat.uploadCoursDtoFile(res.id, this.file).subscribe(
             val =>  {} , error => { alert('oups')} , () => {
-              this.submitted = true ; 
-              console.log('akka mouna',this.file)
+              this.submitted = true ;
             alert("contrat a été ajouté!")
-            // this.router.navigate(['/vendeur/gererarticle']); 
+            // this.router.navigate(['/vendeur/gererarticle']);
              // this.FormGroupart.reset();
            //   this.toastrService.success('Success!', 'produit a été ajouté!');
             });
-          
+
         },
       });}
 
@@ -143,21 +140,21 @@ getContratId(id:number)
           },error=>{
             console.error(error)
           },()=>{
-          
+
           });
         }
         console.log("iiiiiiiiiiiiii",id);
       }
 
 
- 
+
 
   getLisContrat(id:number)
   {
     this.serviceContrat.getListContrat().subscribe(res => {
       this.listContrat = res
       console.log(res)
-     
+
     } , error => {
         console.error(error)
     } , ()=> {

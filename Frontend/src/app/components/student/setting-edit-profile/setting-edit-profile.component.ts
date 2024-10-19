@@ -58,7 +58,7 @@ export class SettingEditProfileComponent implements OnInit {
     }
 
   updateprofilStagiaire(){
-    console.log("nour",this.editproRequest)
+    console.log("SOU",this.editproRequest)
     this.editproRequest.id=Number(localStorage.getItem("userId"))
 
     //

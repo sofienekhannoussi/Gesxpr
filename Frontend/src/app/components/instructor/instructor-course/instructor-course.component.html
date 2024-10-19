@@ -42,14 +42,14 @@
                                 <tr>
                                     <th >MISSIONS</th>
                                     <th class="text-center">EXPERTS</th>
-                                    <th  class="text-center">STATUT</th>
-                                    <th  class="text-center">ACTIONS</th>
+                                    <th class="text-center">STATUT</th>
+                                    <th class="text-center">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of missionn;" #itemElement>
                                     <td>
-                                     <h6> {{data.title}}</h6>
+                                      {{data.title}}
                                         <div class="sell-table-group d-flex align-items-center">
                                           <!--   <div class="sell-group-img">
                                                 <a [routerLink]="routes.page_course_details">
@@ -61,10 +61,13 @@
                                                 <div
                                                     class="course-info d-flex align-items-center border-bottom-0 pb-0">
                                                     <div class="rating-img d-flex align-items-center">
-                                                      <p class="me-3">From: {{data.dateDebut}}</p>
-                                                      <p>To: {{data.dateFin}}</p>
-                                                  </div>
-
+                                                        <!-- <img [src]="data.img2" alt=""> -->
+                                                        <p>{{data.dateDebut}}</p>
+                                                    </div>
+                                                    <div class="course-view d-flex align-items-center">
+                                                        <!-- <img [src]="data.img3" alt=""> -->
+                                                        <p>{{data.dateFin}}</p>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <!-- <div [ngClass]="{'progress-bar bg-success progress-bar-striped active-stip course-stip progress-stip course-bar': data.progress === 'progress stip'}" class="progress-bar bg-success progress-bar-striped active-stip"></div> -->
@@ -75,7 +78,7 @@
                                     <td class="text-center">{{expertCountMap.get(data.id) }}</td>
 
                                     <td class="text-center"><span>{{data.statut}}</span></td>
-                                    <td class="text-center"><span> <mat-icon class="editIcon" data-bs-toggle="modal" data-bs-target="#addempModal"  (click)="getMission(data.id)">edit</mat-icon></span>
+                                    <td class="text-center"><span> <mat-icon class="editIcon" data-bs-toggle="modal" data-bs-target="#addempModal"  (click)="getMissionByid(data.id)">edit</mat-icon></span>
                                       <span> <mat-icon class="editIcon" (click)="deleteMission(data.id)">delete</mat-icon></span>
 
                                       <span class="text-center" (click)="getPostuletByMission(data.id)" data-bs-toggle="modal" data-bs-target="#ListModalPostule">
@@ -92,46 +95,44 @@
             </button>
           </div>
           <div class="modal-body col-md-12">
-            <form action="!">
+            <form [formGroup]="formUPDATE">
               <div class="form-group ">
                 <label class="add-course-label">Title</label>
-                <input type="text" class="form-control" placeholder="Enter Field "[(ngModel)]="viewmodelmission.title" name="title"  />
-                <small *ngIf="submitted && form.get('title')?.invalid" class="text-danger">Title est obligatoire</small> </div>
+                <input type="text" class="form-control" placeholder="Enter Field " formControlName="title" name="title"  />
+                </div>
               <div class="form-group">
                 <label class="add-course-label">Description</label>
-                <textarea class="form-control" placeholder="Enter Field "[(ngModel)]="viewmodelmission.description" name="description" ></textarea>
-                <small *ngIf="submitted && form.get('description')?.invalid" class="text-danger">Description est obligatoire</small>
+                <textarea class="form-control" placeholder="Enter Field "  formControlName="description" name="description" ></textarea>
+
               </div>
 
               <div class="form-group">
-                <label class="add-course-label">Date Debut</label>
-                <input type="date" class="form-control" placeholder="Enter Date "[(ngModel)]="viewmodelmission.dateDebut" name="dateDebut" />
-                <small *ngIf="submitted && form.get('dateDebut')?.invalid" class="text-danger">Date de debut est obligatoire</small>
-                <br>
-                <label class="add-course-label">Date Fin</label>
-                <input type="date" class="form-control" placeholder="Enter Date " [(ngModel)]="viewmodelmission.dateFin" name="dateFin"/>
+                <label class="add-course-label">Date de debut</label>
+                <input type="date" class="form-control" placeholder="Enter Date "  formControlName="dateDebut" name="dateDebut" />
 
-                <small *ngIf="submitted && form.get('dateFin')?.invalid" class="text-danger">Date de debut est obligatoire</small>
+                <br>
+                <label class="add-course-label">Date de fin</label>
+                <input type="date" class="form-control" placeholder="Enter Date " formControlName="dateFin" name="dateFin"/>
+
+
 
               </div>
 
 
               <div class="form-group">
                 <label class="add-course-label">Type de contrat</label>
-                <mat-select class="form-select select country-select"   [(ngModel)]="viewmodelmission.typeContrat" name="TypeContrat">
+                <mat-select class="form-select select country-select" formControlName="TypeContrat" >
                   <mat-option value="CDI">CDI</mat-option>
                   <mat-option value="CDD">CDD</mat-option>
                   <mat-option value="CIVP">CIVP</mat-option>
-
-
                 </mat-select>
-                <small *ngIf="submitted && form.get('typeContrat')?.invalid" class="text-danger">Type de contrat est obligatoire</small>
+
 
               </div>
 
               <div class="form-group">
                 <label class="add-course-label">Type lieu</label>
-                <mat-select class="form-select select country-select"    [(ngModel)]="viewmodelmission.typeLieu" name="TypeLieu">
+                <mat-select class="form-select select country-select"     formControlName="typeLieu" name="TypeLieu">
                   <mat-option value="A distance">A distance</mat-option>
                   <mat-option value="Sur site">Sur site</mat-option>
 
@@ -141,10 +142,23 @@
 
               </div>
 
+
+              <div class="form-group">
+                <label class="add-course-label">Statut</label>
+
+                <mat-select class="form-select select"  formControlName="statut" name="statut">
+                    <mat-option value="angular">En cours</mat-option>
+                    <mat-option value="nodejs">En attente</mat-option>
+                    <mat-option value="react">Terminé</mat-option>
+                  </mat-select>
+                 
+
+            </div>
+
               <p *ngIf="msgSuccess" style="color:green;size:20px" >{{msgSuccess}}</p>
               <div style="display: flex; justify-content: center;">
 
-                <button type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" >Update</button>
+                <button type="submit"  class="btn btn-success-dark " style="width:150px ;margin-right:20px" (click)="updateMission()" >Update</button>
 
               </div>
 
@@ -178,7 +192,7 @@
   <div class="modal-dialog modal-xl" role="document"> <!-- Remplacement de 'modal-lg' par 'modal-xl' pour une plus grande modale -->
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addTeacherModalName">Liste des postules</h5>
+        <h5 class="modal-title" id="addTeacherModalName">Liste postule</h5>
         <button #closeModalBtns type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -205,15 +219,15 @@
                 <td>{{ item.missionsdto.title }}</td>
                 <td>
                   <div class="d-flex gap-2"> <!-- Flexbox pour aligner les boutons -->
-                    <button #closeModalBtn type="button" class="btn custom-btn" aria-label="Details"
+                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
                             (click)="navigateToProfil(item.expertdto.id)">
-                        Profil expert
+                      Profil expert
                     </button>
-                    <button #closeModalBtn type="button" class="btn custom-btn" aria-label="Details"
-                            (click)="navigateToContrat(item.expertdto.id, item.missionsdto.id)">
-                        Ajouter contrat
+                    <button #closeModalBtn type="button" class="btn btn-info" aria-label="Details"
+                    (click)="navigateToContrat(item.expertdto.id,item.missionsdto.id)">
+                      Ajouter contrat
                     </button>
-                </div>
+                  </div>
                 </td>
               </tr>
             </tbody>

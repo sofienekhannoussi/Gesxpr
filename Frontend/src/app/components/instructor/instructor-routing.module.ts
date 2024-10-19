@@ -67,7 +67,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'instructor-delete-profile',
+        path: 'manager-delete-profile',
         loadChildren: () =>
           import(
             './instructor-delete-profile/instructor-delete-profile.module'
@@ -81,14 +81,14 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'instructor-edit-profile',
+        path: 'manager-edit-profile',
         loadChildren: () =>
           import(
             './instructor-edit-profile/instructor-edit-profile.module'
           ).then((m) => m.InstructorEditProfileModule),
       },
       {
-        path: 'instructor-linked-account',
+        path: 'manager-linked-account',
         loadChildren: () =>
           import(
             './instructor-linked-account/instructor-linked-account.module'
@@ -137,14 +137,14 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'instructor-security',
+        path: 'manager-security',
         loadChildren: () =>
           import('./instructor-security/instructor-security.module').then(
             (m) => m.InstructorSecurityModule
           ),
       },
       {
-        path: 'instructor-social-profiles',
+        path: 'manager-social-profiles',
         loadChildren: () =>
           import(
             './instructor-social-profiles/instructor-social-profiles.module'

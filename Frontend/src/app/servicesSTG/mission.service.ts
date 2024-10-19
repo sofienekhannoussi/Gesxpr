@@ -18,7 +18,6 @@ export class MissionService {
     }
 
     updateMission(updatemission : Mission):Observable<Mission>{
-      console.log("fffffffffffffff",updatemission)
       const url=this.baseUrl+"/update"
       return this.httpClient.post<Mission>(url,updatemission)
     }

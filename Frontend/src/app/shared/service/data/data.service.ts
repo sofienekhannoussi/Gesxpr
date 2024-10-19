@@ -4989,7 +4989,7 @@ export class DataService {
           menuValue: 'My Dashboard',
           route: routes.instructor_dashboard,
           icon: 'home',
-          base: 'instructor-dashboard',
+          base: 'dashboard',
           subMenus: [],
         },
         {
@@ -5116,9 +5116,9 @@ export class DataService {
       menu: [
         {
           menuValue: 'My Dashboard',
-          route: routes.instructor_dashboard,
+          route: routes.dashboard_instructor,
           icon: 'home',
-          base: 'instructor-dashboard',
+          base: './dashboard',
           subMenus: [],
         },
         {
@@ -5128,7 +5128,7 @@ export class DataService {
           base: 'mymissions',
           subMenus: [],
         },
-       
+
         {
           menuValue: 'Edit Profile',
           route: routes.instructor_edit_profile,
